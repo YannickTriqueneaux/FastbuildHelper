@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Compilers", "Compilers", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PreGeneratedParts", "PreGeneratedParts", "{25B2FBB8-C62B-4D2F-A69A-3F1968DEE5A1}"
 	ProjectSection(SolutionItems) = preProject
+		..\PreGeneratedParts\DllProject.bff = ..\PreGeneratedParts\DllProject.bff
+		..\PreGeneratedParts\DllProject_WithTest.bff = ..\PreGeneratedParts\DllProject_WithTest.bff
 		..\PreGeneratedParts\LibProject.bff = ..\PreGeneratedParts\LibProject.bff
 		..\PreGeneratedParts\LibProject_WithTest.bff = ..\PreGeneratedParts\LibProject_WithTest.bff
 		..\PreGeneratedParts\UnityBuild.bff = ..\PreGeneratedParts\UnityBuild.bff
@@ -43,18 +45,16 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CodeGenerateVSSolution", "C
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Win32 = Debug|Win32
-		Release|Win32 = Release|Win32
+		Linux|Win32 = Linux|Win32
+		Windows|Win32 = Windows|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CA50E645-7C92-4DCF-9D38-720EC7CCB126}.Debug|Win32.ActiveCfg = Debug|Win32
-		{CA50E645-7C92-4DCF-9D38-720EC7CCB126}.Debug|Win32.Build.0 = Debug|Win32
-		{CA50E645-7C92-4DCF-9D38-720EC7CCB126}.Release|Win32.ActiveCfg = Release|Win32
-		{CA50E645-7C92-4DCF-9D38-720EC7CCB126}.Release|Win32.Build.0 = Release|Win32
-		{609F25E2-F8BC-4B0F-9304-BD0DF3E3FCB2}.Debug|Win32.ActiveCfg = Debug|Win32
-		{609F25E2-F8BC-4B0F-9304-BD0DF3E3FCB2}.Debug|Win32.Build.0 = Debug|Win32
-		{609F25E2-F8BC-4B0F-9304-BD0DF3E3FCB2}.Release|Win32.ActiveCfg = Release|Win32
-		{609F25E2-F8BC-4B0F-9304-BD0DF3E3FCB2}.Release|Win32.Build.0 = Release|Win32
+		{CA50E645-7C92-4DCF-9D38-720EC7CCB126}.Linux|Win32.ActiveCfg = Linux|Win32
+		{CA50E645-7C92-4DCF-9D38-720EC7CCB126}.Linux|Win32.Build.0 = Linux|Win32
+		{CA50E645-7C92-4DCF-9D38-720EC7CCB126}.Windows|Win32.ActiveCfg = Windows|Win32
+		{CA50E645-7C92-4DCF-9D38-720EC7CCB126}.Windows|Win32.Build.0 = Windows|Win32
+		{609F25E2-F8BC-4B0F-9304-BD0DF3E3FCB2}.Linux|Win32.ActiveCfg = Release|Win32
+		{609F25E2-F8BC-4B0F-9304-BD0DF3E3FCB2}.Windows|Win32.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
