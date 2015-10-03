@@ -1,0 +1,113 @@
+
+
+// Linux
+//------------------------------------------------------------------------------
+
+Settings
+{
+	
+}
+Compiler( 'Compiler-x64' )
+{	
+	.Executable = '/usr/bin/gcc'
+	//.Executable = '/usr/bin/g++'
+}
+
+.CompiledFileExtensions =
+[
+	.staticLibExt = '.a'
+	.dynamicLibExt = '.so'
+	.executableExt = ''
+]
+
+.LinuxDefinitions = 
+[
+	.Definitions			= ' -D__LINUX__' 								
+		
+		
+	//DEFINES////////
+	.DebugDefinitions       = ' -DDEBUG'	
+								//+ ' -DPROFILING_ENABLED'
+								
+	.ReleaseDefinitions     = ' -DRELEASE'
+	//////////////////
+]
+
+.LinuxBaseConfig =
+[
+	Using( .LinuxDefinitions )
+
+    .Compiler               = 'Compiler-x64'
+    .Librarian              = '/usr/bin/ar'
+    .Linker                 = '/usr/bin/g++'
+    
+    .BaseCompilerOptions    = '-o "%2" "%1" -c -g'
+                            + ' -I./'
+                            + ' -Wall -Werror -Wfatal-errors'                    // warnings as errors
+                            + ' -m64'                           // x86-64
+							+ .Definitions
+                            
+    .CompilerOptionsC       = .BaseCompilerOptions
+    .CompilerOptions        = .BaseCompilerOptions
+                            //+ ' -std=c++11'                     // allow C++11 features
+                            
+                            // Disabled warnings
+                            + ' -Wno-invalid-offsetof' // we get the offset of members in non-POD types
+                            
+    .LinkerOptions          = '"%1" -o "%2"'
+                                
+    .LibrarianOptions       = 'rcs "%2" "%1"'
+    
+    // Optimizations
+    .CompilerDebugOptimizations     = ' -O0'
+    .CompilerReleaseOptimizations   = ' -O3'
+    .LibrarianDebugOptimizations    = ''
+    .LibrarianReleaseOptimizations  = ''
+    .LinkerDebugOptimizations       = ''
+    .LinkerReleaseOptimizations     = ''    
+    
+    //.UseExceptions          = ' -fexceptions' 
+]
+.X64BaseConfig = 
+[
+    Using( .LinuxBaseConfig )
+    .Platform               = 'x64'
+]
+.X64DebugConfig =
+[
+    Using( .X64BaseConfig )
+    .Config                 = 'Debug'
+    .CompilerOptions        + .DebugDefinitions
+                            + .CompilerDebugOptimizations                           
+    .LibrarianOptions       + .LibrarianDebugOptimizations
+    .LinkerOptions          + .LinkerDebugOptimizations
+]
+.X64ReleaseConfig =
+[
+    Using( .X64BaseConfig )
+    .Config                 = 'Release'
+    .CompilerOptions        + .ReleaseDefinitions
+                            + .CompilerReleaseOptimizations
+    .LibrarianOptions       + .LibrarianReleaseOptimizations
+    .LinkerOptions          + .LinkerReleaseOptimizations
+]
+
+
+
+
+
+// Configurations
+//------------------------------------------------------------------------------
+.CompilerConfigs = 
+{ 
+	.X64DebugConfig,  
+	.X64ReleaseConfig,
+	//.X64ProfileConfig_Linux,
+}
+
+.DefaultCompilerConfig =
+[
+	Using( .X64DebugConfig )
+]
+
+.PlatformDefaultLibs = ''

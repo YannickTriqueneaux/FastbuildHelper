@@ -1,0 +1,25 @@
+
+
+.projectNames 	+ .ProjectName
+
+// Visual Studio Project Generation
+//--------------------------------------------------------------------------
+VCXProject( '$ProjectName$-vsproj' )//Library project
+{
+	Using( .ProjectCommon )
+	.ProjectOutput				= '$VSSolutionDestination$/$ProjectName$/$ProjectName$.vcxproj'
+	.ProjectInputPaths			= '$SourcesPath$\'
+	.ProjectBasePath			= '$SourcesPath$\'
+	.ProjectFilesToExclude      = '$SourcesPath$\main.test.cpp'
+}
+					
+.VSFolder =
+[ 
+	.Path			= '$ProjectName$'
+	.Projects		= { '$ProjectName$-vsproj' }
+]
+
+//Adding into list//---------------
+.VSProjects			+ '$ProjectName$-vsproj'
+.VSSolutionFolders   	+ .VSFolder
+//---------------------------------------------------------------------------

@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GenericFiles", "GenericFiles", "{33C069DF-3FED-40EB-9E83-33DD1E48DF0D}"
+	ProjectSection(SolutionItems) = preProject
+		..\AliasesMaker.bff = ..\AliasesMaker.bff
+		..\VisualStudioGenBEGIN.bff = ..\VisualStudioGenBEGIN.bff
+		..\VisualStudioGenEND.bff = ..\VisualStudioGenEND.bff
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Compilers", "Compilers", "{10D9100B-A867-4A75-B13E-05B5C8332B11}"
+	ProjectSection(SolutionItems) = preProject
+		..\Compilers\ClangCompiler.bff = ..\Compilers\ClangCompiler.bff
+		..\Compilers\LinuxCompiler.bff = ..\Compilers\LinuxCompiler.bff
+		..\Compilers\OSXCompiler.bff = ..\Compilers\OSXCompiler.bff
+		..\Compilers\WindowsCompiler.bff = ..\Compilers\WindowsCompiler.bff
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PreGeneratedParts", "PreGeneratedParts", "{25B2FBB8-C62B-4D2F-A69A-3F1968DEE5A1}"
+	ProjectSection(SolutionItems) = preProject
+		..\PreGeneratedParts\LibProject_WithTest.bff = ..\PreGeneratedParts\LibProject_WithTest.bff
+		..\PreGeneratedParts\UnityBuild.bff = ..\PreGeneratedParts\UnityBuild.bff
+		..\PreGeneratedParts\VisualStudioProject.bff = ..\PreGeneratedParts\VisualStudioProject.bff
+		..\PreGeneratedParts\VisualStudioProject_WithTest.bff = ..\PreGeneratedParts\VisualStudioProject_WithTest.bff
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DefaultLibs", "DefaultLibs", "{BC3D1C55-054A-4217-B796-42BA13B547A1}"
+	ProjectSection(SolutionItems) = preProject
+		..\Compilers\DefaultLibs\WindowsDefaultLibs.bff = ..\Compilers\DefaultLibs\WindowsDefaultLibs.bff
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CodeFiles", "CodeFiles", "{267B7700-9987-486A-816A-1101839A7239}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Build\fastbuild\CodeBuild.bff = ..\..\..\Build\fastbuild\CodeBuild.bff
+		..\..\..\Build\fastbuild\fbuild.bff = ..\..\..\Build\fastbuild\fbuild.bff
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Generatedfiles", "Generatedfiles", "{EF3D0464-49AA-4847-939C-963264A23862}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Build\fastbuild\Generatedfiles\Projects.bff = ..\..\..\Build\fastbuild\Generatedfiles\Projects.bff
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{1B53704B-BC8B-4D36-BCA4-A7219177321B}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Build\fastbuild\Generatedfiles\Common\System.bff = ..\..\..\Build\fastbuild\Generatedfiles\Common\System.bff
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Code", "Code\Code.vcxproj", "{CA50E645-7C92-4DCF-9D38-720EC7CCB126}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA50E645-7C92-4DCF-9D38-720EC7CCB126}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CA50E645-7C92-4DCF-9D38-720EC7CCB126}.Debug|Win32.Build.0 = Debug|Win32
+		{CA50E645-7C92-4DCF-9D38-720EC7CCB126}.Release|Win32.ActiveCfg = Release|Win32
+		{CA50E645-7C92-4DCF-9D38-720EC7CCB126}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{10D9100B-A867-4A75-B13E-05B5C8332B11} = {33C069DF-3FED-40EB-9E83-33DD1E48DF0D}
+		{25B2FBB8-C62B-4D2F-A69A-3F1968DEE5A1} = {33C069DF-3FED-40EB-9E83-33DD1E48DF0D}
+		{BC3D1C55-054A-4217-B796-42BA13B547A1} = {10D9100B-A867-4A75-B13E-05B5C8332B11}
+		{EF3D0464-49AA-4847-939C-963264A23862} = {267B7700-9987-486A-816A-1101839A7239}
+		{1B53704B-BC8B-4D36-BCA4-A7219177321B} = {EF3D0464-49AA-4847-939C-963264A23862}
+	EndGlobalSection
+EndGlobal

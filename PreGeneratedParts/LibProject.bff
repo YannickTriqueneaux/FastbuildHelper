@@ -1,0 +1,27 @@
+
+ForEach( .CompilerConfig in .CompilerConfigs )
+{
+	Using( .CompilerConfig )
+	Using( .CompiledFileExtensions )
+	
+    .aliasName      = "$ProjectName$-$Platform$-$Config$"
+    .aliasTestName  = "Test-$aliasName$"
+
+#include "..\Compilers\Tools\AddIncludePaths.bff"
+
+	Library( "$aliasName$-Lib" )
+	{
+		.CompilerInputUnity			= "$ProjectName$-Unity"
+		.CompilerOutputPath			= "$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$\"
+		.LibrarianOutput 			= "$BuildDestination$\$Platform$-$Config$\$ProjectName$" + .staticLibExt
+	}
+
+    Alias("$aliasName$") { .Targets = { "$aliasName$-Lib" } }
+}
+
+Alias( "$ProjectName$" )
+{
+	Using( .DefaultCompilerConfig )
+	.aliasName 	= "$ProjectName$-$Platform$-$Config$"
+	.Targets = { "$aliasName$" }
+}

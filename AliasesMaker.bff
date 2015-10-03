@@ -1,0 +1,7 @@
+
+
+Alias( 'All' )
+{
+	.Targets = .projectNames
+}
+

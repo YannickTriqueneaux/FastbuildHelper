@@ -1,0 +1,100 @@
+
+// OSX COMPILATION
+//------------------------------------------------------------------------------
+
+//!\THIS FILE WAS NEVER TRIED
+//!\PLEASE DO NOT ASSUMS THAT ITS WORKS
+
+//
+Settings
+{
+	
+}
+Compiler( 'Compiler-x64-OSX' )
+{
+	.Executable = '/usr/bin/g++'
+}
+
+.CompiledFileExtensions =
+[
+	.staticLibExt = '.a'
+	.dynamicLibExt = '.so'
+	.executableExt = ''
+]
+
+.OSXBaseConfig =
+[
+    .Compiler               = 'Compiler-x64-OSX'
+    .Librarian              = '/usr/bin/ar'
+    .Linker                 = '/usr/bin/g++'
+
+    .CompilerOptions        = '-x c++ -o "%2" "%1" -c -g'
+                            + ' -I./'
+                            + ' -D__APPLE__'
+                            + ' -D__OSX__'
+                            + ' -Wall -Wfatal-errors'                    // warnings as errors
+                            + ' -Wno-#pragma-messages'
+                            + ' -std=c++11'                     // allow C++11 features
+                            + ' -m64'                           // x86-64
+                            
+    .CompilerOutputExtension= '.o'
+    .LinkerOptions          = '"%1" -o "%2" -g'
+
+    .LibrarianOptions       = 'rcs "%2" "%1"'
+
+    // Optimizations
+    .CompilerDebugOptimizations     = ' -O0'
+    .CompilerReleaseOptimizations   = ' -O3'
+    .LibrarianDebugOptimizations    = ''
+    .LibrarianReleaseOptimizations  = ''
+    .LinkerDebugOptimizations       = ''
+    .LinkerReleaseOptimizations     = ''
+
+    .UseExceptions          = ' -fexceptions'
+]
+.X64BaseConfig =
+[
+    Using( .OSXBaseConfig )
+    .Platform               = 'x64OSX'
+]
+.X64DebugConfig =
+[
+    Using( .X64BaseConfig )
+    .Config                 = 'Debug'
+    .CompilerOptions        + ' -DDEBUG -DPROFILING_ENABLED'
+                            + .CompilerDebugOptimizations
+    .LibrarianOptions       + .LibrarianDebugOptimizations
+    .LinkerOptions          + .LinkerDebugOptimizations
+]
+.X64ReleaseConfig =
+[
+    Using( .X64BaseConfig )
+    .Config                 = 'Release'
+    .CompilerOptions        + ' -DRELEASE'
+                            + .CompilerReleaseOptimizations
+    .LibrarianOptions       + .LibrarianReleaseOptimizations
+    .LinkerOptions          + .LinkerReleaseOptimizations
+]
+.X64ProfileConfig =
+[
+    Using( .X64ReleaseConfig ) // Note: based on Release config
+    .Config                 = 'Profile'
+    .CompilerOptions        + ' -DPROFILING_ENABLED'
+]
+
+
+// Configurations
+//------------------------------------------------------------------------------
+.CompilerConfigs = 
+{
+	.X64DebugConfig,
+	.X64ReleaseConfig,
+	//.X64ProfileConfig
+}
+
+.DefaultCompilerConfig =
+[
+	Using( .X64DebugConfig )
+]
+
+.PlatformDefaultLibs = ''

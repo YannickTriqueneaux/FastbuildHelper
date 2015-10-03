@@ -1,0 +1,15 @@
+// Visual Studio Solution
+//------------------------------------------------------------------------------
+VSSolution( 'solution' )
+{
+    .SolutionOutput		= '$VSSolutionName$.sln'
+	
+	
+    .SolutionProjects	= .VSProjects //filled by Projects.bff
+	
+	//.SolutionBuildProject = 'All-proj'
+						  
+	.SolutionConfigs	= .ProjectConfigs
+	
+    .SolutionFolders	= .VSSolutionFolders //filled by Projects.bff
+}

@@ -1,0 +1,35 @@
+
+
+.projectNames 	+ .ProjectName
+
+// Visual Studio Project Generation
+//--------------------------------------------------------------------------
+VCXProject( '$ProjectName$-vsproj' )//Library project
+{
+	Using( .ProjectCommon )
+	.ProjectOutput				= '$VSSolutionDestination$/$ProjectName$/$ProjectName$.vcxproj'
+	.ProjectInputPaths			= { '$SourcesPath$\' }
+								+ .SubFoldersSourcesPath
+	.ProjectBasePath			= '$SourcesPath$\'
+	.ProjectFilesToExclude      = .TestSourcesFiles
+}
+VCXProject( '$ProjectName$-vsproj-test' )//Test Project
+{
+	Using( .ProjectCommon )
+	.ProjectOutput				= '$VSSolutionDestination$/$ProjectName$/Test-$ProjectName$.vcxproj'
+	.ProjectBasePath			= { '$SourcesPath$\' }
+								+ .SubFoldersTestSourcesPath
+	.ProjectFiles		        = .TestSourcesFiles
+}
+					
+.VSFolder =
+[ 
+	.Path			= '$ProjectName$'
+	.Projects		= { '$ProjectName$-vsproj','$ProjectName$-vsproj-test' }
+]
+
+.VSSolutionFolders  + .VSFolder
+
+.VSProjects			+ '$ProjectName$-vsproj'
+					+ '$ProjectName$-vsproj-test'
+//---------------------------------------------------------------------------

@@ -1,0 +1,13 @@
+
+
+Unity( '$ProjectName$-Unity' )
+{
+	.UnityInputPath          = { '$SourcesPath$\' }	// (optional) Path (or paths) to find files
+							 + .SubFoldersSourcesPath
+							 
+	.UnityInputExcludePattern 	= '*.cpp'	// (optional) Wildcard pattern(s) of files/folders to exclude
+	.UnityInputExcludedFiles 	= .TestSourcesFiles	// (optional) Explicit list of excluded files (partial, root-relative of full path)
+	.UnityInputPattern        	= '*.cc' 	// (optional) Pattern of files to find (default *.cpp)
+	.UnityOutputPath         	= 'Unity\'	// Path to output generated Unity files
+	.UnityOutputPattern      	= '$ProjectName$.cpp'			// (optional) Pattern of output Unity file names (default Unity*.cpp)
+}

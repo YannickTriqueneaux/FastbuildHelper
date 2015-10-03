@@ -1,0 +1,67 @@
+
+.VistualStudioDefinitions =
+[
+	//= ' /D"WIN32_LEAN_AND_MEAN"'
+    //+ ' /D_WIN32' 
+    //+ ' /D__WINDOWS__'
+    //+ ' /D_GNU_SOURCE'
+    //+ ' /D_WIN32_WINNT=0x0601'
+    //+ ' /DWINVER=0x0601'
+    //+ ' /D_MSC_VER=1020'// TODO update when changing Windows SDKs version
+	
+	.X86Defines					= 'WIN32_LEAN_AND_MEAN;_WIN32;__WINDOWS__;WIN32;'
+	.X64Defines					= 'WIN32_LEAN_AND_MEAN;_WIN32;__WINDOWS__;WIN64;'
+	.DebugDefines				= 'DEBUG;PROFILING_ENABLED'
+	//.ProfileDefines				= 'RELEASE;PROFILING_ENABLED'
+	.ReleaseDefines				= 'RELEASE'
+]
+
+.ProjectCommon = 
+[
+	Using ( .VistualStudioDefinitions )
+	.ProjectBuildCommand		= 'cd ^$(SolutionDir)\ &amp; fbuild -vs -dist -cache ^$(ProjectName)-^$(Configuration)'
+	.ProjectRebuildCommand		= 'cd ^$(SolutionDir)\ &amp; fbuild -vs -dist -cache -clean ^$(ProjectName)-^$(Configuration)'
+	.OutputDirectory			= '^$(SolutionDir)\Build\^$(Configuration)'
+	.IntermediateDirectory		= '^$(SolutionDir)\Build\^$(Configuration)'
+	.Platform = 'Win32' // unused
+	.PlatformToolset = 'v120'
+	.IncludeSearchPath			= '^$(SolutionDir)..\..;.\'
+]
+
+.ProjectX86Debug		= [ Using( .ProjectCommon )	.Config = 'x86-Debug'	.PreprocessorDefinitions = .X86Defines + .DebugDefines ]
+.ProjectX86Release		= [ Using( .ProjectCommon )	.Config = 'x86-Release' .PreprocessorDefinitions = .X86Defines + .ReleaseDefines ]
+.ProjectX64Debug		= [ Using( .ProjectCommon )	.Config = 'x64-Debug'	.PreprocessorDefinitions = .X64Defines + .DebugDefines ]
+.ProjectX64Release		= [ Using( .ProjectCommon )	.Config = 'x64-Release' .PreprocessorDefinitions = .X64Defines + .ReleaseDefines ]
+
+//.ProjectX86Profile		= [ Using( .ProjectCommon )	.Config = 'x86-Profile' .PreprocessorDefinitions = .X86Defines + .ProfileDefines ]
+//.ProjectX64Profile		= [ Using( .ProjectCommon )	.Config = 'x64-Profile' .PreprocessorDefinitions = .X64Defines + .ProfileDefines ]
+//.ProjectX86ClangDebug		= [ Using( .ProjectCommon )	.Config = 'x86Clang-Debug' ]
+
+
+.ProjectConfigs = 
+{ 
+	.ProjectX86Debug, 
+	.ProjectX86Release,
+	.ProjectX64Debug, 
+	.ProjectX64Release,
+	
+	//.ProjectX86Profile, 
+	//.ProjectX64Profile, 
+	//.ProjectX86ClangDebug 
+}
+// Project to compile everything
+//VCXProject( 'All-proj' )
+//{
+//	.ProjectOutput				= 'VSSolution/Projects/All.vcxproj'
+//	.ProjectFiles				= { '.\fbuild.bff' }
+//	.ProjectBasePath			= '.\'
+//}
+
+.AllFolder = 
+[
+	.Path			= 'All'
+	.Projects		= { }
+]
+
+.VSSolutionFolders 		= { .AllFolder }
+.VSProjects             = {}

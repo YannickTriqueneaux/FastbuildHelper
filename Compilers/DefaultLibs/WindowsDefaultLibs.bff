@@ -1,0 +1,23 @@
+//This file contains all default library for executables linking
+
+
+//DO NOT USE AN OPERATOR ' = '  IN THIS FILE !
+
+.PlatformDefaultLibs 	+ ' libcmt.lib'		// Main entry point
+						+ ' kernel32.lib'	// Kernel functions
+						+ ' user32.lib'
+						+ ' gdi32.lib'
+						+ ' winspool.lib'
+						+ ' comdlg32.lib'
+						+ ' advapi32.lib'
+						+ ' shell32.lib'
+						+ ' ole32.lib'
+						+ ' oleaut32.lib'
+						+ ' uuid.lib'
+						+ ' odbc32.lib'
+						+ ' odbccp32.lib'
+						+ ' ws2_32.lib'
+						+ ' rpcrt4.lib'
+						+ ' psapi.lib'
+						+ ' Iphlpapi.lib'
+						+ ' DbgHelp.lib'
