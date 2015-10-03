@@ -82,6 +82,11 @@
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Common\System.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Projects.bff" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CodeGenerateVSSolution\CodeGenerateVSSolution.vcxproj">
+      <Project>{609f25e2-f8bc-4b0f-9304-bd0df3e3fcb2}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
