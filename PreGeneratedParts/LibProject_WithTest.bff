@@ -5,7 +5,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 	Using( .CompiledFileExtensions )
 	
 	.aliasName 	= '$ProjectName$-$Platform$-$Config$'
-	.aliasTestName 	= 'Test-$aliasName$'
+    .aliasTestName = 'Tests-$aliasName$'
 	Library( '$aliasName$-Lib' )
 	{
 		.CompilerInputUnity			= '$ProjectName$-Unity'
@@ -40,7 +40,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
 									+ '$aliasName$-Lib'
 		.LinkerOptions				+ .PlatformDefaultLibs
-		.LinkerOutput				= '$BuildDestination$\$Platform$-$Config$\Test-$ProjectName$' + .executableExt
+		.LinkerOutput				= '$BuildDestination$\$Platform$-$Config$\Tests-$ProjectName$' + .executableExt
 	}	
 	Alias( '$aliasName$' ) { .Targets = { '$aliasName$-EXE' } }
 	Alias( '$aliasTestName$' ) { .Targets = { '$aliasName$-EXE' } }
@@ -50,6 +50,11 @@ Alias( '$ProjectName$' )
 {
 	Using( .DefaultCompilerConfig )
 	.aliasName 	= '$ProjectName$-$Platform$-$Config$'
-	.aliasTestName 	= 'Test-$aliasName$'
+    .aliasTestName = 'Tests-$aliasName$'
 	.Targets = { '$aliasName$','$aliasTestName$' }
 }
+
+
+
+.projectNames + "$ProjectName$"
+.projectTestNames + "Tests-$ProjectName$"

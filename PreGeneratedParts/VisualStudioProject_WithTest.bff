@@ -1,7 +1,5 @@
 
 
-.projectNames 	+ .ProjectName
-
 // Visual Studio Project Generation
 //--------------------------------------------------------------------------
 VCXProject( "$ProjectName$-vsproj" )//Library project

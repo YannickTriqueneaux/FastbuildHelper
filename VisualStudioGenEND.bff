@@ -7,7 +7,7 @@ VSSolution( 'solution' )
 	
     .SolutionProjects	= .VSProjects //filled by Projects.bff
 	
-	//.SolutionBuildProject = 'All-proj'
+	.SolutionBuildProject = "All-proj"
 						  
 	.SolutionConfigs	= .ProjectConfigs
 	

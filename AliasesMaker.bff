@@ -2,6 +2,32 @@
 
 Alias( 'All' )
 {
-	.Targets = .projectNames
+    Using(.DefaultCompilerConfig )
+
+    .Targets = {}
+    ForEach(.pname in.projectNames)
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
 }
 
+
+ForEach(.CompilerConfig in.CompilerConfigs)
+{
+    Using(.CompilerConfig)
+
+    .aliaseName = "All-$Platform$-$Config$"
+
+    Alias("$aliaseName$")
+    {
+        .Targets = {}
+        ForEach(.pname in.projectNames)
+        {
+            ^Targets = "$pname$-$Platform$-$Config$"
+        }
+        ForEach(.pname in.projectTestNames)
+        {
+            ^Targets = "$pname$-$Platform$-$Config$"
+        }
+    }
+}

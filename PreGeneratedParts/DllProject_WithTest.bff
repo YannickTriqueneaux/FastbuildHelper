@@ -5,7 +5,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 	Using( .CompiledFileExtensions )
 	
     .aliasName      = "$ProjectName$-$Platform$-$Config$"
-    .aliasTestName  = "Test-$aliasName$"
+    .aliasTestName  = "Tests-$aliasName$"
 
 #include "..\Compilers\Tools\AddIncludePaths.bff"
 
@@ -68,7 +68,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         }
 
         .LinkerOptions + .PlatformDefaultLibs
-        .LinkerOutput = '$BuildDestination$\$Platform$-$Config$\Test-$ProjectName$' + .executableExt
+        .LinkerOutput = '$BuildDestination$\$Platform$-$Config$\Tests-$ProjectName$' + .executableExt
     }
 
 
@@ -83,3 +83,7 @@ Alias( "$ProjectName$" )
     .aliasTestName = 'Test-$aliasName$'
     .Targets = { "$aliasName$", '$aliasTestName$' }
 }
+
+
+.projectNames + "$ProjectName$"
+.projectTestNames + "Tests-$ProjectName$"

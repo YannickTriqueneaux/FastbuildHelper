@@ -1,4 +1,5 @@
 
+
 ForEach( .CompilerConfig in .CompilerConfigs )
 {
 	Using( .CompilerConfig )
@@ -25,3 +26,5 @@ Alias( "$ProjectName$" )
 	.aliasName 	= "$ProjectName$-$Platform$-$Config$"
 	.Targets = { "$aliasName$" }
 }
+
+.projectNames + "$ProjectName$"

@@ -49,19 +49,20 @@
 	//.ProjectX64Profile, 
 	//.ProjectX86ClangDebug 
 }
+
 // Project to compile everything
-//VCXProject( 'All-proj' )
-//{
-//	.ProjectOutput				= 'VSSolution/Projects/All.vcxproj'
-//	.ProjectFiles				= { '.\fbuild.bff' }
-//	.ProjectBasePath			= '.\'
-//}
+VCXProject( "All-proj" )
+{
+	.ProjectOutput				= "VSSolution/All.vcxproj"
+	.ProjectFiles				= { ".\fbuild.bff" }
+	.ProjectBasePath			= ".\"
+}
 
 .AllFolder = 
 [
 	.Path			= 'All'
-	.Projects		= { }
+	.Projects		= { "All-proj" }
 ]
 
 .VSSolutionFolders 		= { .AllFolder }
-.VSProjects             = {}
+.VSProjects = { "All-proj" }

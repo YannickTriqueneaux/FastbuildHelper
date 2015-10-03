@@ -50,3 +50,6 @@ Alias( "$ProjectName$" )
 	.aliasName 	= "$ProjectName$-$Platform$-$Config$"
 	.Targets = { "$aliasName$" }
 }
+
+
+.projectNames + "$ProjectName$"
