@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{CA50E645-7C92-4DCF-9D38-720EC7CCB126}</ProjectGuid>
+    <ProjectGuid>{609F25E2-F8BC-4B0F-9304-BD0DF3E3FCB2}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Code</RootNamespace>
+    <RootNamespace>CodeGenerateVSSolution</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -78,9 +78,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Common\Opal.bff" />
-    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Common\System.bff" />
-    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Projects.bff" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
