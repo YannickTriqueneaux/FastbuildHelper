@@ -11,6 +11,12 @@ VCXProject( '$ProjectName$-vsproj' )//Library project
 	.ProjectInputPaths			= '$SourcesPath$\'
 	.ProjectBasePath			= '$SourcesPath$\'
 	.ProjectFilesToExclude      = '$SourcesPath$\main.test.cpp'
+
+    ForEach(.ipath in.IncludesPath)
+    {
+        ^IncludeSearchPath + ';' + .ipath
+    }
+
 }
 					
 .VSFolder =

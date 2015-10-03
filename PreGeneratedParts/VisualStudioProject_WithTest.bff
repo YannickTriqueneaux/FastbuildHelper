@@ -12,6 +12,11 @@ VCXProject( '$ProjectName$-vsproj' )//Library project
 								+ .SubFoldersSourcesPath
 	.ProjectBasePath			= '$SourcesPath$\'
 	.ProjectFilesToExclude      = .TestSourcesFiles
+
+    ForEach(.ipath in.IncludesPath)
+    {
+        ^IncludeSearchPath + ';' + .ipath
+    }
 }
 VCXProject( '$ProjectName$-vsproj-test' )//Test Project
 {
@@ -20,6 +25,11 @@ VCXProject( '$ProjectName$-vsproj-test' )//Test Project
 	.ProjectBasePath			= { '$SourcesPath$\' }
 								+ .SubFoldersTestSourcesPath
 	.ProjectFiles		        = .TestSourcesFiles
+
+    ForEach(.ipath in.IncludesPath)
+    {
+        ^IncludeSearchPath + ';' + .ipath
+    }
 }
 					
 .VSFolder =
