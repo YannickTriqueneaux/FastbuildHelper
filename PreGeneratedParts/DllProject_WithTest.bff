@@ -41,12 +41,45 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .LinkerOutput = '$BuildDestination$\$Platform$-$Config$\$ProjectName$' + .dynamicLibExt
     }
 
+
+#if __WINDOWS__
+    ObjectList('$aliasName$Test-Obj')
+    {
+        .CompilerInputFiles = '$SourcesPath$\Main.test.cc'
+        .CompilerOutputPath = '$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$\'
+    }
+#endif
+#if __LINUX__
+    Library('$aliasName$Test-Obj')
+    {
+        .CompilerInputFiles = '$SourcesPath$\Main.test.cc'
+        .CompilerOutputPath = '$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$\'
+        .LibrarianOutput = '$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$\Main.test' + .staticLibExt
+    }
+#endif
+
+    Executable('$aliasName$-EXE')
+    {
+        .Libraries = { '$aliasName$Test-Obj' }
+
+        ForEach(.dlib in.DependenciesLibraries)
+        {
+            ^Libraries + { "$dlib$-$Platform$-$Config$-Lib" }
+        }
+
+        .LinkerOptions + .PlatformDefaultLibs
+        .LinkerOutput = '$BuildDestination$\$Platform$-$Config$\Test-$ProjectName$' + .executableExt
+    }
+
+
     Alias("$aliasName$") { .Targets = { "$aliasName$-DLL" } }
+    Alias('$aliasTestName$') { .Targets = { '$aliasName$-EXE' } }
 }
 
 Alias( "$ProjectName$" )
 {
 	Using( .DefaultCompilerConfig )
 	.aliasName 	= "$ProjectName$-$Platform$-$Config$"
-	.Targets = { "$aliasName$" }
+    .aliasTestName = 'Test-$aliasName$'
+    .Targets = { "$aliasName$", '$aliasTestName$' }
 }
