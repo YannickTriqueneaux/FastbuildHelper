@@ -13,20 +13,20 @@ VCXProject( "$ProjectName$-vsproj" )//Library project
 
     ForEach(.ipath in.IncludesPath)
     {
-        ^IncludeSearchPath + ";" + .ipath
+        ^IncludeSearchPath + ";$ipath$"
     }
 }
 VCXProject( "$ProjectName$-vsproj-test" )//Test Project
 {
 	Using( .ProjectCommon )
-	.ProjectOutput				= "$VSSolutionDestination$/$ProjectName$/Test-$ProjectName$.vcxproj"
+	.ProjectOutput				= "$VSSolutionDestination$/$ProjectName$/Tests-$ProjectName$.vcxproj"
 	.ProjectBasePath			= { "$SourcesPath$\" }
 								+ .SubFoldersTestSourcesPath
 	.ProjectFiles		        = .TestSourcesFiles
 
     ForEach(.ipath in.IncludesPath)
     {
-        ^IncludeSearchPath + ";" + .ipath
+        ^IncludeSearchPath + ";$ipath$"
     }
 }
 					

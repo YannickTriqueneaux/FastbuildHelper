@@ -11,7 +11,7 @@ VCXProject( "$ProjectName$-vsproj" )//Library project
 
     ForEach(.ipath in.IncludesPath)
     {
-        ^IncludeSearchPath + ";" + .ipath
+        ^IncludeSearchPath + ";$ipath$"
     }
 
 }
