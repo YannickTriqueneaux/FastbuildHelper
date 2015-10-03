@@ -9,14 +9,39 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
 #include "..\Compilers\Tools\AddIncludePaths.bff"
 
-	Library( "$aliasName$-Lib" )
-	{
-		.CompilerInputUnity			= "$ProjectName$-Unity"
-		.CompilerOutputPath			= "$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$\"
-		.LibrarianOutput 			= "$BuildDestination$\$Platform$-$Config$\$ProjectName$" + .staticLibExt
-	}
+#if __WINDOWS__
+    ObjectList( '$aliasName$-Obj' )
+    {
+        .CompilerInputUnity			= "$ProjectName$-Unity"
+        .CompilerOutputPath		   	= '$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$\'
+    }
+#endif
 
-    Alias("$aliasName$") { .Targets = { "$aliasName$-Lib" } }
+#if __LINUX__
+    Library( "$aliasName$-Obj" )
+    {
+        .CompilerInputUnity			= "$ProjectName$-Unity"
+        .CompilerOutputPath			= "$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$\"
+        .LibrarianOutput 			= '$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$' + .staticLibExt
+}
+#endif
+
+
+    DLL("$aliasName$-DLL")
+    {
+        .Libraries                  = { '$aliasName$-Obj' }
+        ForEach(.dlib in.DependenciesLibraries)
+        {
+            ^Libraries + { "$dlib$-$Platform$-$Config$-Lib" }
+        }
+
+        .LinkerOptions              + .DLLLinkerOptions
+                                    + .PlatformDefaultLibs
+
+        .LinkerOutput = '$BuildDestination$\$Platform$-$Config$\$ProjectName$' + .dynamicLibExt
+    }
+
+    Alias("$aliasName$") { .Targets = { "$aliasName$-DLL" } }
 }
 
 Alias( "$ProjectName$" )

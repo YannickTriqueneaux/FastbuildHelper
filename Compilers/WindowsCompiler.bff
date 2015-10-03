@@ -91,6 +91,8 @@ Compiler( "Compiler-x64" )
 							+ ' /I"$VSBasePath$/VC/include/"'
 							+ ' /I"$WindowsSDKBasePath$/Include"'
 							//+ ' /I"$WindowsSDKBasePath$/include/shared"'
+
+    .DLLLinkerOptions = " /DLL"
 							
 	.CompilerOptions 		+ .BaseIncludePaths
 	//.PCHOptions				+ .BaseIncludePaths

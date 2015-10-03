@@ -32,7 +32,12 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 	Executable( '$aliasName$-EXE' )
 	{
 		.Libraries					= { '$aliasName$-Obj' }
-									+ .DependenciesLibraries
+
+        ForEach(.dlib in.DependenciesLibraries)
+        {
+            ^Libraries + { "$dlib$-$Platform$-$Config$-Lib" }
+        }
+
 									+ '$aliasName$-Lib'
 		.LinkerOptions				+ .PlatformDefaultLibs
 		.LinkerOutput				= '$BuildDestination$\$Platform$-$Config$\Test-$ProjectName$' + .executableExt

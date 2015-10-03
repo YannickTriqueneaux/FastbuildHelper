@@ -30,9 +30,12 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     DLL("$aliasName$-DLL")
     {
         .Libraries                  = { '$aliasName$-Obj' }
-                                    + .DependenciesLibraries
+        ForEach(.dlib in.DependenciesLibraries)
+        {
+            ^Libraries + { "$dlib$-$Platform$-$Config$-Lib" }
+        }
 
-        .LinkerOptions              + " /DLL"
+        .LinkerOptions              + .DLLLinkerOptions
                                     + .PlatformDefaultLibs
 
         .LinkerOutput = '$BuildDestination$\$Platform$-$Config$\$ProjectName$' + .dynamicLibExt
