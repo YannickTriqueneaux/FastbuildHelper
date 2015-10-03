@@ -53,8 +53,10 @@ Global
 		{CA50E645-7C92-4DCF-9D38-720EC7CCB126}.Linux|Win32.Build.0 = Linux|Win32
 		{CA50E645-7C92-4DCF-9D38-720EC7CCB126}.Windows|Win32.ActiveCfg = Windows|Win32
 		{CA50E645-7C92-4DCF-9D38-720EC7CCB126}.Windows|Win32.Build.0 = Windows|Win32
-		{609F25E2-F8BC-4B0F-9304-BD0DF3E3FCB2}.Linux|Win32.ActiveCfg = Release|Win32
-		{609F25E2-F8BC-4B0F-9304-BD0DF3E3FCB2}.Windows|Win32.ActiveCfg = Release|Win32
+		{609F25E2-F8BC-4B0F-9304-BD0DF3E3FCB2}.Linux|Win32.ActiveCfg = Windows|Win32
+		{609F25E2-F8BC-4B0F-9304-BD0DF3E3FCB2}.Linux|Win32.Build.0 = Windows|Win32
+		{609F25E2-F8BC-4B0F-9304-BD0DF3E3FCB2}.Windows|Win32.ActiveCfg = Windows|Win32
+		{609F25E2-F8BC-4B0F-9304-BD0DF3E3FCB2}.Windows|Win32.Build.0 = Windows|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
