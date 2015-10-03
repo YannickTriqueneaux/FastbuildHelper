@@ -4,42 +4,42 @@
 
 // Visual Studio Project Generation
 //--------------------------------------------------------------------------
-VCXProject( '$ProjectName$-vsproj' )//Library project
+VCXProject( "$ProjectName$-vsproj" )//Library project
 {
 	Using( .ProjectCommon )
-	.ProjectOutput				= '$VSSolutionDestination$/$ProjectName$/$ProjectName$.vcxproj'
-	.ProjectInputPaths			= { '$SourcesPath$\' }
+	.ProjectOutput				= "$VSSolutionDestination$/$ProjectName$/$ProjectName$.vcxproj"
+	.ProjectInputPaths			= { "$SourcesPath$\" }
 								+ .SubFoldersSourcesPath
-	.ProjectBasePath			= '$SourcesPath$\'
+	.ProjectBasePath			= "$SourcesPath$\"
 	.ProjectFilesToExclude      = .TestSourcesFiles
 
     ForEach(.ipath in.IncludesPath)
     {
-        ^IncludeSearchPath + ';' + .ipath
+        ^IncludeSearchPath + ";" + .ipath
     }
 }
-VCXProject( '$ProjectName$-vsproj-test' )//Test Project
+VCXProject( "$ProjectName$-vsproj-test" )//Test Project
 {
 	Using( .ProjectCommon )
-	.ProjectOutput				= '$VSSolutionDestination$/$ProjectName$/Test-$ProjectName$.vcxproj'
-	.ProjectBasePath			= { '$SourcesPath$\' }
+	.ProjectOutput				= "$VSSolutionDestination$/$ProjectName$/Test-$ProjectName$.vcxproj"
+	.ProjectBasePath			= { "$SourcesPath$\" }
 								+ .SubFoldersTestSourcesPath
 	.ProjectFiles		        = .TestSourcesFiles
 
     ForEach(.ipath in.IncludesPath)
     {
-        ^IncludeSearchPath + ';' + .ipath
+        ^IncludeSearchPath + ";" + .ipath
     }
 }
 					
 .VSFolder =
 [ 
-	.Path			= '$ProjectName$'
-	.Projects		= { '$ProjectName$-vsproj','$ProjectName$-vsproj-test' }
+	.Path			= "$ProjectName$"
+	.Projects		= { "$ProjectName$-vsproj","$ProjectName$-vsproj-test" }
 ]
 
 .VSSolutionFolders  + .VSFolder
 
-.VSProjects			+ '$ProjectName$-vsproj'
-					+ '$ProjectName$-vsproj-test'
+.VSProjects			+ "$ProjectName$-vsproj"
+					+ "$ProjectName$-vsproj-test"
 //---------------------------------------------------------------------------

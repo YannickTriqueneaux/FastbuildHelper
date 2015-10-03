@@ -2,8 +2,8 @@
 //------------------------------------------------------------------------------
 // Windows Platform
 //------------------------------------------------------------------------------
-.VSBasePath			= 'C:\Program Files (x86)\Microsoft Visual Studio 10.0'
-.WindowsSDKBasePath	= 'C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A'
+.VSBasePath			= "C:\Program Files (x86)\Microsoft Visual Studio 10.0"
+.WindowsSDKBasePath	= "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A"
 
 Settings
 {
@@ -11,45 +11,45 @@ Settings
 						"TMP=C:\Windows\Temp",
 						"SystemRoot=C:\Windows" }
 }
-Compiler( 'Compiler-x86' )
+Compiler( "Compiler-x86" )
 {
-	.Root		= '$VSBasePath$\VC\bin'
-	.Executable	= '$Root$\cl.exe'
+	.Root		= "$VSBasePath$\VC\bin"
+	.Executable	= "$Root$\cl.exe"
 }
-Compiler( 'Compiler-x64' )
+Compiler( "Compiler-x64" )
 {
-	.Root		= '$VSBasePath$\VC\bin'
-	.Executable	= '$Root$\x86_amd64\cl.exe'
+	.Root		= "$VSBasePath$\VC\bin"
+	.Executable	= "$Root$\x86_amd64\cl.exe"
 }
 
 .CompiledFileExtensions =
 [
-	.staticLibExt = '.lib'
-	.dynamicLibExt = '.dll'
-	.executableExt = '.exe'
+	.staticLibExt = ".lib"
+	.dynamicLibExt = ".dll"
+	.executableExt = ".exe"
 ]
 
 .WindowsDefinitions =
 [
 	.Definitions			= ' /D"WIN32_LEAN_AND_MEAN"'
-							+ ' /D_WIN32' 
-							+ ' /D__WINDOWS__'
-							+ ' /D_GNU_SOURCE'
-							+ ' /D_WIN32_WINNT=0x0601'
-							+ ' /DWINVER=0x0601'
-							+ ' /D_MSC_VER=1020'// TODO update when changing Windows SDKs version
+							+ " /D_WIN32" 
+							+ " /D__WINDOWS__"
+							+ " /D_GNU_SOURCE"
+							+ " /D_WIN32_WINNT=0x0601"
+							+ " /DWINVER=0x0601"
+							+ " /D_MSC_VER=1020"// TODO update when changing Windows SDKs version
 							//+ ' /D"_CRT_SECURE_NO_WARNINGS"' // don't warn about unsafe functions
 								
 		
 		
 	//DEFINES////////
-	.DebugDefinitions       = ' /DDEBUG'	
-							+ ' /DFOR_DEBUG'
-							+ ' /D_DEBUG'
+	.DebugDefinitions       = " /DDEBUG"	
+							+ " /DFOR_DEBUG"
+							+ " /D_DEBUG"
 								//+ ' /DPROFILING_ENABLED'
 								
-	.ReleaseDefinitions     = ' /DRELEASE'
-							+ ' /DFOR_RELEASE'
+	.ReleaseDefinitions     = " /DRELEASE"
+							+ " /DFOR_RELEASE"
 	//////////////////
 ]
 
@@ -57,16 +57,16 @@ Compiler( 'Compiler-x64' )
 [
 	Using( .WindowsDefinitions )
 							
-	.AdditionalWarnings		= ' /we4062' // enumerator 'identifier' in a switch of enum 'enumeration' is not handled
+	.AdditionalWarnings		= " /we4062" // enumerator 'identifier' in a switch of enum 'enumeration' is not handled
 							
 	.CompilerOptions 		= '"%1" /nologo /c /W3 /WX-'
 							+ .AdditionalWarnings
 							+ .Definitions
-							+ ' /Zc:forScope'
-							+ ' /Zc:wchar_t'           //TODO change for -std=c++11
-							//+ ' /Zc:inline'			// Remove unreferenced COMDATs at compile time (VS2013.2+)
-							//+ ' /Zc:strictStrings'	// Require const only usage of string literals (VS2013+)
-							//+ ' /analyze' 			//(VS2013+)
+							+ " /Zc:forScope"
+							+ " /Zc:wchar_t"           //TODO change for -std=c++11
+							//+ " /Zc:inline"			// Remove unreferenced COMDATs at compile time (VS2013.2+)
+							//+ " /Zc:strictStrings"	// Require const only usage of string literals (VS2013+)
+							//+ " /analyze" 			//(VS2013+)
 	
 	//.PCHOptions				= .CompilerOptions
 	//						+ ' /Fp"%2" /Fo"%3"'
@@ -76,16 +76,16 @@ Compiler( 'Compiler-x64' )
 	.LibrarianOptions		= '/NODEFAULTLIB /WX /NOLOGO /OUT:"%2" "%1"'
 	.LinkerOptions			= '/NODEFAULTLIB /WX /NOLOGO /INCREMENTAL:NO /OUT:"%2" "%1"'
 	
-	.CompilerDebugOptimizations		= ' /Od /Oi /Oy- /RTC1 /MTd /Z7 /GS /Gy /GR-'
-									+ ' /fp:precise'
+	.CompilerDebugOptimizations		= " /Od /Oi /Oy- /RTC1 /MTd /Z7 /GS /Gy /GR-"
+									+ " /fp:precise"
 									
-	.CompilerReleaseOptimizations	= ' /MT /Ox /Oy /Oi /GS- /GF /GL /Gy /Gw /GR-'
-									+ ' /fp:fast'
+	.CompilerReleaseOptimizations	= " /MT /Ox /Oy /Oi /GS- /GF /GL /Gy /Gw /GR-"
+									+ " /fp:fast"
 									
-	.LibrarianDebugOptimizations	= ''
-	.LibrarianReleaseOptimizations  = ' /LTCG'
-	.LinkerDebugOptimizations		= ' /DEBUG'
-	.LinkerReleaseOptimizations		= ' /LTCG /OPT:REF,ICF'
+	.LibrarianDebugOptimizations	= ""
+	.LibrarianReleaseOptimizations  = " /LTCG"
+	.LinkerDebugOptimizations		= " /DEBUG"
+	.LinkerReleaseOptimizations		= " /LTCG /OPT:REF,ICF"
 	
 	.BaseIncludePaths		= ' /I"./"'
 							+ ' /I"$VSBasePath$/VC/include/"'
@@ -95,7 +95,7 @@ Compiler( 'Compiler-x64' )
 	.CompilerOptions 		+ .BaseIncludePaths
 	//.PCHOptions				+ .BaseIncludePaths
 	
-	//.UseExceptions			= ' /EHsc'
+	//.UseExceptions			= " /EHsc"
 ]
 
 //x86 CONFIGURATIONS/////////////////////
@@ -103,18 +103,18 @@ Compiler( 'Compiler-x64' )
 [
 	Using( .BaseConfigurations )
 	
-	.x86Definitions       	= ' /DWIN32'
-							+ ' /arch:SSE2'
+	.x86Definitions       	= " /DWIN32"
+							+ " /arch:SSE2"
 	
-	.Platform				= 'x86'
-	.ToolsBasePath			= '$VSBasePath$\VC\bin'
+	.Platform				= "x86"
+	.ToolsBasePath			= "$VSBasePath$\VC\bin"
 	
-	.Compiler				= 'Compiler-x86'
-	.Librarian				= '$ToolsBasePath$\lib.exe'
-	.Linker					= '$ToolsBasePath$\link.exe'
+	.Compiler				= "Compiler-x86"
+	.Librarian				= "$ToolsBasePath$\lib.exe"
+	.Linker					= "$ToolsBasePath$\link.exe"
 	.CompilerOptions		+ .x86Definitions
 	//.PCHOptions				+ .x86Definitions
-	.LinkerOptions			+ ' /MACHINE:X86'
+	.LinkerOptions			+ " /MACHINE:X86"
 	.LinkerOptions			+ ' /LIBPATH:"$VSBasePath$/VC/lib"'
 							+ ' /LIBPATH:"$WindowsSDKBasePath$\Lib"'
 ]
@@ -123,9 +123,9 @@ Compiler( 'Compiler-x64' )
 [
 	Using( .X86BaseConfig )
 	
-	.x86DebugCompilerOptions	= ''
+	.x86DebugCompilerOptions	= ""
 	
-	.Config					= 'Debug'
+	.Config					= "Debug"
 	
 	.CompilerOptions		+ .DebugDefinitions
 							+ .CompilerDebugOptimizations
@@ -142,13 +142,13 @@ Compiler( 'Compiler-x64' )
 [
 	Using( .X86BaseConfig )
 	
-	.x86ReleaseCompilerOptions	= ''
+	.x86ReleaseCompilerOptions	= ""
 	
-	.Config					= 'Release'
+	.Config					= "Release"
 	
 	.CompilerOptions		+ .ReleaseDefinitions
 							+ .x86ReleaseCompilerOptions
-							//+ ' /d2Zi+'		// Improve optimized debugging VS2013.3+
+							//+ " /d2Zi+"		// Improve optimized debugging VS2013.3+
 							
 	//.PCHOptions				+ .ReleaseDefinitions
 	//						+ .x86ReleaseCompilerOptions
@@ -169,17 +169,17 @@ Compiler( 'Compiler-x64' )
 [
 	Using( .BaseConfigurations )
 	
-	.x64Definitions       	= ' /DWIN64'
+	.x64Definitions       	= " /DWIN64"
 	
-	.Platform				= 'x64'	
-	.ToolsBasePath			= '$VSBasePath$\VC\bin\x86_amd64'
+	.Platform				= "x64"	
+	.ToolsBasePath			= "$VSBasePath$\VC\bin\x86_amd64"
 	
-	.Compiler				= 'Compiler-x64'
-	.Librarian				= '$ToolsBasePath$\lib.exe'
-	.Linker					= '$ToolsBasePath$\link.exe'
+	.Compiler				= "Compiler-x64"
+	.Librarian				= "$ToolsBasePath$\lib.exe"
+	.Linker					= "$ToolsBasePath$\link.exe"
 	.CompilerOptions		+ .x64Definitions
 	//.PCHOptions				+ .x64Definitions
-	.LinkerOptions			+ ' /MACHINE:X64'
+	.LinkerOptions			+ " /MACHINE:X64"
 	.LinkerOptions			+ ' /LIBPATH:"$VSBasePath$\VC\lib\amd64"'
 							+ ' /LIBPATH:"$WindowsSDKBasePath$\Lib\x64"'
 ]
@@ -187,9 +187,9 @@ Compiler( 'Compiler-x64' )
 [
 	Using( .X64BaseConfig )
 	
-	.x64DebugCompilerOptions	= ''
+	.x64DebugCompilerOptions	= ""
 	
-	.Config					= 'Debug'
+	.Config					= "Debug"
 	
 	.CompilerOptions		+ .DebugDefinitions
 							+ .CompilerDebugOptimizations
@@ -206,9 +206,9 @@ Compiler( 'Compiler-x64' )
 [
 	Using( .X64BaseConfig )
 	
-	.x64ReleaseCompilerOptions	= ''
+	.x64ReleaseCompilerOptions	= ""
 	
-	.Config					= 'Release'
+	.Config					= "Release"
 
 	.CompilerOptions        + .CompilerReleaseOptimizations	
 							+ .ReleaseDefinitions
@@ -232,9 +232,9 @@ Compiler( 'Compiler-x64' )
 //------------------------------------------------------------------------------
 //.ResourceCompiler =
 //[
-//	.Compiler					= '$WindowsSDKBasePath$\Bin\x86\RC.exe'
-//	.CompilerOutputExtension	= '.res'
-//	.CompilerOptions			= '/nologo /fo"%2" %1'
+//	.Compiler					= "$WindowsSDKBasePath$\Bin\x86\RC.exe"
+//	.CompilerOutputExtension	= ".res"
+//	.CompilerOptions			= "/nologo /fo"%2" %1"
 //]
 
 
@@ -258,6 +258,6 @@ Compiler( 'Compiler-x64' )
 	Using( .X86DebugConfig )
 ]
 
-.PlatformDefaultLibs = ''
+.PlatformDefaultLibs = ""
 #include "DefaultLibs\WindowsDefaultLibs.bff"
 //#include "DefaultLibs\ClangDefaultLibs.bff"
