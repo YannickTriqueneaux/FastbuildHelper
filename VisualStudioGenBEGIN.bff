@@ -51,18 +51,19 @@
 }
 
 // Project to compile everything
-VCXProject( "All-proj" )
+VCXProject( "BuildAll-proj" )
 {
-	.ProjectOutput				= "VSSolution/All.vcxproj"
+    Using( .ProjectCommon )
+	.ProjectOutput				= "VSSolution/BuildAll.vcxproj"
 	.ProjectFiles				= { ".\fbuild.bff" }
-	.ProjectBasePath			= ".\"
+	.ProjectBasePath			= '.\'
 }
 
 .AllFolder = 
 [
-	.Path			= 'All'
-	.Projects		= { "All-proj" }
+	.Path			= "__FastBuild__"
+	.Projects		= { "BuildAll-proj" }
 ]
 
 .VSSolutionFolders 		= { .AllFolder }
-.VSProjects = { "All-proj" }
+.VSProjects = { "BuildAll-proj" }

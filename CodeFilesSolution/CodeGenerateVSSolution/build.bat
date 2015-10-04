@@ -8,4 +8,4 @@ set "codebuildpath=!currentpath!\..\..\..\..\Build\fastbuild"
 echo fbuild file path !codebuildpath!
 
 cd !codebuildpath!
-fbuild solution -vs
+fbuild vssolution -vs

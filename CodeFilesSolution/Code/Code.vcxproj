@@ -148,6 +148,7 @@
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Common\Opal.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Common\System.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Projects.bff" />
+    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\Matio.bff" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CodeGenerateVSSolution\CodeGenerateVSSolution.vcxproj">
