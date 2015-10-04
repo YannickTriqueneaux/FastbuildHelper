@@ -2,24 +2,24 @@
 //------------------------------------------------------------------------------
 // Windows Platform
 //------------------------------------------------------------------------------
-.VSBasePath			= "C:\Program Files (x86)\Microsoft Visual Studio 10.0"
-.WindowsSDKBasePath	= "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.1A"
+.VSBasePath			= "C:/Program Files (x86)/Microsoft Visual Studio 10.0"
+.WindowsSDKBasePath	= "C:/Program Files (x86)/Microsoft SDKs/Windows/v7.1A"
 
 Settings
 {
-	.Environment	= { "PATH=$VSBasePath$\Common7\IDE\;$VSBasePath$\VC\bin\",
-						"TMP=C:\Windows\Temp",
-						"SystemRoot=C:\Windows" }
+	.Environment	= { "PATH=$VSBasePath$/Common7/IDE/;$VSBasePath$/VC/bin/",
+						"TMP=C:/Windows/Temp",
+						"SystemRoot=C:/Windows" }
 }
 Compiler( "Compiler-x86" )
 {
-	.Root		= "$VSBasePath$\VC\bin"
-	.Executable	= "$Root$\cl.exe"
+	.Root		= "$VSBasePath$/VC/bin"
+	.Executable	= "$Root$/cl.exe"
 }
 Compiler( "Compiler-x64" )
 {
-	.Root		= "$VSBasePath$\VC\bin"
-	.Executable	= "$Root$\x86_amd64\cl.exe"
+	.Root		= "$VSBasePath$/VC/bin"
+	.Executable	= "$Root$/x86_amd64/cl.exe"
 }
 
 .CompiledFileExtensions =
@@ -109,16 +109,16 @@ Compiler( "Compiler-x64" )
 							+ " /arch:SSE2"
 	
 	.Platform				= "x86"
-	.ToolsBasePath			= "$VSBasePath$\VC\bin"
+	.ToolsBasePath			= "$VSBasePath$/VC/bin"
 	
 	.Compiler				= "Compiler-x86"
-	.Librarian				= "$ToolsBasePath$\lib.exe"
-	.Linker					= "$ToolsBasePath$\link.exe"
+	.Librarian				= "$ToolsBasePath$/lib.exe"
+	.Linker					= "$ToolsBasePath$/link.exe"
 	.CompilerOptions		+ .x86Definitions
 	//.PCHOptions				+ .x86Definitions
 	.LinkerOptions			+ " /MACHINE:X86"
 	.LinkerOptions			+ ' /LIBPATH:"$VSBasePath$/VC/lib"'
-							+ ' /LIBPATH:"$WindowsSDKBasePath$\Lib"'
+							+ ' /LIBPATH:"$WindowsSDKBasePath$/Lib"'
 ]
 
 .X86DebugConfig =
@@ -174,16 +174,16 @@ Compiler( "Compiler-x64" )
 	.x64Definitions       	= " /DWIN64"
 	
 	.Platform				= "x64"	
-	.ToolsBasePath			= "$VSBasePath$\VC\bin\x86_amd64"
+	.ToolsBasePath			= "$VSBasePath$/VC/bin/x86_amd64"
 	
 	.Compiler				= "Compiler-x64"
-	.Librarian				= "$ToolsBasePath$\lib.exe"
-	.Linker					= "$ToolsBasePath$\link.exe"
+	.Librarian				= "$ToolsBasePath$/lib.exe"
+	.Linker					= "$ToolsBasePath$/link.exe"
 	.CompilerOptions		+ .x64Definitions
 	//.PCHOptions				+ .x64Definitions
 	.LinkerOptions			+ " /MACHINE:X64"
-	.LinkerOptions			+ ' /LIBPATH:"$VSBasePath$\VC\lib\amd64"'
-							+ ' /LIBPATH:"$WindowsSDKBasePath$\Lib\x64"'
+	.LinkerOptions			+ ' /LIBPATH:"$VSBasePath$/VC/lib/amd64"'
+							+ ' /LIBPATH:"$WindowsSDKBasePath$/Lib/x64"'
 ]
 .X64DebugConfig =
 [
@@ -234,7 +234,7 @@ Compiler( "Compiler-x64" )
 //------------------------------------------------------------------------------
 //.ResourceCompiler =
 //[
-//	.Compiler					= "$WindowsSDKBasePath$\Bin\x86\RC.exe"
+//	.Compiler					= "$WindowsSDKBasePath$/Bin/x86/RC.exe"
 //	.CompilerOutputExtension	= ".res"
 //	.CompilerOptions			= "/nologo /fo"%2" %1"
 //]
@@ -261,5 +261,5 @@ Compiler( "Compiler-x64" )
 ]
 
 .PlatformDefaultLibs = ""
-#include "DefaultLibs\WindowsDefaultLibs.bff"
-//#include "DefaultLibs\ClangDefaultLibs.bff"
+#include "DefaultLibs/WindowsDefaultLibs.bff"
+//#include "DefaultLibs/ClangDefaultLibs.bff"

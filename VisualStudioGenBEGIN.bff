@@ -19,13 +19,13 @@
 .ProjectCommon = 
 [
 	Using ( .VistualStudioDefinitions )
-	.ProjectBuildCommand		= 'cd ^$(SolutionDir)\ &amp; fbuild -vs -dist -cache ^$(ProjectName)-^$(Configuration)'
-	.ProjectRebuildCommand		= 'cd ^$(SolutionDir)\ &amp; fbuild -vs -dist -cache -clean ^$(ProjectName)-^$(Configuration)'
-	.OutputDirectory			= '^$(SolutionDir)\Build\^$(Configuration)'
-	.IntermediateDirectory		= '^$(SolutionDir)\Build\^$(Configuration)'
+	.ProjectBuildCommand		= 'cd ^$(SolutionDir)/ &amp; fbuild -vs -dist -cache ^$(ProjectName)-^$(Configuration)'
+	.ProjectRebuildCommand		= 'cd ^$(SolutionDir)/ &amp; fbuild -vs -dist -cache -clean ^$(ProjectName)-^$(Configuration)'
+	.OutputDirectory			= '^$(SolutionDir)/Build/^$(Configuration)'
+	.IntermediateDirectory		= '^$(SolutionDir)/Build/^$(Configuration)'
 	.Platform = 'Win32' // unused
 	.PlatformToolset = 'v120'
-	.IncludeSearchPath			= '^$(SolutionDir)..\..;.\'
+	.IncludeSearchPath			= '^$(SolutionDir)../..;./'
 ]
 
 .ProjectX86Debug		= [ Using( .ProjectCommon )	.Config = 'x86-Debug'	.PreprocessorDefinitions = .X86Defines + .DebugDefines ]
@@ -55,8 +55,8 @@ VCXProject( "BuildAll-proj" )
 {
     Using( .ProjectCommon )
 	.ProjectOutput				= "VSSolution/BuildAll.vcxproj"
-	.ProjectFiles				= { ".\fbuild.bff" }
-	.ProjectBasePath			= '.\'
+	.ProjectFiles				= { "./fbuild.bff" }
+	.ProjectBasePath			= './'
 }
 
 .AllFolder = 

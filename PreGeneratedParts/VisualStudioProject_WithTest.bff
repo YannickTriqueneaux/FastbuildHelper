@@ -5,10 +5,10 @@
 VCXProject( "$ProjectName$-vsproj" )//Library project
 {
 	Using( .ProjectCommon )
-	.ProjectOutput				= "$VSSolutionDestination$\Projects\$ProjectName$\$ProjectName$.vcxproj"
-	.ProjectInputPaths			= { "$SourcesPath$\" }
+	.ProjectOutput				= "$VSSolutionDestination$/Projects/$ProjectName$/$ProjectName$.vcxproj"
+	.ProjectInputPaths			= { "$SourcesPath$/" }
 								+ .SubFoldersSourcesPath
-	.ProjectBasePath			= "$SourcesPath$\"
+	.ProjectBasePath			= "$SourcesPath$/"
 	.ProjectFilesToExclude      = .TestSourcesFiles
 
     ForEach(.ipath in.IncludesPath)
@@ -19,8 +19,8 @@ VCXProject( "$ProjectName$-vsproj" )//Library project
 VCXProject( "$ProjectName$-vsproj-test" )//Test Project
 {
 	Using( .ProjectCommon )
-	.ProjectOutput				= "$VSSolutionDestination$\Projects\$ProjectName$\Tests-$ProjectName$.vcxproj"
-	.ProjectBasePath			= { "$SourcesPath$\" }
+	.ProjectOutput				= "$VSSolutionDestination$/Projects/$ProjectName$/Tests-$ProjectName$.vcxproj"
+	.ProjectBasePath			= { "$SourcesPath$/" }
 								+ .SubFoldersTestSourcesPath
 	.ProjectFiles		        = .TestSourcesFiles
 
@@ -32,7 +32,7 @@ VCXProject( "$ProjectName$-vsproj-test" )//Test Project
 					
 .VSFolder =
 [ 
-	.Path			= "$currentFolder$\$ProjectName$"
+	.Path			= "$currentFolder$/$ProjectName$"
 	.Projects		= { "$ProjectName$-vsproj","$ProjectName$-vsproj-test" }
 ]
 

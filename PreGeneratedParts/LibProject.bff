@@ -8,13 +8,13 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     .aliasName      = "$ProjectName$-$Platform$-$Config$"
     .aliasTestName  = "Test-$aliasName$"
 
-#include "..\Compilers\Tools\AddIncludePaths.bff"
+#include "../Compilers/Tools/AddIncludePaths.bff"
 
 	Library( "$aliasName$-Lib" )
 	{
 		.CompilerInputUnity			= "$ProjectName$-Unity"
-		.CompilerOutputPath			= "$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$\"
-		.LibrarianOutput 			= "$BuildDestination$\$Platform$-$Config$\$ProjectName$" + .staticLibExt
+		.CompilerOutputPath			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
+		.LibrarianOutput 			= "$BuildDestination$/$Platform$-$Config$/$ProjectName$" + .staticLibExt
 	}
 
     Alias("$aliasName$") { .Targets = { "$aliasName$-Lib" } }

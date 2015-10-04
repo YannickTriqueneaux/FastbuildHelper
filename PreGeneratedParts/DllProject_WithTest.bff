@@ -7,13 +7,13 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     .aliasName      = "$ProjectName$-$Platform$-$Config$"
     .aliasTestName  = "Tests-$aliasName$"
 
-#include "..\Compilers\Tools\AddIncludePaths.bff"
+#include "../Compilers/Tools/AddIncludePaths.bff"
 
 #if __WINDOWS__
     ObjectList( '$aliasName$-Obj' )
     {
         .CompilerInputUnity			= "$ProjectName$-Unity"
-        .CompilerOutputPath		   	= '$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$\'
+        .CompilerOutputPath		   	= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
     }
 #endif
 
@@ -21,8 +21,8 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     Library( "$aliasName$-Obj" )
     {
         .CompilerInputUnity			= "$ProjectName$-Unity"
-        .CompilerOutputPath			= "$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$\"
-        .LibrarianOutput 			= '$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$' + .staticLibExt
+        .CompilerOutputPath			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
+        .LibrarianOutput 			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$' + .staticLibExt
 }
 #endif
 
@@ -38,23 +38,23 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .LinkerOptions              + .DLLLinkerOptions
                                     + .PlatformDefaultLibs
 
-        .LinkerOutput = '$BuildDestination$\$Platform$-$Config$\$ProjectName$' + .dynamicLibExt
+        .LinkerOutput = '$BuildDestination$/$Platform$-$Config$/$ProjectName$' + .dynamicLibExt
     }
 
 
 #if __WINDOWS__
     ObjectList('$aliasName$Test-Obj')
     {
-        .CompilerInputFiles = '$SourcesPath$\Main.test.cc'
-        .CompilerOutputPath = '$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$\'
+        .CompilerInputFiles = '$SourcesPath$/Main.test.cc'
+        .CompilerOutputPath = '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
     }
 #endif
 #if __LINUX__
     Library('$aliasName$Test-Obj')
     {
-        .CompilerInputFiles = '$SourcesPath$\Main.test.cc'
-        .CompilerOutputPath = '$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$\'
-        .LibrarianOutput = '$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$\Main.test' + .staticLibExt
+        .CompilerInputFiles = '$SourcesPath$/Main.test.cc'
+        .CompilerOutputPath = '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
+        .LibrarianOutput = '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/Main.test' + .staticLibExt
     }
 #endif
 
@@ -68,7 +68,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         }
 
         .LinkerOptions + .PlatformDefaultLibs
-        .LinkerOutput = '$BuildDestination$\$Platform$-$Config$\Tests-$ProjectName$' + .executableExt
+        .LinkerOutput = '$BuildDestination$/$Platform$-$Config$/Tests-$ProjectName$' + .executableExt
     }
 
 

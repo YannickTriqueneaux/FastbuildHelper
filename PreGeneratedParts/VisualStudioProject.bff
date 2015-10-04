@@ -4,10 +4,10 @@
 VCXProject( "$ProjectName$-vsproj" )//Library project
 {
 	Using( .ProjectCommon )
-	.ProjectOutput				= "$VSSolutionDestination$\$ProjectName$\$ProjectName$.vcxproj"
-	.ProjectInputPaths			= "$SourcesPath$\"
-	.ProjectBasePath			= "$SourcesPath$\"
-	.ProjectFilesToExclude      = "$SourcesPath$\main.test.cpp"
+	.ProjectOutput				= "$VSSolutionDestination$/$ProjectName$/$ProjectName$.vcxproj"
+	.ProjectInputPaths			= "$SourcesPath$/"
+	.ProjectBasePath			= "$SourcesPath$/"
+	.ProjectFilesToExclude      = "$SourcesPath$/main.test.cpp"
 
     ForEach(.ipath in.IncludesPath)
     {
@@ -18,7 +18,7 @@ VCXProject( "$ProjectName$-vsproj" )//Library project
 					
 .VSFolder =
 [ 
-	.Path			= "$currentFolder$\$ProjectName$"
+	.Path			= "$currentFolder$/$ProjectName$"
 	.Projects		= { "$ProjectName$-vsproj" }
 ]
 

@@ -7,13 +7,13 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     .aliasName      = "$ProjectName$-$Platform$-$Config$"
     .aliasTestName  = "Test-$aliasName$"
 
-#include "..\Compilers\Tools\AddIncludePaths.bff"
+#include "../Compilers/Tools/AddIncludePaths.bff"
 
 #if __WINDOWS__
     ObjectList( '$aliasName$-Obj' )
     {
         .CompilerInputUnity			= "$ProjectName$-Unity"
-        .CompilerOutputPath		   	= '$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$\'
+        .CompilerOutputPath		   	= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
     }
 #endif
 
@@ -21,8 +21,8 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     Library( "$aliasName$-Obj" )
     {
         .CompilerInputUnity			= "$ProjectName$-Unity"
-        .CompilerOutputPath			= "$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$\"
-        .LibrarianOutput 			= '$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$' + .staticLibExt
+        .CompilerOutputPath			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
+        .LibrarianOutput 			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$' + .staticLibExt
 }
 #endif
 
@@ -38,7 +38,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .LinkerOptions              + .DLLLinkerOptions
                                     + .PlatformDefaultLibs
 
-        .LinkerOutput = '$BuildDestination$\$Platform$-$Config$\$ProjectName$' + .dynamicLibExt
+        .LinkerOutput = '$BuildDestination$/$Platform$-$Config$/$ProjectName$' + .dynamicLibExt
     }
 
     Alias("$aliasName$") { .Targets = { "$aliasName$-DLL" } }

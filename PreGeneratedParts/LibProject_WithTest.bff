@@ -7,28 +7,28 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 	.aliasName 	= '$ProjectName$-$Platform$-$Config$'
     .aliasTestName = 'Tests-$aliasName$'
 
-#include "..\Compilers\Tools\AddIncludePaths.bff"
+#include "../Compilers/Tools/AddIncludePaths.bff"
 
 	Library( '$aliasName$-Lib' )
 	{
 		.CompilerInputUnity			= '$ProjectName$-Unity'
-		.CompilerOutputPath			= '$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$\'
-		.LibrarianOutput 			= '$BuildDestination$\$Platform$-$Config$\$ProjectName$' + .staticLibExt
+		.CompilerOutputPath			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
+		.LibrarianOutput 			= '$BuildDestination$/$Platform$-$Config$/$ProjectName$' + .staticLibExt
 	}
 
 #if __WINDOWS__
 	ObjectList( '$aliasName$-Obj' )
 	{
-		.CompilerInputFiles        	= '$SourcesPath$\Main.test.cc'
-		.CompilerOutputPath		   	= '$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$\'
+		.CompilerInputFiles        	= '$SourcesPath$/Main.test.cc'
+		.CompilerOutputPath		   	= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
 	}
 #endif
 #if __LINUX__
 	Library( '$aliasName$-Obj' )
 	{
-		.CompilerInputFiles         =  '$SourcesPath$\Main.test.cc'
-		.CompilerOutputPath			= '$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$\'
-		.LibrarianOutput 			= '$BuildDestination$\$Platform$-$Config$\Obj\$ProjectName$\Main.test' + .staticLibExt
+		.CompilerInputFiles         =  '$SourcesPath$/Main.test.cc'
+		.CompilerOutputPath			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
+		.LibrarianOutput 			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/Main.test' + .staticLibExt
 	}
 #endif
 
@@ -43,7 +43,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
 									+ '$aliasName$-Lib'
 		.LinkerOptions				+ .PlatformDefaultLibs
-		.LinkerOutput				= '$BuildDestination$\$Platform$-$Config$\Tests-$ProjectName$' + .executableExt
+		.LinkerOutput				= '$BuildDestination$/$Platform$-$Config$/Tests-$ProjectName$' + .executableExt
 	}	
 	Alias( '$aliasName$' ) { .Targets = { '$aliasName$-EXE' } }
 	Alias( '$aliasTestName$' ) { .Targets = { '$aliasName$-EXE' } }

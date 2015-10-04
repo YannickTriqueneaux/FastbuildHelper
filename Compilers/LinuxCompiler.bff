@@ -65,6 +65,8 @@ Compiler( 'Compiler-x64' )
     .LibrarianReleaseOptimizations  = ''
     .LinkerDebugOptimizations       = ''
     .LinkerReleaseOptimizations     = ''    
+
+    .DLLLinkerOptions               = ""
     
     //.UseExceptions          = ' -fexceptions' 
 ]

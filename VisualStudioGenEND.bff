@@ -2,7 +2,7 @@
 //------------------------------------------------------------------------------
 VSSolution( "vssolution" )
 {
-    .SolutionOutput = ".\$VSSolutionName$.sln"
+    .SolutionOutput = "./$VSSolutionName$.sln"
 	
 	
     .SolutionProjects	= .VSProjects //filled by Projects.bff

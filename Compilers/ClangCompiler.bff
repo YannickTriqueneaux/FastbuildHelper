@@ -1,8 +1,8 @@
 // X86 Clang COMPILATION
 //------------------------------------------------------------------------------
 
-//!\THIS FILE WAS NEVER TRIED
-//!\PLEASE DO NOT ASSUMS THAT ITS WORKS
+//!/THIS FILE WAS NEVER TRIED
+//!/PLEASE DO NOT ASSUMS THAT ITS WORKS
 
 //
 Settings
@@ -12,15 +12,15 @@ Settings
 Compiler( 'Compiler-x86Clang' )
 {
 	.Root		= '$ClangBasePath$'
-	.Executable	= '$Root$\bin\clang++.exe'
+	.Executable	= '$Root$/bin/clang++.exe'
 }
 
 .X86ClangConfig = 
 [
 	.ToolsBasePath			= '$ClangBasePath$'
 	.Compiler				= 'Compiler-x86Clang'
-	.Librarian				= '$ToolsBasePath$\bin\llvm-ar.exe'
-	.Linker					= '$VSBasePath$\VC\bin\link.exe' //'$ToolsBasePath$\lld.exe'								
+	.Librarian				= '$ToolsBasePath$/bin/llvm-ar.exe'
+	.Linker					= '$VSBasePath$/VC/bin/link.exe' //'$ToolsBasePath$/lld.exe'								
 
 	.WindowsLibPaths		= '$WindowsSDKBasePath$/lib/winv6.3/um'
 
