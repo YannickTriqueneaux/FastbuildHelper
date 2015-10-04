@@ -4,7 +4,7 @@
 VCXProject( "$ProjectName$-vsproj" )//Library project
 {
 	Using( .ProjectCommon )
-	.ProjectOutput				= "$VSSolutionDestination$/$ProjectName$/$ProjectName$.vcxproj"
+	.ProjectOutput				= "$VSSolutionDestination$\$ProjectName$\$ProjectName$.vcxproj"
 	.ProjectInputPaths			= "$SourcesPath$\"
 	.ProjectBasePath			= "$SourcesPath$\"
 	.ProjectFilesToExclude      = "$SourcesPath$\main.test.cpp"
@@ -18,7 +18,7 @@ VCXProject( "$ProjectName$-vsproj" )//Library project
 					
 .VSFolder =
 [ 
-	.Path			= "$ProjectName$"
+	.Path			= "$currentFolder$\$ProjectName$"
 	.Projects		= { "$ProjectName$-vsproj" }
 ]
 
