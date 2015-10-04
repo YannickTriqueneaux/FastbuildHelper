@@ -14,6 +14,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     {
         .CompilerInputUnity			= "$ProjectName$-Unity"
         .CompilerOutputPath		   	= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
+        .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this library
     }
 #endif
 
@@ -23,6 +24,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .CompilerInputUnity			= "$ProjectName$-Unity"
         .CompilerOutputPath			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
         .LibrarianOutput 			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$' + .staticLibExt
+        .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this library
 }
 #endif
 
@@ -38,7 +40,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .LinkerOptions              + .DLLLinkerOptions
                                     + .PlatformDefaultLibs
 
-        .LinkerOutput = '$BuildDestination$/$Platform$-$Config$/$ProjectName$' + .dynamicLibExt
+        .LinkerOutput = "$BuildDestination$/$Platform$-$Config$/" + .libNamePrefix + "$ProjectName$" + .dynamicLibExt
     }
 
 

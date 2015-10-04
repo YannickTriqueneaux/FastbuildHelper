@@ -11,10 +11,12 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #include "../Compilers/Tools/AddIncludePaths.bff"
 
 	Library( "$aliasName$-Lib" )
-	{
+    {
 		.CompilerInputUnity			= "$ProjectName$-Unity"
 		.CompilerOutputPath			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
-		.LibrarianOutput 			= "$BuildDestination$/$Platform$-$Config$/$ProjectName$" + .staticLibExt
+		.LibrarianOutput 			= "$BuildDestination$/$Platform$-$Config$/" + .libNamePrefix + "$ProjectName$" + .staticLibExt
+
+        .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this library
 	}
 
     Alias("$aliasName$") { .Targets = { "$aliasName$-Lib" } }

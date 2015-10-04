@@ -27,6 +27,7 @@ Compiler( "Compiler-x64" )
 	.staticLibExt = ".lib"
 	.dynamicLibExt = ".dll"
 	.executableExt = ".exe"
+    .libNamePrefix = ""
 ]
 
 .WindowsDefinitions =
@@ -87,12 +88,13 @@ Compiler( "Compiler-x64" )
 	.LinkerDebugOptimizations		= " /DEBUG"
 	.LinkerReleaseOptimizations		= " /LTCG /OPT:REF,ICF"
 	
-	.BaseIncludePaths		= ' /I"./"'
-							+ ' /I"$VSBasePath$/VC/include/"'
-							+ ' /I"$WindowsSDKBasePath$/Include"'
-							//+ ' /I"$WindowsSDKBasePath$/include/shared"'
+	.BaseIncludePaths		        = ' /I"./"'
+							        + ' /I"$VSBasePath$/VC/include/"'
+							        + ' /I"$WindowsSDKBasePath$/Include"'
+							        //+ ' /I"$WindowsSDKBasePath$/include/shared"'
 
-    .DLLLinkerOptions = " /DLL"
+    .DLLCompilerOptions             = ""
+    .DLLLinkerOptions               = " /DLL"
 							
 	.CompilerOptions 		+ .BaseIncludePaths
 	//.PCHOptions				+ .BaseIncludePaths

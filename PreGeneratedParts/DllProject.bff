@@ -12,6 +12,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #if __WINDOWS__
     ObjectList( '$aliasName$-Obj' )
     {
+        .CompilerOptions            + .DLLCompilerOptions
         .CompilerInputUnity			= "$ProjectName$-Unity"
         .CompilerOutputPath		   	= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
     }
@@ -20,6 +21,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #if __LINUX__
     Library( "$aliasName$-Obj" )
     {
+        .CompilerOptions            + .DLLCompilerOptions
         .CompilerInputUnity			= "$ProjectName$-Unity"
         .CompilerOutputPath			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
         .LibrarianOutput 			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$' + .staticLibExt
@@ -37,8 +39,8 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
         .LinkerOptions              + .DLLLinkerOptions
                                     + .PlatformDefaultLibs
-
-        .LinkerOutput = '$BuildDestination$/$Platform$-$Config$/$ProjectName$' + .dynamicLibExt
+                                    
+        .LinkerOutput = "$BuildDestination$/$Platform$-$Config$/" + .libNamePrefix + "$ProjectName$" + .dynamicLibExt
     }
 
     Alias("$aliasName$") { .Targets = { "$aliasName$-DLL" } }

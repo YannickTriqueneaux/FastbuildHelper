@@ -1,0 +1,9 @@
+//This file contains all default library for executables linking
+
+
+//DO NOT USE AN OPERATOR ' = '  IN THIS FILE !
+
+.PlatformDefaultLibs    + " -lpthread"
+                        + " -luuid"                        
+                        + " -lrt"
+                        + " -ldl"

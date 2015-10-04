@@ -31,6 +31,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PreGeneratedParts", "PreGen
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DefaultLibs", "DefaultLibs", "{BC3D1C55-054A-4217-B796-42BA13B547A1}"
 	ProjectSection(SolutionItems) = preProject
+		..\Compilers\DefaultLibs\LinuxDefaultLibs.bff = ..\Compilers\DefaultLibs\LinuxDefaultLibs.bff
 		..\Compilers\DefaultLibs\WindowsDefaultLibs.bff = ..\Compilers\DefaultLibs\WindowsDefaultLibs.bff
 	EndProjectSection
 EndProject
