@@ -6,6 +6,9 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 	
 	.aliasName 	= '$ProjectName$-$Platform$-$Config$'
     .aliasTestName = 'Tests-$aliasName$'
+
+#include "..\Compilers\Tools\AddIncludePaths.bff"
+
 	Library( '$aliasName$-Lib' )
 	{
 		.CompilerInputUnity			= '$ProjectName$-Unity'
@@ -33,7 +36,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 	{
 		.Libraries					= { '$aliasName$-Obj' }
 
-        ForEach(.dlib in.DependenciesLibraries)
+        ForEach(.dlib in .DependenciesLibraries)
         {
             ^Libraries + { "$dlib$-$Platform$-$Config$-Lib" }
         }
