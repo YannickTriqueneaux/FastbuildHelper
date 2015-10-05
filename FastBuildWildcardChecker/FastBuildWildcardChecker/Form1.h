@@ -58,6 +58,7 @@ namespace FastBuildWildcardChecker {
 	private: System::Windows::Forms::GroupBox^  groupBox2;
 	private: System::Windows::Forms::TextBox^  PatternBox;
 	private: System::Windows::Forms::Label^  label2;
+    private: System::Windows::Forms::Button^  ToClipBoardButton;
 
 	private:
 		/// <summary>
@@ -84,6 +85,7 @@ namespace FastBuildWildcardChecker {
             this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
             this->PatternBox = (gcnew System::Windows::Forms::TextBox());
             this->label2 = (gcnew System::Windows::Forms::Label());
+            this->ToClipBoardButton = (gcnew System::Windows::Forms::Button());
             this->groupBox2->SuspendLayout();
             this->SuspendLayout();
             // 
@@ -194,11 +196,22 @@ namespace FastBuildWildcardChecker {
             this->label2->TabIndex = 15;
             this->label2->Text = L"Pattern :";
             // 
+            // ToClipBoardButton
+            // 
+            this->ToClipBoardButton->Location = System::Drawing::Point(453, 247);
+            this->ToClipBoardButton->Name = L"ToClipBoardButton";
+            this->ToClipBoardButton->Size = System::Drawing::Size(125, 40);
+            this->ToClipBoardButton->TabIndex = 16;
+            this->ToClipBoardButton->Text = L"Copy result to clipboard";
+            this->ToClipBoardButton->UseVisualStyleBackColor = true;
+            this->ToClipBoardButton->Click += gcnew System::EventHandler(this, &Form1::ToClipBoardButton_Click);
+            // 
             // Form1
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
             this->ClientSize = System::Drawing::Size(1043, 487);
+            this->Controls->Add(this->ToClipBoardButton);
             this->Controls->Add(this->label2);
             this->Controls->Add(this->PatternBox);
             this->Controls->Add(this->BrowsButton);
@@ -313,6 +326,21 @@ private: System::Void CheckButton_Click(System::Object^  sender, System::EventAr
 
 			Marshal::FreeHGlobal(IntPtr((void*)pat));
 		 }
+private: System::Void ToClipBoardButton_Click(System::Object^  sender, System::EventArgs^  e) {
+		if(this->ResultList->Items->Count == 0) return;
+
+		System::String^ result = "";
+		auto count = this->ResultList->Items->Count;
+		auto i = 0;
+		for (; i< count -1;++i)
+		{
+			result += static_cast<String^>(this->ResultList->Items[i]);
+			result += "\n";
+		}
+		result += static_cast<String^>(this->ResultList->Items[i]);
+
+		Clipboard::SetDataObject(result, true);
+	}
 };
 }
 
