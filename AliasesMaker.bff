@@ -16,18 +16,19 @@ ForEach(.CompilerConfig in.CompilerConfigs)
 {
     Using(.CompilerConfig)
 
-    .aliaseName = "All-$Platform$-$Config$"
+    .aliaseName = "BuildAll-$Platform$-$Config$"
 
     Alias("$aliaseName$")
     {
         .Targets = {}
         ForEach(.pname in.projectNames)
         {
-            ^Targets = "$pname$-$Platform$-$Config$"
+            ^Targets + "$pname$-$Platform$-$Config$"
         }
         ForEach(.pname in.projectTestNames)
         {
-            ^Targets = "$pname$-$Platform$-$Config$"
+            ^Targets + "$pname$-$Platform$-$Config$"
         }
+        Print(.Targets)
     }
 }
