@@ -4,14 +4,19 @@
 VCXProject( "$ProjectName$-vsproj" )//Library project
 {
 	Using( .ProjectCommon )
-	.ProjectOutput				= "$VSSolutionDestination$/$ProjectName$/$ProjectName$.vcxproj"
-	.ProjectInputPaths			= "$SourcesPath$/"
+	.ProjectOutput				= "$VSSolutionDestination$/Projects/$ProjectName$/$ProjectName$.vcxproj"
+    .ProjectInputPaths          = { "$SourcesPath$/" }
 	.ProjectBasePath			= "$SourcesPath$/"
-	.ProjectFilesToExclude      = "$SourcesPath$/main.test.cpp"
 
+    ForEach(.sfsp in.SubFoldersSourcesPath)
+    {
+        ^ProjectInputPaths      + "$SourcesPath$/$sfsp$"
+    }
+
+    .IncludeSearchPath          = ""
     ForEach(.ipath in.IncludesPath)
     {
-        ^IncludeSearchPath + ";$ipath$"
+        ^IncludeSearchPath      + ";$ipath$"
     }
 
 }

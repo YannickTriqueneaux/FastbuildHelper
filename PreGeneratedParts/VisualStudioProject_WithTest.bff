@@ -2,42 +2,53 @@
 
 // Visual Studio Project Generation
 //--------------------------------------------------------------------------
-VCXProject( "$ProjectName$-vsproj" )//Library project
+VCXProject("$ProjectName$-vsproj")//Library project
 {
-	Using( .ProjectCommon )
-	.ProjectOutput				= "$VSSolutionDestination$/Projects/$ProjectName$/$ProjectName$.vcxproj"
-	.ProjectInputPaths			= { "$SourcesPath$/" }
-								+ .SubFoldersSourcesPath
-	.ProjectBasePath			= "$SourcesPath$/"
-	.ProjectFilesToExclude      = .TestSourcesFiles
+    Using(.ProjectCommon)
+    .ProjectOutput = "$VSSolutionDestination$/Projects/$ProjectName$/$ProjectName$.vcxproj"
+    .ProjectInputPaths = { "$SourcesPath$/" }
+    .ProjectBasePath = "$SourcesPath$/"
+    .ProjectFilesToExclude = .TestSourcesFiles
 
+    ForEach(.sfsp in.SubFoldersSourcesPath)
+    {
+        ^ProjectInputPaths + "$SourcesPath$/$sfsp$"
+    }
+
+    .IncludeSearchPath = ""
     ForEach(.ipath in.IncludesPath)
     {
         ^IncludeSearchPath + ";$ipath$"
     }
 }
-VCXProject( "$ProjectName$-vsproj-test" )//Test Project
+VCXProject("$ProjectName$-vsproj-test")//Test Project
 {
-	Using( .ProjectCommon )
-	.ProjectOutput				= "$VSSolutionDestination$/Projects/$ProjectName$/Tests-$ProjectName$.vcxproj"
-	.ProjectBasePath			= { "$SourcesPath$/" }
-								+ .SubFoldersTestSourcesPath
-	.ProjectFiles		        = .TestSourcesFiles
+    Using(.ProjectCommon)
+    .ProjectOutput = "$VSSolutionDestination$/Projects/$ProjectName$/Tests-$ProjectName$.vcxproj"
+    .ProjectBasePath = { "$SourcesPath$/" }
+    
 
+    .ProjectFiles = {}
+    ForEach(.tsf in.TestSourcesFiles)
+    {
+        ^ProjectFiles + "$SourcesPath$/$tsf$"
+    }
+
+    .IncludeSearchPath = ""
     ForEach(.ipath in.IncludesPath)
     {
         ^IncludeSearchPath + ";$ipath$"
     }
 }
-					
+
 .VSFolder =
-[ 
-	.Path			= "$currentFolder$/$ProjectName$"
-	.Projects		= { "$ProjectName$-vsproj","$ProjectName$-vsproj-test" }
+[
+    .Path = "$currentFolder$/$ProjectName$"
+    .Projects = { "$ProjectName$-vsproj", "$ProjectName$-vsproj-test" }
 ]
 
-.VSSolutionFolders  + .VSFolder
+.VSSolutionFolders + .VSFolder
 
-.VSProjects			+ "$ProjectName$-vsproj"
-					+ "$ProjectName$-vsproj-test"
+.VSProjects + "$ProjectName$-vsproj"
++ "$ProjectName$-vsproj-test"
 //---------------------------------------------------------------------------
