@@ -29,6 +29,5 @@ ForEach(.CompilerConfig in.CompilerConfigs)
         {
             ^Targets + "$pname$-$Platform$-$Config$"
         }
-        Print(.Targets)
     }
 }

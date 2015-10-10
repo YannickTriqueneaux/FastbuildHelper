@@ -53,7 +53,10 @@ Compiler( 'Compiler-x64' )
                             + ' -std=c++11'                     // allow C++11 features
                             
                             // Disabled warnings
-                            + ' -Wno-invalid-offsetof' // we get the offset of members in non-POD types
+                            + " -Wno-invalid-offsetof" // we get the offset of members in non-POD types
+                            + " -Wno-unused-variable"
+                            + " -Wno-unused-but-set-variable"
+                            + " -Wno-reorder"
                             
     .LinkerOptions          = '"%1" -o "%2"'
                                 

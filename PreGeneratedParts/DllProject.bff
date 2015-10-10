@@ -25,7 +25,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .CompilerInputUnity			= "$ProjectName$-Unity"
         .CompilerOutputPath			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
         .LibrarianOutput 			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$' + .staticLibExt
-}
+    }
 #endif
 
 
