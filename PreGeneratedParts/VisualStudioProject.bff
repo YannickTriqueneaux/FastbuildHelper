@@ -9,7 +9,7 @@ VCXProject( "$ProjectName$-vsproj" )//Library project
 	.ProjectBasePath			= "$SourcesPath$/"
 
     .IncludeSearchPath          = ""
-    ForEach(.ipath in.IncludesPath)
+    ForEach(.ipath in.IncludePaths)
     {
         ^IncludeSearchPath      + ";$ipath$"
     }

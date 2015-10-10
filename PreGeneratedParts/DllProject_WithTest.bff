@@ -54,6 +54,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #if __LINUX__
     Library('$aliasName$Test-Obj')
     {
+#include "../Compilers/Tools/AddTestIncludePaths.bff"
         .CompilerInputFiles = '$TestSourcesPath$/Main.test.cc'
         .CompilerOutputPath = '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
         .LibrarianOutput = '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/Main.test' + .staticLibExt

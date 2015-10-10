@@ -40,6 +40,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{12F1D91A-7C7D-45BD-82E4-D91631ED1470}"
 	ProjectSection(SolutionItems) = preProject
 		..\Compilers\Tools\AddIncludePaths.bff = ..\Compilers\Tools\AddIncludePaths.bff
+		..\Compilers\Tools\AddTestIncludePaths.bff = ..\Compilers\Tools\AddTestIncludePaths.bff
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CodeGenerateVSSolution", "CodeGenerateVSSolution\CodeGenerateVSSolution.vcxproj", "{609F25E2-F8BC-4B0F-9304-BD0DF3E3FCB2}"
