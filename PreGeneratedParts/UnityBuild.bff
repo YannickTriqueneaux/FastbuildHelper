@@ -3,7 +3,6 @@
 Unity( "$ProjectName$-Unity" )
 {
 	.UnityInputPath          = { "$SourcesPath$/" }	// (optional) Path (or paths) to find files
-							 + .SubFoldersSourcesPath
 							 
 	.UnityInputExcludePattern 	= "*.cpp"	// (optional) Wildcard pattern(s) of files/folders to exclude
     .UnityInputExcludePath      = .TestSourcesPath	// (optional) Path (or paths) in which to ignore files

@@ -10,11 +10,6 @@ VCXProject("$ProjectName$-vsproj")//Library project
     .ProjectBasePath = "$SourcesPath$/"
     .ProjectInputPathsExclude = "$TestSourcesPath$/"
 
-    ForEach(.subfolder in.SubFoldersSourcesPath)
-    {
-        ^ProjectInputPaths + "$SourcesPath$/$subfolder$"
-    }
-
     .IncludeSearchPath = ""
     ForEach(.ipath in.IncludesPath)
     {
@@ -27,11 +22,6 @@ VCXProject("$ProjectName$-vsproj-test")//Test Project
     .ProjectOutput = "$VSSolutionDestination$/Projects/$ProjectName$/Tests-$ProjectName$.vcxproj"
     .ProjectInputPaths = { "$TestSourcesPath$/" }
     .ProjectBasePath = "$TestSourcesPath$/"
-
-    ForEach(.subfolder in.SubFoldersTestSourcesPath)
-    {
-        ^ProjectInputPaths + "$TestSourcesPath$/$subfolder$"
-    }
 
     .IncludeSearchPath = ""
     ForEach(.ipath in.IncludesPath)

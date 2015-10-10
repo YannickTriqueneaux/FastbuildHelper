@@ -80,7 +80,7 @@ Compiler( "Compiler-x64" )
 	.CompilerDebugOptimizations		= " /Od /Oi /Oy- /RTC1 /MTd /Z7 /GS /Gy /GR-"
 									+ " /fp:precise"
 									
-	.CompilerReleaseOptimizations	= " /MT /Ox /Oy /Oi /GS- /GF /GL /Gy /Gw /GR-"
+	.CompilerReleaseOptimizations	= " /MT /Ox /Oy /Oi /GS- /GF /GL /Gy /GR-"
 									+ " /fp:fast"
 									
 	.LibrarianDebugOptimizations	= ""

@@ -8,11 +8,6 @@ VCXProject( "$ProjectName$-vsproj" )//Library project
     .ProjectInputPaths          = { "$SourcesPath$/" }
 	.ProjectBasePath			= "$SourcesPath$/"
 
-    ForEach(.sfsp in.SubFoldersSourcesPath)
-    {
-        ^ProjectInputPaths      + "$SourcesPath$/$sfsp$"
-    }
-
     .IncludeSearchPath          = ""
     ForEach(.ipath in.IncludesPath)
     {

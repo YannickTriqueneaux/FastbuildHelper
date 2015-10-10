@@ -146,6 +146,8 @@
     <None Include="..\..\..\..\Build\fastbuild\CodeBuild.bff" />
     <None Include="..\..\..\..\Build\fastbuild\fbuild.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Common\Framework.bff" />
+    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Common\Network.bff" />
+    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Common\Numeric.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Common\Opal.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Common\System.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Projects.bff" />
