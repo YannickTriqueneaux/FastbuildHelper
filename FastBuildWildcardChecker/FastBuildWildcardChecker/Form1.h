@@ -59,6 +59,7 @@ namespace FastBuildWildcardChecker {
 	private: System::Windows::Forms::TextBox^  PatternBox;
 	private: System::Windows::Forms::Label^  label2;
     private: System::Windows::Forms::Button^  ToClipBoardButton;
+    private: System::Windows::Forms::Button^  ClearListsButton;
 
 	private:
 		/// <summary>
@@ -86,6 +87,7 @@ namespace FastBuildWildcardChecker {
             this->PatternBox = (gcnew System::Windows::Forms::TextBox());
             this->label2 = (gcnew System::Windows::Forms::Label());
             this->ToClipBoardButton = (gcnew System::Windows::Forms::Button());
+            this->ClearListsButton = (gcnew System::Windows::Forms::Button());
             this->groupBox2->SuspendLayout();
             this->SuspendLayout();
             // 
@@ -206,11 +208,22 @@ namespace FastBuildWildcardChecker {
             this->ToClipBoardButton->UseVisualStyleBackColor = true;
             this->ToClipBoardButton->Click += gcnew System::EventHandler(this, &Form1::ToClipBoardButton_Click);
             // 
+            // ClearListsButton
+            // 
+            this->ClearListsButton->Location = System::Drawing::Point(453, 293);
+            this->ClearListsButton->Name = L"ClearListsButton";
+            this->ClearListsButton->Size = System::Drawing::Size(125, 39);
+            this->ClearListsButton->TabIndex = 17;
+            this->ClearListsButton->Text = L"Clear Lists";
+            this->ClearListsButton->UseVisualStyleBackColor = true;
+            this->ClearListsButton->Click += gcnew System::EventHandler(this, &Form1::ClearListsButton_Click);
+            // 
             // Form1
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
             this->ClientSize = System::Drawing::Size(1043, 487);
+            this->Controls->Add(this->ClearListsButton);
             this->Controls->Add(this->ToClipBoardButton);
             this->Controls->Add(this->label2);
             this->Controls->Add(this->PatternBox);
@@ -237,23 +250,36 @@ private: System::Void AddButton_Click(System::Object^  sender, System::EventArgs
 			 this->InputList->Items->Add(AddFileTextBox->Text);
 			 this->InputList->SelectedIndex = InputList->Items->Count -1;
 		 }
+         static String^ lastPathUsed = nullptr;
 private: System::Void BrowsButton_Click(System::Object^  sender, System::EventArgs^  e) {
 			 OpenFileDialog^ openFileDialog1 = gcnew OpenFileDialog;
-
-			 openFileDialog1->InitialDirectory = "c:\\";
+             if (lastPathUsed != nullptr){
+                 openFileDialog1->InitialDirectory = lastPathUsed;
+             }
+             else{
+                 openFileDialog1->InitialDirectory = "c:\\";
+             }
 			 openFileDialog1->Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
 			 openFileDialog1->FilterIndex = 2;
 			 openFileDialog1->RestoreDirectory = true;
-			 openFileDialog1->Multiselect = true;
-
-			 if ( openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK )
-			 {
-				 openFileDialog1->FileNames;
-				 for (int i = 0; i < openFileDialog1->FileNames->Length; ++i)
-				 {
-					 this->InputList->Items->Add(openFileDialog1->FileNames[i]->Clone());
-				 }
-			 }
+             openFileDialog1->Multiselect = true;
+             try
+             {
+                 if (openFileDialog1->ShowDialog() == System::Windows::Forms::DialogResult::OK)
+                 {
+                     if (openFileDialog1->FileNames->Length > 0){
+                         lastPathUsed = System::IO::Path::GetDirectoryName(openFileDialog1->FileNames[0]->ToString());
+                         for (int i = 0; i < openFileDialog1->FileNames->Length; ++i)
+                         {
+                             this->InputList->Items->Add(openFileDialog1->FileNames[i]->Clone());
+                         }
+                     }
+                 }
+             }
+             catch (...)
+             {
+                 lastPathUsed = nullptr;
+             }
 		 }
 private: System::Void RemoveButton_Click(System::Object^  sender, System::EventArgs^  e) {
 			 if(this->InputList->Items->Count <= 0) return;
@@ -341,6 +367,10 @@ private: System::Void ToClipBoardButton_Click(System::Object^  sender, System::E
 
 		Clipboard::SetDataObject(result, true);
 	}
+private: System::Void ClearListsButton_Click(System::Object^  sender, System::EventArgs^  e) {
+    this->InputList->Items->Clear();
+    this->ResultList->Items->Clear();
+}
 };
 }
 
