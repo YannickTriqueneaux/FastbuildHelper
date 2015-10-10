@@ -8,11 +8,10 @@ VCXProject("$ProjectName$-vsproj")//Library project
     .ProjectOutput = "$VSSolutionDestination$/Projects/$ProjectName$/$ProjectName$.vcxproj"
     .ProjectInputPaths = { "$SourcesPath$/" }
     .ProjectBasePath = "$SourcesPath$/"
-    .ProjectFilesToExclude = .TestSourcesFiles
 
-    ForEach(.sfsp in.SubFoldersSourcesPath)
+    ForEach(.subfolder in.SubFoldersSourcesPath)
     {
-        ^ProjectInputPaths + "$SourcesPath$/$sfsp$"
+        ^ProjectInputPaths + "$SourcesPath$/$subfolder$"
     }
 
     .IncludeSearchPath = ""
@@ -25,13 +24,11 @@ VCXProject("$ProjectName$-vsproj-test")//Test Project
 {
     Using(.ProjectCommon)
     .ProjectOutput = "$VSSolutionDestination$/Projects/$ProjectName$/Tests-$ProjectName$.vcxproj"
-    .ProjectBasePath = { "$SourcesPath$/" }
-    
+    .ProjectBasePath = { "$TestSourcesPath$/" }
 
-    .ProjectFiles = {}
-    ForEach(.tsf in.TestSourcesFiles)
+    ForEach(.subfolder in.SubFoldersTestSourcesPath)
     {
-        ^ProjectFiles + "$SourcesPath$/$tsf$"
+        ^ProjectInputPaths + "$TestSourcesPath$/$subfolder$"
     }
 
     .IncludeSearchPath = ""
