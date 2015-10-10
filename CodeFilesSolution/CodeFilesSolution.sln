@@ -22,6 +22,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PreGeneratedParts", "PreGen
 	ProjectSection(SolutionItems) = preProject
 		..\PreGeneratedParts\DllProject.bff = ..\PreGeneratedParts\DllProject.bff
 		..\PreGeneratedParts\DllProject_WithTest.bff = ..\PreGeneratedParts\DllProject_WithTest.bff
+		..\PreGeneratedParts\ExecutableProject.bff = ..\PreGeneratedParts\ExecutableProject.bff
 		..\PreGeneratedParts\LibProject.bff = ..\PreGeneratedParts\LibProject.bff
 		..\PreGeneratedParts\LibProject_WithTest.bff = ..\PreGeneratedParts\LibProject_WithTest.bff
 		..\PreGeneratedParts\UnityBuild.bff = ..\PreGeneratedParts\UnityBuild.bff

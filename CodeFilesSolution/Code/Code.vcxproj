@@ -150,6 +150,7 @@
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Common\Network.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Common\Numeric.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Common\Opal.bff" />
+    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Common\OpalNode.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Common\Persistence.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Common\System.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Projects.bff" />

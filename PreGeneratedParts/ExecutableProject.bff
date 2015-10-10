@@ -4,7 +4,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 	Using( .CompilerConfig )
 	Using( .CompiledFileExtensions )
 	
-    .aliasName      = "$ProjectName$-$Platform$-$Config$"
+    .aliasName                      = "$ProjectName$-$Platform$-$Config$"
 
 #include "../Compilers/Tools/AddIncludePaths.bff"
 
@@ -23,12 +23,12 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .CompilerOptions            + .DLLCompilerOptions
         .CompilerInputUnity			= "$ProjectName$-Unity"
         .CompilerOutputPath			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
-        .LibrarianOutput 			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$' + .staticLibExt
+        .LibrarianOutput 			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$" + .staticLibExt
     }
 #endif
 
 
-    DLL("$aliasName$-DLL")
+    Executable("$aliasName$-EXE")
     {
         .Libraries                  = { '$aliasName$-Obj' }
         ForEach(.dlib in.DependenciesLibraries)
@@ -39,17 +39,17 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .LinkerOptions              + .DLLLinkerOptions
                                     + .PlatformDefaultLibs
                                     
-        .LinkerOutput = "$BuildDestination$/$Platform$-$Config$/" + .libNamePrefix + "$ProjectName$" + .dynamicLibExt
+        .LinkerOutput = "$BuildDestination$/$Platform$-$Config$/" + .libNamePrefix + "$ProjectName$" + .executableExt
     }
 
-    Alias("$aliasName$") { .Targets = { "$aliasName$-DLL" } }
+    Alias("$aliasName$") { .Targets = { "$aliasName$-EXE" } }
 }
 
 Alias( "$ProjectName$" )
 {
 	Using( .DefaultCompilerConfig )
 	.aliasName 	= "$ProjectName$-$Platform$-$Config$"
-	.Targets = { "$aliasName$" }
+	.Targets    = { "$aliasName$" }
 }
 
 
