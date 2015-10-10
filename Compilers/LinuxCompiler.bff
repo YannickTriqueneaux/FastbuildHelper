@@ -23,7 +23,8 @@ Compiler( 'Compiler-x64' )
 
 .LinuxDefinitions = 
 [
-	.Definitions			= ' -D__LINUX__' 								
+	.Definitions			= ' -D__LINUX__' 		
+                            + ' -D__linux__'
 		
 		
 	//DEFINES////////
@@ -57,6 +58,13 @@ Compiler( 'Compiler-x64' )
                             + " -Wno-unused-variable"
                             + " -Wno-unused-but-set-variable"
                             + " -Wno-reorder"
+                            + " -Wno-sign-compare"
+                            + " -Wno-strict-aliasing"
+                            + " -Wno-unused-result"
+                            + " -Wno-unused-function"
+                            + " -Wno-maybe-uninitialized"
+
+                            + " -fstack-protector --param=ssp-buffer-size=4"  //Ubuntu compilation only  //error with file open in FileLockPosix.cpp
                             
     .LinkerOptions          = '"%1" -o "%2"'
                                 
