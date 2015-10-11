@@ -153,6 +153,12 @@
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Common\OpalNode.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Common\Persistence.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Common\System.bff" />
+    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\DIL\ConnectionFactoryLib.bff" />
+    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\DIL\ConnectionLib.bff" />
+    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\DIL\IOTestModel.bff" />
+    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\DIL\PrecompiledConnectionFactoryLib.bff" />
+    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\DIL\SimCoreLib.bff" />
+    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\DIL\SyncExchangerLib.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Projects.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\Matio.bff" />
   </ItemGroup>
