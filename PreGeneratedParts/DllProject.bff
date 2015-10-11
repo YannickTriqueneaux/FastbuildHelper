@@ -40,7 +40,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .LinkerOptions              + .DLLLinkerOptions
                                     + .PlatformDefaultLibs
                                     
-        .LinkerOutput = "$BuildDestination$/$Platform$-$Config$/" + .libNamePrefix + "$ProjectName$" + .dynamicLibExt
+        .LinkerOutput = "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .dynamicLibExt
     }
 
     Alias("$aliasName$") { .Targets = { "$aliasName$-DLL" } }

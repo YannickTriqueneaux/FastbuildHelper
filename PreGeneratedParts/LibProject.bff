@@ -1,32 +1,29 @@
 
-
-ForEach( .CompilerConfig in .CompilerConfigs )
+ForEach(.CompilerConfig in.CompilerConfigs)
 {
-	Using( .CompilerConfig )
-	Using( .CompiledFileExtensions )
-	
-    .aliasName      = "$ProjectName$-$Platform$-$Config$"
-    .aliasTestName  = "Test-$aliasName$"
+    Using(.CompilerConfig)
+    Using(.CompiledFileExtensions)
+
+    .aliasName = '$ProjectName$-$Platform$-$Config$'
 
 #include "../Compilers/Tools/AddIncludePaths.bff"
 
-	Library( "$aliasName$-Lib" )
+    Library('$aliasName$-Lib')
     {
-		.CompilerInputUnity			= "$ProjectName$-Unity"
-		.CompilerOutputPath			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
-		.LibrarianOutput 			= "$BuildDestination$/$Platform$-$Config$/" + .libNamePrefix + "$ProjectName$" + .staticLibExt
+        .CompilerInputUnity = '$ProjectName$-Unity'
+        .CompilerOutputPath = '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
+        .LibrarianOutput = "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .staticLibExt
 
-        .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this library
-	}
-
-    Alias("$aliasName$") { .Targets = { "$aliasName$-Lib" } }
+        .CompilerOptions + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this library
+    }
+    Alias('$aliasName$') { .Targets = '$aliasName$-Lib' }
 }
 
-Alias( "$ProjectName$" )
+Alias('$ProjectName$')
 {
-	Using( .DefaultCompilerConfig )
-	.aliasName 	= "$ProjectName$-$Platform$-$Config$"
-	.Targets = { "$aliasName$" }
+    Using(.DefaultCompilerConfig)
+    .aliasName = '$ProjectName$-$Platform$-$Config$'
+    .Targets = { '$aliasName$' }
 }
 
 .projectNames + "$ProjectName$"
