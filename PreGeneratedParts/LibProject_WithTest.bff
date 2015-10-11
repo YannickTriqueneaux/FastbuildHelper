@@ -49,7 +49,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 		.LinkerOptions				+ .PlatformDefaultLibs
 		.LinkerOutput				= '$BuildDestination$/$Platform$-$Config$/Tests-$ProjectName$' + .executableExt
 	}	
-	Alias( '$aliasName$' ) { .Targets = { '$aliasName$-EXE' } }
+	Alias( '$aliasName$' ) { .Targets = { '$aliasName$-Lib' } }
 	Alias( '$aliasTestName$' ) { .Targets = { '$aliasName$-EXE' } }
 }
 

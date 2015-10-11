@@ -36,10 +36,9 @@ ForEach( .CompilerConfig in .CompilerConfigs )
             ^Libraries + { "$dlib$-$Platform$-$Config$-Lib" }
         }
 
-        .LinkerOptions              + .DLLLinkerOptions
-                                    + .PlatformDefaultLibs
+        .LinkerOptions              + .PlatformDefaultLibs
                                     
-        .LinkerOutput = "$BuildDestination$/$Platform$-$Config$/" + .libNamePrefix + "$ProjectName$" + .executableExt
+        .LinkerOutput = "$BuildDestination$/$Platform$-$Config$/$ProjectName$" + .executableExt
     }
 
     Alias("$aliasName$") { .Targets = { "$aliasName$-EXE" } }
