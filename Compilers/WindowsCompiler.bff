@@ -95,12 +95,16 @@ Compiler( "Compiler-x64" )
 
     .DLLCompilerOptions             = ""
     .DLLLinkerOptions               = " /DLL"
+
 							
 	.CompilerOptions 		+ .BaseIncludePaths
 	//.PCHOptions				+ .BaseIncludePaths
 	
 	//.UseExceptions			= " /EHsc"
 ]
+
+
+.bigObjectFlag = " /bigobj"
 
 //x86 CONFIGURATIONS/////////////////////
 .X86BaseConfig = 

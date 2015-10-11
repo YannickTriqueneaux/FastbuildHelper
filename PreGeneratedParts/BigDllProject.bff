@@ -1,0 +1,8 @@
+
+#if __WINDOWS__
+.isBigObject = .bigObjectFlag
+#endif
+
+#include "DLLProject.bff"
+
+.isBigObject = ""

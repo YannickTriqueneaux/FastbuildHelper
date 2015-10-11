@@ -12,6 +12,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     ObjectList( '$aliasName$-Obj' )
     {
         .CompilerOptions            + .DLLCompilerOptions
+                                    + .isBigObject
         .CompilerInputUnity			= "$ProjectName$-Unity"
         .CompilerOutputPath		   	= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
     }
