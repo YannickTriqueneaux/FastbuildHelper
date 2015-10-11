@@ -13,7 +13,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     {
 		.CompilerInputUnity			= '$ProjectName$-Unity'
 		.CompilerOutputPath			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
-		.LibrarianOutput 			= "$BuildDestination$/$Platform$-$Config$/" + .libNamePrefix + "$ProjectName$" + .staticLibExt
+		.LibrarianOutput 			= "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .staticLibExt
 
         .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this library
 	}
@@ -38,16 +38,15 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
 	Executable( '$aliasName$-EXE' )
 	{
-        .Libraries = { '$aliasName$-Obj' }
+        .Libraries                  = { '$aliasName$-Obj' }
+                                    + '$aliasName$-Lib'
 
         ForEach(.dlib in .DependenciesLibraries)
         {
             ^Libraries + { "$dlib$-$Platform$-$Config$-Lib" }
         }
-
-									+ '$aliasName$-Lib'
 		.LinkerOptions				+ .PlatformDefaultLibs
-		.LinkerOutput				= '$BuildDestination$/$Platform$-$Config$/Tests-$ProjectName$' + .executableExt
+		.LinkerOutput				= "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + "Tests-$ProjectName$" + .executableExt
 	}	
 	Alias( '$aliasName$' ) { .Targets = { '$aliasName$-Lib' } }
 	Alias( '$aliasTestName$' ) { .Targets = { '$aliasName$-EXE' } }
