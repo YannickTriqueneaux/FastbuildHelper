@@ -15,7 +15,7 @@ Compiler( 'Compiler-x64' )
 
 .CompiledFileExtensions =
 [
-	.staticLibExt = '.a'
+	.staticLibExt  = '.a'
 	.dynamicLibExt = '.so'
 	.executableExt = ''
     .libNamePrefix = "lib"
@@ -25,11 +25,11 @@ Compiler( 'Compiler-x64' )
 [
 	.Definitions			= ' -D__LINUX__' 		
                             + ' -D__linux__'
-		
+                            + ' -DRT'
 		
 	//DEFINES////////
-	.DebugDefinitions       = ' -DDEBUG'	
-								//+ ' -DPROFILING_ENABLED'
+	.DebugDefinitions       = ' -DDEBUG'
+						  //+ ' -DPROFILING_ENABLED'
 								
 	.ReleaseDefinitions     = ' -DRELEASE'
 	//////////////////
@@ -49,7 +49,6 @@ Compiler( 'Compiler-x64' )
                             + ' -m64'                           // x86-64
 							+ .Definitions
                             
-    .CompilerOptionsC       = .BaseCompilerOptions
     .CompilerOptions        = .BaseCompilerOptions
                             + ' -std=c++11'                     // allow C++11 features
                             

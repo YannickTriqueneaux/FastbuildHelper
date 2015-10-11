@@ -12,7 +12,7 @@
 	.X86Defines					= 'WIN32_LEAN_AND_MEAN;_WIN32;__WINDOWS__;WIN32;'
 	.X64Defines					= 'WIN32_LEAN_AND_MEAN;_WIN32;__WINDOWS__;WIN64;'
 	.DebugDefines				= 'DEBUG;PROFILING_ENABLED'
-	//.ProfileDefines				= 'RELEASE;PROFILING_ENABLED'
+	//.ProfileDefines			= 'RELEASE;PROFILING_ENABLED'
 	.ReleaseDefines				= 'RELEASE'
 ]
 
@@ -23,8 +23,8 @@
 	.ProjectRebuildCommand		= 'cd ^$(SolutionDir)/ &amp; fbuild -vs -dist -cache -clean ^$(ProjectName)-^$(Configuration)'
 	.OutputDirectory			= '^$(SolutionDir)/Build/^$(Configuration)'
 	.IntermediateDirectory		= '^$(SolutionDir)/Build/^$(Configuration)'
-	.Platform = 'Win32' // unused
-	.PlatformToolset = 'v120'
+	.Platform                   = 'Win32' // unused
+	.PlatformToolset            = 'v120'
 	.IncludeSearchPath			= '^$(SolutionDir)../..;./'
 ]
 
@@ -54,7 +54,7 @@
 VCXProject( "BuildAll-proj" )
 {
     Using( .ProjectCommon )
-	.ProjectOutput				= "VSSolution/BuildAll.vcxproj"
+	.ProjectOutput				= "VSSolution/All.vcxproj"
 	.ProjectFiles				= { "./fbuild.bff" }
 	.ProjectBasePath			= './'
 }
