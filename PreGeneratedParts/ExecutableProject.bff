@@ -6,7 +6,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 	
     .aliasName                      = "$ProjectName$-$Platform$-$Config$"
 
-#include "../Compilers/Tools/AddIncludePaths.bff"
+#include "../Features/AddIncludePaths.bff"
 
 #if __WINDOWS__
     ObjectList( '$aliasName$-Obj' )

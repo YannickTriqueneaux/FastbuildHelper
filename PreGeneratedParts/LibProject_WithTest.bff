@@ -7,7 +7,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 	.aliasName 	= '$ProjectName$-$Platform$-$Config$'
     .aliasTestName = 'Tests-$aliasName$'
 
-#include "../Compilers/Tools/AddIncludePaths.bff"
+#include "../Features/AddIncludePaths.bff"
 
 	Library( '$aliasName$-Lib' )
     {
@@ -21,7 +21,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #if __WINDOWS__
 	ObjectList( '$aliasName$-Obj' )
     {
-#include "../Compilers/Tools/AddTestIncludePaths.bff"
+#include "../Features/AddTestIncludePaths.bff"
 		.CompilerInputFiles        	= '$TestSourcesPath$/Main.test.cc'
 		.CompilerOutputPath		   	= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
 	}
@@ -29,7 +29,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #if __LINUX__
 	Library( '$aliasName$-Obj' )
     {
-#include "../Compilers/Tools/AddTestIncludePaths.bff"
+#include "../Features/AddTestIncludePaths.bff"
 		.CompilerInputFiles         = '$TestSourcesPath$/Main.test.cc'
 		.CompilerOutputPath			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
 		.LibrarianOutput 			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/Main.test' + .staticLibExt
