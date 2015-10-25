@@ -1,0 +1,1 @@
+for FILE in ./*tests*.*; do git mv $FILE ./Tests/; done
