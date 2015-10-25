@@ -80,7 +80,7 @@ Compiler( 'Compiler-x64' )
     .DLLCompilerOptions             = " -fPIC"
     .DLLLinkerOptions               = " -shared"
     
-    //.UseExceptions          = ' -fexceptions' 
+    //.UseExceptions          = ' -fexceptions'  add it to the CompilerOptions  to add exceptions support
 ]
 .X64BaseConfig = 
 [

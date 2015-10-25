@@ -32,6 +32,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     DLL("$aliasName$-DLL")
     {
         .Libraries                  = { '$aliasName$-Obj' }
+
         ForEach(.dlib in.DependenciesLibraries)
         {
             ^Libraries + { "$dlib$-$Platform$-$Config$-Lib" }
@@ -65,6 +66,11 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     {
         .Libraries = { '$aliasName$Test-Obj' }
 
+
+        ForEach(.dlib in.DependenciesForTests)
+        {
+            ^Libraries + { "$dlib$-$Platform$-$Config$-Lib" }
+        }
         ForEach(.dlib in.DependenciesLibraries)
         {
             ^Libraries + { "$dlib$-$Platform$-$Config$-Lib" }
