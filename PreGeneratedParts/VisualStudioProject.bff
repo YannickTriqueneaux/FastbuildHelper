@@ -8,14 +8,14 @@ VCXProject( "$ProjectName$-vsproj" )//Library project
     .ProjectInputPaths          = { "$SourcesPath$/" }
 	.ProjectBasePath			= "$SourcesPath$/"
 
-    //.IncludeSearchPath          + ""
-    ForEach(.ipath in.IncludePaths)
+    ForEach(.ipath in .ProjectIncludePaths)
     {
         ^IncludeSearchPath      + ";^$(SolutionDir)$ipath$"
     }
-    Print("$ProjectName$")
-    Print(.IncludeSearchPath)
-
+    ForEach(.ipath in .GlobalIncludePaths)
+    {
+        ^IncludeSearchPath + ";^$(SolutionDir)$ipath$"
+    }
 }
 					
 .VSFolder =

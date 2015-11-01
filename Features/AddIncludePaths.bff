@@ -1,6 +1,6 @@
 
 
-ForEach(.ipath in.IncludePaths)
+ForEach(.ipath in .GlobalIncludePaths)
 {
 
 #if __WINDOWS__
@@ -11,4 +11,14 @@ ForEach(.ipath in.IncludePaths)
 #endif
 
 
+}
+
+ForEach(.ipath in.ProjectIncludePaths)
+{
+#if __WINDOWS__
+    ^CompilerOptions + ' /I"' + .ipath + '"'
+#endif
+#if __LINUX__
+    ^CompilerOptions + ' -I' + .ipath
+#endif
 }
