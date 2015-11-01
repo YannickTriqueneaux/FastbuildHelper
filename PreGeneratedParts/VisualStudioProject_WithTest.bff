@@ -13,7 +13,7 @@ VCXProject("$ProjectName$-vsproj")//Library project
     .IncludeSearchPath = ""
     ForEach(.ipath in.IncludePaths)
     {
-        ^IncludeSearchPath + ";$ipath$"
+        ^IncludeSearchPath + ";^$(SolutionDir)$ipath$"
     }
 }
 VCXProject("$ProjectName$-vsproj-test")//Test Project
@@ -26,11 +26,11 @@ VCXProject("$ProjectName$-vsproj-test")//Test Project
     .IncludeSearchPath = ""
     ForEach(.ipath in.IncludePaths)
     {
-        ^IncludeSearchPath + ";$ipath$"
+        ^IncludeSearchPath + ";^$(SolutionDir)$ipath$"
     }
     ForEach(.ipath in.TestIncludePaths)
     {
-        ^IncludeSearchPath + ";$ipath$"
+        ^IncludeSearchPath + ";^$(SolutionDir)$ipath$"
     }
 }
 

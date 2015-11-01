@@ -25,7 +25,7 @@
 	.IntermediateDirectory		= '^$(SolutionDir)/Build/^$(Configuration)'
 	.Platform                   = 'Win32' // unused
 	.PlatformToolset            = 'v120'
-	.IncludeSearchPath			= '^$(SolutionDir)../..;./'
+	.IncludeSearchPath			= '^$(SolutionDir)../../Code/Common;^$(SolutionDir)../..;./'
 ]
 
 .ProjectX86Debug		= [ Using( .ProjectCommon )	.Config = 'x86-Debug'	.PreprocessorDefinitions = .X86Defines + .DebugDefines ]

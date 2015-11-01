@@ -8,11 +8,13 @@ VCXProject( "$ProjectName$-vsproj" )//Library project
     .ProjectInputPaths          = { "$SourcesPath$/" }
 	.ProjectBasePath			= "$SourcesPath$/"
 
-    .IncludeSearchPath          = ""
+    //.IncludeSearchPath          + ""
     ForEach(.ipath in.IncludePaths)
     {
-        ^IncludeSearchPath      + ";$ipath$"
+        ^IncludeSearchPath      + ";^$(SolutionDir)$ipath$"
     }
+    Print("$ProjectName$")
+    Print(.IncludeSearchPath)
 
 }
 					
@@ -24,5 +26,5 @@ VCXProject( "$ProjectName$-vsproj" )//Library project
 
 //Adding into list//---------------
 .VSProjects			+ "$ProjectName$-vsproj"
-.VSSolutionFolders   	+ .VSFolder
+.VSSolutionFolders  + .VSFolder
 //---------------------------------------------------------------------------

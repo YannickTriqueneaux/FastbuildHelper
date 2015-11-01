@@ -10,7 +10,7 @@ Settings
 Compiler( 'Compiler-x64' )
 {	
 	//.Executable = '/usr/bin/gcc'
-	.Executable = '/usr/bin/g++'
+	.Executable = '/usr/bin/gcc'
 }
 
 .CompiledFileExtensions =
@@ -41,7 +41,7 @@ Compiler( 'Compiler-x64' )
 
     .Compiler               = 'Compiler-x64'
     .Librarian              = '/usr/bin/ar'
-    .Linker                 = '/usr/bin/g++'
+    .Linker                 = '/usr/bin/ld'
     
     .BaseCompilerOptions    = '-o "%2" "%1" -c -g'
                             + ' -I./'
