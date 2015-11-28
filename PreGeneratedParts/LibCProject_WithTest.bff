@@ -8,14 +8,14 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     .aliasTestName = 'Tests-$aliasName$'
 
 #include "../Features/AddIncludePaths.bff"
-	Library( '$aliasName$-Lib' )
+    Library('$aliasName$-Lib')
     {
-		.CompilerInputUnity			= { "$ProjectName$-Unity" , "$ProjectName$-CUnity" }
-		.CompilerOutputPath			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
-		.LibrarianOutput 			= "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .staticLibExt
+        .CompilerInputUnity = { "$ProjectName$-Unity","$ProjectName$-CUnity" }
+        .CompilerOutputPath = '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
+        .LibrarianOutput = "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .staticLibExt
 
-        .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this library
-	}
+        .CompilerOptions + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this 
+    }
 
 #if __WINDOWS__
 	ObjectList( '$aliasName$-Obj' )
@@ -23,6 +23,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #include "../Features/AddTestIncludePaths.bff"
 		.CompilerInputFiles        	= '$TestSourcesPath$/Main.test.cc'
 		.CompilerOutputPath		   	= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
+        .CompilerOptions            + .CppCompilerOptions
 	}
 #endif
 #if __LINUX__
@@ -31,7 +32,8 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #include "../Features/AddTestIncludePaths.bff"
 		.CompilerInputFiles         = '$TestSourcesPath$/Main.test.cc'
 		.CompilerOutputPath			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
-		.LibrarianOutput 			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/Main.test' + .staticLibExt
+        .LibrarianOutput 			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/Main.test' + .staticLibExt
+        .CompilerOptions            + .CppCompilerOptions
 	}
 #endif
 
