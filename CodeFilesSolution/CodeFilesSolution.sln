@@ -41,6 +41,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{0578E0C7-E0CE-4F38-BE65-BC1ED53EE5DE}"
 	ProjectSection(SolutionItems) = preProject
 		..\Architecture\Tools\AddExternalLibraries.bff = ..\Architecture\Tools\AddExternalLibraries.bff
+		..\Architecture\Tools\AddExtraDefines.bff = ..\Architecture\Tools\AddExtraDefines.bff
 		..\Architecture\Tools\AddIncludePaths.bff = ..\Architecture\Tools\AddIncludePaths.bff
 		..\Architecture\Tools\AddLibraryPaths.bff = ..\Architecture\Tools\AddLibraryPaths.bff
 		..\Architecture\Tools\AddTestIncludePaths.bff = ..\Architecture\Tools\AddTestIncludePaths.bff
