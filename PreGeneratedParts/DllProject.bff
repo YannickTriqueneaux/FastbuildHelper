@@ -8,6 +8,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
 #include "../Architecture/Tools/AddIncludePaths.bff"
 #include "../Architecture/Tools/AddLibraryPaths.bff"
+#include "../Architecture/Tools/AddExtraDefines.bff"
 
 #if __WINDOWS__
     ObjectList( "$aliasName$-Obj" )

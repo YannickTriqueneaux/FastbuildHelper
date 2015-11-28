@@ -1,0 +1,13 @@
+
+
+ForEach(.pdef in .ProjectExtraDefines)
+{
+
+#if __WINDOWS__
+    ^CompilerOptions + ' /D$pdef$'
+#endif
+#if __LINUX__
+    ^CompilerOptions + " -D$pdef$"
+#endif
+    
+}
