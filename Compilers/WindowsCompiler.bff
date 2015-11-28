@@ -73,6 +73,7 @@ Compiler( "Compiler-x64" )
 	//						+ ' /Fp"%2" /Fo"%3"'
 							
 	.CompilerOptions 		+ ' /Fo"%2"'
+    .CppCompilerOptions     = ""
 		
 	.LibrarianOptions		= '/NODEFAULTLIB /WX /NOLOGO /OUT:"%2" "%1"'
 	.LinkerOptions			= '/NODEFAULTLIB /WX /NOLOGO /INCREMENTAL:NO /OUT:"%2" "%1"'

@@ -50,8 +50,8 @@ Compiler( 'Compiler-x64' )
 							+ .Definitions
                             
     .CompilerOptions        = .BaseCompilerOptions
-                            + ' -std=c++11'                     // allow C++11 features
-                            
+
+    .CppCompilerOptions     = ' -std=c++11'
                             // Disabled warnings
                             + " -Wno-invalid-offsetof" // we get the offset of members in non-POD types
                             + " -Wno-unused-variable"
@@ -64,6 +64,8 @@ Compiler( 'Compiler-x64' )
                             + " -Wno-maybe-uninitialized"
 
                             + " -fstack-protector --param=ssp-buffer-size=4"  //Ubuntu compilation only  //error with file open in FileLockPosix.cpp
+
+                    // allow C++11 features
                             
     .LinkerOptions          = '"%1" -o "%2"'
                                 
@@ -82,6 +84,9 @@ Compiler( 'Compiler-x64' )
     
     //.UseExceptions          = ' -fexceptions'  add it to the CompilerOptions  to add exceptions support
 ]
+
+
+
 .X64BaseConfig = 
 [
     Using( .LinuxBaseConfig )
