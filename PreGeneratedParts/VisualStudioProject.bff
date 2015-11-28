@@ -1,7 +1,7 @@
 
 // Visual Studio Project Generation
 //--------------------------------------------------------------------------
-VCXProject( "$ProjectName$-vsproj" )//Library project
+VCXProject( "$ProjectName$-vsproj" )//Library, DLL or Executable project
 {
 	Using( .ProjectCommon )
 	.ProjectOutput				= "$VSSolutionDestination$/Projects/$ProjectName$/$ProjectName$.vcxproj"
@@ -14,17 +14,17 @@ VCXProject( "$ProjectName$-vsproj" )//Library project
     }
     ForEach(.ipath in .GlobalIncludePaths)
     {
-        ^IncludeSearchPath + ";^$(SolutionDir)$ipath$"
+        ^IncludeSearchPath      + ";^$(SolutionDir)$ipath$"
     }
 }
 					
 .VSFolder =
 [ 
-	.Path			= "$currentFolder$/$ProjectName$"
-	.Projects		= { "$ProjectName$-vsproj" }
+	.Path			            = "$currentFolder$/$ProjectName$"
+	.Projects		            = { "$ProjectName$-vsproj" }
 ]
 
-//Adding into list//---------------
-.VSProjects			+ "$ProjectName$-vsproj"
-.VSSolutionFolders  + .VSFolder
+
+.VSProjects			            + "$ProjectName$-vsproj"
+.VSSolutionFolders              + .VSFolder
 //---------------------------------------------------------------------------

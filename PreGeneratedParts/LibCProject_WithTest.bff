@@ -4,64 +4,69 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 	Using( .CompilerConfig )
 	Using( .CompiledFileExtensions )
 	
-	.aliasName 	= '$ProjectName$-$Platform$-$Config$'
-    .aliasTestName = 'Tests-$aliasName$'
+	.aliasName 	    = "$ProjectName$-$Platform$-$Config$"
+    .aliasTestName  = "Tests-$aliasName$"
 
-#include "../Features/AddIncludePaths.bff"
-    Library('$aliasName$-Lib')
+#include "../Architecture/Tools/AddIncludePaths.bff"
+#include "../Architecture/Tools/AddLibraryPaths.bff"
+
+    Library("$aliasName$-Lib")
     {
-        .CompilerInputUnity = { "$ProjectName$-Unity","$ProjectName$-CUnity" }
-        .CompilerOutputPath = '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
-        .LibrarianOutput = "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .staticLibExt
+        .CompilerInputUnity         = { "$ProjectName$-Unity","$ProjectName$-CUnity" }
+        .CompilerOutputPath         = "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
+        .LibrarianOutput            = "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .staticLibExt
 
-        .CompilerOptions + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this 
+        .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this 
     }
 
 #if __WINDOWS__
-	ObjectList( '$aliasName$-Obj' )
+	ObjectList( "$aliasName$-Obj" )
     {
-#include "../Features/AddTestIncludePaths.bff"
-		.CompilerInputFiles        	= '$TestSourcesPath$/Main.test.cc'
-		.CompilerOutputPath		   	= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
+#include "../Architecture/Tools/AddTestIncludePaths.bff"
+		.CompilerInputFiles        	= "$TestSourcesPath$/Main.test.cc"
+		.CompilerOutputPath		   	= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
         .CompilerOptions            + .CppCompilerOptions
 	}
 #endif
 #if __LINUX__
 	Library( '$aliasName$-Obj' )
     {
-#include "../Features/AddTestIncludePaths.bff"
-		.CompilerInputFiles         = '$TestSourcesPath$/Main.test.cc'
-		.CompilerOutputPath			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
-        .LibrarianOutput 			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/Main.test' + .staticLibExt
+#include "../Architecture/Tools/AddTestIncludePaths.bff"
+		.CompilerInputFiles         = "$TestSourcesPath$/Main.test.cc"
+		.CompilerOutputPath			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
+        .LibrarianOutput 			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/Main.test" + .staticLibExt
         .CompilerOptions            + .CppCompilerOptions
 	}
 #endif
 
-	Executable( '$aliasName$-EXE' )
+	Executable( "$aliasName$-EXE" )
 	{
-        .Libraries                  = { '$aliasName$-Obj' }
-                                    + '$aliasName$-Lib'
+        .Libraries                  = { "$aliasName$-Obj" }
+                                    + "$aliasName$-Lib"
     
-        ForEach(.dlib in .DependenciesLibraries)
+        ForEach(.pdep in .ProjectDependencies)
         {
-            ^Libraries + { "$dlib$-$Platform$-$Config$-Lib" }
+            ^Libraries              + "$pdep$-$Platform$-$Config$-Lib"
         }
-		.LinkerOptions				+ .PlatformDefaultLibs
+
+#include "../Architecture/Tools/AddExternalLibraries.bff"
+
+		.LinkerOptions		        + .PlatformDefaultLibs
 		.LinkerOutput				= "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + "Tests-$ProjectName$" + .executableExt
 	}	
-	Alias( '$aliasName$' ) { .Targets = { '$aliasName$-Lib' } }
-	Alias( '$aliasTestName$' ) { .Targets = { '$aliasName$-EXE' } }
+	Alias( "$aliasName$" ) {        .Targets = { "$aliasName$-Lib" } }
+	Alias( "$aliasTestName$" ) {    .Targets = { "$aliasName$-EXE" } }
 }
 
-Alias( '$ProjectName$' )
+Alias( "$ProjectName$" )
 {
 	Using( .DefaultCompilerConfig )
-	.aliasName 	= '$ProjectName$-$Platform$-$Config$'
-    .aliasTestName = 'Tests-$aliasName$'
-    .Targets = { '$aliasName$' , '$aliasTestName$'}
+        
+    .aliasName                      = "$ProjectName$-$Platform$-$Config$"
+    .Targets                        = { .aliasName , "Tests-$aliasName$" }
 }
 
 
 
-.projectNames + "$ProjectName$"
-.projectTestNames + "Tests-$ProjectName$"
+.ProjectNames + "$ProjectName$"
+.ProjectTestNames + "Tests-$ProjectName$"

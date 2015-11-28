@@ -1,0 +1,28 @@
+
+
+
+//Archeture Initialization
+
+//Here are all variables initization, required for this FASTBuild architecture
+
+
+
+//list of all projects to build
+.ProjectNames = {}
+.ProjectTestNames = {}
+
+
+//Global Extra projects arguments
+.GlobalIncludePaths = {}
+.GlobalTestIncludePaths = {}
+
+//Projects arguments
+.ProjectDependencies = {}
+
+//Projects Extra arguments
+.IsBigObject = ""
+
+.ProjectIncludePaths = {}
+.ProjectLibraryPaths = {}
+.ProjectExternalLibraries = {}
+.ProjectExtraDefines = {}

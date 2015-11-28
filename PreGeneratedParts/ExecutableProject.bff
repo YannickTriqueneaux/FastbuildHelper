@@ -6,14 +6,15 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 	
     .aliasName                      = "$ProjectName$-$Platform$-$Config$"
 
-#include "../Features/AddIncludePaths.bff"
+#include "../Architecture/Tools/AddIncludePaths.bff"
+#include "../Architecture/Tools/AddLibraryPaths.bff"
 
 #if __WINDOWS__
-    ObjectList( '$aliasName$-Obj' )
+    ObjectList( "$aliasName$-Obj" )
     {
         .CompilerOptions            + .DLLCompilerOptions
         .CompilerInputUnity			= "$ProjectName$-Unity"
-        .CompilerOutputPath		   	= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
+        .CompilerOutputPath		   	= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
     }
 #endif
 
@@ -30,15 +31,17 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
     Executable("$aliasName$-EXE")
     {
-        .Libraries                  = { '$aliasName$-Obj' }
-        ForEach(.dlib in.DependenciesLibraries)
+        .Libraries                  = { "$aliasName$-Obj" }
+
+        ForEach(.pdep in .ProjectDependencies)
         {
-            ^Libraries + { "$dlib$-$Platform$-$Config$-Lib" }
+            ^Libraries              + "$pdep$-$Platform$-$Config$-Lib"
         }
 
+#include "../Architecture/Tools/AddExternalLibraries.bff"
         .LinkerOptions              + .PlatformDefaultLibs
                                     
-        .LinkerOutput = "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + "$ProjectName$" + .executableExt
+        .LinkerOutput               = "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + "$ProjectName$" + .executableExt
     }
 
     Alias("$aliasName$") { .Targets = { "$aliasName$-EXE" } }
@@ -47,9 +50,9 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 Alias( "$ProjectName$" )
 {
 	Using( .DefaultCompilerConfig )
-	.aliasName 	= "$ProjectName$-$Platform$-$Config$"
-	.Targets    = { "$aliasName$" }
+
+	.Targets                        = { "$ProjectName$-$Platform$-$Config$" }
 }
 
 
-.projectNames + "$ProjectName$"
+.ProjectNames + "$ProjectName$"

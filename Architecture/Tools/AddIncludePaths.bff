@@ -1,6 +1,6 @@
 
 
-ForEach(.ipath in .GlobalIncludePaths)
+ForEach(.ipath in.GlobalIncludePaths)
 {
 
 #if __WINDOWS__

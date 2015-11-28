@@ -2,52 +2,53 @@
 
 // Visual Studio Project Generation
 //--------------------------------------------------------------------------
-VCXProject("$ProjectName$-vsproj")//Library project
+VCXProject("$ProjectName$-vsproj")//Library or DLL project
 {
     Using(.ProjectCommon)
-    .ProjectOutput = "$VSSolutionDestination$/Projects/$ProjectName$/$ProjectName$.vcxproj"
-    .ProjectInputPaths = { "$SourcesPath$/" }
-    .ProjectBasePath = "$SourcesPath$/"
-    .ProjectInputPathsExclude = "$TestSourcesPath$/"
+    .ProjectOutput              = "$VSSolutionDestination$/Projects/$ProjectName$/$ProjectName$.vcxproj"
+    .ProjectInputPaths          = { "$SourcesPath$/" }
+    .ProjectBasePath            = "$SourcesPath$/"
+    .ProjectInputPathsExclude   = "$TestSourcesPath$/"
 
     ForEach(.ipath in .ProjectIncludePaths)
     {
-        ^IncludeSearchPath + ";^$(SolutionDir)$ipath$"
+        ^IncludeSearchPath      + ";^$(SolutionDir)$ipath$"
     }
     ForEach(.ipath in .GlobalIncludePaths)
     {
-        ^IncludeSearchPath + ";^$(SolutionDir)$ipath$"
+        ^IncludeSearchPath      + ";^$(SolutionDir)$ipath$"
     }
 }
 VCXProject("$ProjectName$-vsproj-test")//Test Project
 {
     Using(.ProjectCommon)
-    .ProjectOutput = "$VSSolutionDestination$/Projects/$ProjectName$/Tests-$ProjectName$.vcxproj"
-    .ProjectInputPaths = { "$TestSourcesPath$/" }
-    .ProjectBasePath = "$TestSourcesPath$/"
+    .ProjectOutput              = "$VSSolutionDestination$/Projects/$ProjectName$/Tests-$ProjectName$.vcxproj"
+    .ProjectInputPaths          = { "$TestSourcesPath$/" }
+    .ProjectBasePath            = "$TestSourcesPath$/"
 
     ForEach(.ipath in .ProjectIncludePaths)
     {
-        ^IncludeSearchPath + ";^$(SolutionDir)$ipath$"
+        ^IncludeSearchPath      + ";^$(SolutionDir)$ipath$"
     }
     ForEach(.ipath in .GlobalIncludePaths)
     {
-        ^IncludeSearchPath + ";^$(SolutionDir)$ipath$"
+        ^IncludeSearchPath      + ";^$(SolutionDir)$ipath$"
     }
-    ForEach(.ipath in .TestIncludePaths)
+    ForEach(.ipath in .GlobalTestIncludePaths)
     {
-        ^IncludeSearchPath + ";^$(SolutionDir)$ipath$"
+        ^IncludeSearchPath      + ";^$(SolutionDir)$ipath$"
     }
 }
 
 .VSFolder =
 [
-    .Path = "$currentFolder$/$ProjectName$"
-    .Projects = { "$ProjectName$-vsproj", "$ProjectName$-vsproj-test" }
+    .Path                       = "$currentFolder$/$ProjectName$"
+    .Projects                   = { "$ProjectName$-vsproj", "$ProjectName$-vsproj-test" }
 ]
 
 .VSSolutionFolders + .VSFolder
 
-.VSProjects + "$ProjectName$-vsproj"
-+ "$ProjectName$-vsproj-test"
+.VSProjects                     + "$ProjectName$-vsproj"
+                                + "$ProjectName$-vsproj-test"
+
 //---------------------------------------------------------------------------

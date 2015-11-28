@@ -7,31 +7,30 @@ Settings
 {
 	
 }
-Compiler( 'Compiler-x64' )
+Compiler( "Compiler-x64" )
 {	
-	//.Executable = '/usr/bin/gcc'
-	.Executable = '/usr/bin/gcc'
+    .Executable = "/usr/bin/gcc"
 }
 
 .CompiledFileExtensions =
 [
-	.staticLibExt  = '.a'
-	.dynamicLibExt = '.so'
-	.executableExt = ''
+	.staticLibExt  = ".a"
+    .dynamicLibExt = ".so"
+    .executableExt = ""
     .libNamePrefix = "lib"
 ]
 
 .LinuxDefinitions = 
 [
-	.Definitions			= ' -D__LINUX__' 		
-                            + ' -D__linux__'
-                            + ' -DRT'
+	.Definitions			= " -D__LINUX__" 		
+                            + " -D__linux__"
+                            + " -DRT"
 		
 	//DEFINES////////
-	.DebugDefinitions       = ' -DDEBUG'
+	.DebugDefinitions       = " -DDEBUG"
 						  //+ ' -DPROFILING_ENABLED'
 								
-	.ReleaseDefinitions     = ' -DRELEASE'
+	.ReleaseDefinitions     = " -DRELEASE"
 	//////////////////
 ]
 
@@ -39,19 +38,19 @@ Compiler( 'Compiler-x64' )
 [
 	Using( .LinuxDefinitions )
 
-    .Compiler               = 'Compiler-x64'
-    .Librarian              = '/usr/bin/ar'
-    .Linker                 = '/usr/bin/ld'
+    .Compiler               = "Compiler-x64"
+    .Librarian              = "/usr/bin/ar"
+    .Linker                 = "/usr/bin/ld"
     
-    .BaseCompilerOptions    = '-o "%2" "%1" -c -g'
-                            + ' -I./'
-                            + ' -Wall -Werror -Wfatal-errors'                    // warnings as errors
-                            + ' -m64'                           // x86-64
+    .BaseCompilerOptions    = "-o "%2" "%1" -c -g"
+                            + " -I./"
+                            + " -Wall -Werror -Wfatal-errors"                   // warnings as errors
+                            + " -m64"                           // x86-64
 							+ .Definitions
                             
     .CompilerOptions        = .BaseCompilerOptions
 
-    .CppCompilerOptions     = ' -std=c++11'
+    .CppCompilerOptions     = " -std=c++11"
                             // Disabled warnings
                             + " -Wno-invalid-offsetof" // we get the offset of members in non-POD types
                             + " -Wno-unused-variable"
@@ -72,12 +71,12 @@ Compiler( 'Compiler-x64' )
     .LibrarianOptions       = 'rcs "%2" "%1"'
     
     // Optimizations
-    .CompilerDebugOptimizations     = ' -O0'
-    .CompilerReleaseOptimizations   = ' -O3'
-    .LibrarianDebugOptimizations    = ''
-    .LibrarianReleaseOptimizations  = ''
-    .LinkerDebugOptimizations       = ''
-    .LinkerReleaseOptimizations     = ''    
+    .CompilerDebugOptimizations     = " -O0"
+    .CompilerReleaseOptimizations   = " -O3"
+    .LibrarianDebugOptimizations    = ""
+    .LibrarianReleaseOptimizations  = ""
+    .LinkerDebugOptimizations       = ""
+    .LinkerReleaseOptimizations     = ""    
 
     .DLLCompilerOptions             = " -fPIC"
     .DLLLinkerOptions               = " -shared"
@@ -95,7 +94,7 @@ Compiler( 'Compiler-x64' )
 .X64DebugConfig =
 [
     Using( .X64BaseConfig )
-    .Config                 = 'Debug'
+    .Config                 = "Debug"
     .CompilerOptions        + .DebugDefinitions
                             + .CompilerDebugOptimizations                           
     .LibrarianOptions       + .LibrarianDebugOptimizations
@@ -104,7 +103,7 @@ Compiler( 'Compiler-x64' )
 .X64ReleaseConfig =
 [
     Using( .X64BaseConfig )
-    .Config                 = 'Release'
+    .Config                 = "Release"
     .CompilerOptions        + .ReleaseDefinitions
                             + .CompilerReleaseOptimizations
     .LibrarianOptions       + .LibrarianReleaseOptimizations
@@ -129,5 +128,5 @@ Compiler( 'Compiler-x64' )
 	Using( .X64DebugConfig )
 ]
 
-.PlatformDefaultLibs = ''
+.PlatformDefaultLibs = ""
 #include "DefaultLibs/LinuxDefaultLibs.bff"

@@ -23,7 +23,7 @@
 	.OutputDirectory			= '^$(SolutionDir)/Build/^$(Configuration)'
 	.IntermediateDirectory		= '^$(SolutionDir)/Build/^$(Configuration)'
 	.PlatformToolset            = 'v120'
-	.IncludeSearchPath			= '^$(SolutionDir)../../Code/Common;^$(SolutionDir)../..;./'
+	.IncludeSearchPath			= '^$(SolutionDir)../..;./'
 ]
 
 .ProjectX86Debug		= [ Using( .VistualStudioDefinitions ) .Platform = "Win32" .Config = "x86-Debug"	.PreprocessorDefinitions = .X86Defines + .DebugDefines ]

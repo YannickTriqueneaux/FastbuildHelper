@@ -38,13 +38,20 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Code", "Code\Code.vcxproj",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CodeGenerateVSSolution", "CodeGenerateVSSolution\CodeGenerateVSSolution.vcxproj", "{609F25E2-F8BC-4B0F-9304-BD0DF3E3FCB2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Features", "Features", "{0578E0C7-E0CE-4F38-BE65-BC1ED53EE5DE}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{0578E0C7-E0CE-4F38-BE65-BC1ED53EE5DE}"
 	ProjectSection(SolutionItems) = preProject
-		..\Features\AddIncludePaths.bff = ..\Features\AddIncludePaths.bff
-		..\Features\AddTestIncludePaths.bff = ..\Features\AddTestIncludePaths.bff
-		..\Features\AliasesMaker.bff = ..\Features\AliasesMaker.bff
-		..\Features\VisualStudioGenBEGIN.bff = ..\Features\VisualStudioGenBEGIN.bff
-		..\Features\VisualStudioGenEND.bff = ..\Features\VisualStudioGenEND.bff
+		..\Architecture\Tools\AddExternalLibraries.bff = ..\Architecture\Tools\AddExternalLibraries.bff
+		..\Architecture\Tools\AddIncludePaths.bff = ..\Architecture\Tools\AddIncludePaths.bff
+		..\Architecture\Tools\AddLibraryPaths.bff = ..\Architecture\Tools\AddLibraryPaths.bff
+		..\Architecture\Tools\AddTestIncludePaths.bff = ..\Architecture\Tools\AddTestIncludePaths.bff
+		..\Architecture\Tools\AliasesMaker.bff = ..\Architecture\Tools\AliasesMaker.bff
+		..\Architecture\Tools\VisualStudioGenBEGIN.bff = ..\Architecture\Tools\VisualStudioGenBEGIN.bff
+		..\Architecture\Tools\VisualStudioGenEND.bff = ..\Architecture\Tools\VisualStudioGenEND.bff
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Archiecture", "Archiecture", "{788E2983-C108-47E3-8F1C-EF743A35736D}"
+	ProjectSection(SolutionItems) = preProject
+		..\Architecture\Initialization.bff = ..\Architecture\Initialization.bff
 	EndProjectSection
 EndProject
 Global
@@ -69,6 +76,7 @@ Global
 		{10D9100B-A867-4A75-B13E-05B5C8332B11} = {33C069DF-3FED-40EB-9E83-33DD1E48DF0D}
 		{25B2FBB8-C62B-4D2F-A69A-3F1968DEE5A1} = {33C069DF-3FED-40EB-9E83-33DD1E48DF0D}
 		{BC3D1C55-054A-4217-B796-42BA13B547A1} = {10D9100B-A867-4A75-B13E-05B5C8332B11}
-		{0578E0C7-E0CE-4F38-BE65-BC1ED53EE5DE} = {33C069DF-3FED-40EB-9E83-33DD1E48DF0D}
+		{0578E0C7-E0CE-4F38-BE65-BC1ED53EE5DE} = {788E2983-C108-47E3-8F1C-EF743A35736D}
+		{788E2983-C108-47E3-8F1C-EF743A35736D} = {33C069DF-3FED-40EB-9E83-33DD1E48DF0D}
 	EndGlobalSection
 EndGlobal
