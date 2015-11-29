@@ -66,8 +66,3 @@ Alias( "$ProjectName$" )
     .aliasName                      = "$ProjectName$-$Platform$-$Config$"
     .Targets                        = { .aliasName , "Tests-$aliasName$" }
 }
-
-
-
-.ProjectNames + "$ProjectName$"
-.ProjectTestNames + "Tests-$ProjectName$"

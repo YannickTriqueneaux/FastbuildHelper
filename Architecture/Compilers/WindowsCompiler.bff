@@ -262,8 +262,18 @@ Compiler( "Compiler-x64" )
 	//.X86ProfileConfig,
 	//.X86ClangConfig
 }
-
 .AllCompilerConfigs = .CompilerConfigs;
+
+.Compilerx86Configs = 
+{
+    .X86DebugConfig,
+    .X86ReleaseConfig,
+}
+.Compilerx64Configs = 
+{
+	.X64DebugConfig, 
+	.X64ReleaseConfig
+}
 
 .DefaultCompilerConfig =
 [

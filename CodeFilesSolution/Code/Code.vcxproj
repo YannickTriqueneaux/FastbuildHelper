@@ -166,6 +166,7 @@
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Projects.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Services\Core\SimulationSetup.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Tools\Prebuild.bff" />
+    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\HEI_Wrapper.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\Matio.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\XPlanePlugin\XPlanePlugin32.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\XPlanePlugin\XPlanePlugin64.bff" />

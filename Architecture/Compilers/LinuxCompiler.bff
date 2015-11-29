@@ -123,6 +123,15 @@ Compiler( "Compiler-x64" )
 	//.X64ProfileConfig_Linux,
 }
 
+.Compilerx86Configs = 
+{
+}
+.Compilerx64Configs = 
+{
+	.X64DebugConfig, 
+	.X64ReleaseConfig
+}
+
 .DefaultCompilerConfig =
 [
 	Using( .X64DebugConfig )

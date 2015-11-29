@@ -27,5 +27,3 @@ Alias("$ProjectName$")
 
     .Targets                        = { "$ProjectName$-$Platform$-$Config$" }
 }
-
-.ProjectNames + "$ProjectName$"

@@ -8,21 +8,27 @@
 
 
 //list of all projects to build
-.ProjectNames = {}
-.ProjectTestNames = {}
+.ProjectNames               = {}  //<-- any project allowing all platfoms
+.ProjectTestNames           = {}  //<-- any project allowing all platfoms
+
+//-- any project with platfom specification
+.x86OnlyProjectNames        = {}
+.x64OnlyProjectNames        = {}
+.x86OnlyProjectTestNames    = {}
+.x64OnlyProjectTestNames    = {}
 
 
 //Global Extra projects arguments
-.GlobalIncludePaths = {}
-.GlobalTestIncludePaths = {}
+.GlobalIncludePaths         = {}
+.GlobalTestIncludePaths     = {}
 
 //Projects arguments
-.ProjectDependencies = {}
+.ProjectDependencies        = {}
 
 //Projects Extra arguments
-.IsBigObject = ""
+.IsBigObject                = ""  //<-- see https://msdn.microsoft.com/en-us/library/ms173499.aspx
 
-.ProjectIncludePaths = {}
-.ProjectLibraryPaths = {}
-.ProjectExternalLibraries = {}
-.ProjectExtraDefines = {}
+.ProjectIncludePaths        = {}
+.ProjectLibraryPaths        = {}
+.ProjectExternalLibraries   = {}
+.ProjectExtraDefines        = {}

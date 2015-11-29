@@ -1,22 +1,9 @@
 
 
-Alias( 'All' )
-{
-    Using(.DefaultCompilerConfig )
-
-    .Targets = {}
-    ForEach(.pname in .ProjectNames)
-    {
-        ^Targets + "$pname$-$Platform$-$Config$"
-    }
-    ForEach(.pname in .ProjectTestNames)
-    {
-        ^Targets + "$pname$-$Platform$-$Config$"
-    }
-}
 
 
-ForEach(.CompilerConfig in.CompilerConfigs)
+//FOR 32 bits only --------------------------------------------------------
+ForEach(.CompilerConfig in.Compilerx86Configs)
 {
     Using(.CompilerConfig)
 
@@ -24,14 +11,66 @@ ForEach(.CompilerConfig in.CompilerConfigs)
 
     Alias("$aliaseName$")
     {
-        .Targets = {}
-        ForEach(.pname in .ProjectNames)
+        .Targets = {}//init by array type
+        ForEach(.pname in .ProjectNames) //build all projects
         {
             ^Targets + "$pname$-$Platform$-$Config$"
         }
-        ForEach(.pname in .ProjectTestNames)
+        ForEach(.pname in.ProjectTestNames) //add all test projects
+        {
+            ^Targets + "$pname$-$Platform$-$Config$"
+        }
+        ForEach(.pname in .x86OnlyProjectNames) //add all x64 only projects
+        {
+            ^Targets + "$pname$-$Platform$-$Config$"
+        }
+        ForEach(.pname in .x86OnlyProjectTestNames) //add all x64 only tests projects
         {
             ^Targets + "$pname$-$Platform$-$Config$"
         }
     }
+}
+//--------------------------------------------------------
+
+
+
+//FOR 64 bits only --------------------------------------------------------
+ForEach(.CompilerConfig in .Compilerx64Configs)
+{
+    Using(.CompilerConfig)
+
+    .aliaseName = "All-$Platform$-$Config$"
+
+    Alias("$aliaseName$")
+    {
+        .Targets = {}//init by array type        
+        ForEach(.pname in .ProjectNames)  //build all projects
+        {
+            ^Targets + "$pname$-$Platform$-$Config$"
+        }
+        ForEach(.pname in.ProjectTestNames) //add all test projects
+        {
+            ^Targets + "$pname$-$Platform$-$Config$"
+        }
+        ForEach(.pname in .x64OnlyProjectNames) //add all x64 only projects
+        {
+            ^Targets + "$pname$-$Platform$-$Config$"
+        }
+        ForEach(.pname in .x64OnlyProjectTestNames) //add all x64 only tests projects
+        {
+            ^Targets + "$pname$-$Platform$-$Config$"
+        }
+    }
+}
+//-----------------------------------------------------------------------
+
+
+
+//By default build one of previous All- alias   |  chosen by .DefaultCompilerConfig   in the Compiler.bff
+Alias( 'All' )
+{
+    Using(.DefaultCompilerConfig )
+        
+    .aliaseName = "All-$Platform$-$Config$"
+    .Targets    = "$aliaseName$"
 }
