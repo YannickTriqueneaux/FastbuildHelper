@@ -178,7 +178,8 @@ Compiler( "Compiler-x64" )
 [
 	Using( .BaseConfigurations )
 	
-	.x64Definitions       	= " /DWIN64"
+    .x64Definitions         = " /DWIN64"
+                            + " /D_M_X64"
 	
 	.Platform				= "x64"	
 	.ToolsBasePath			= "$VSBasePath$/VC/bin/x86_amd64"
@@ -261,6 +262,8 @@ Compiler( "Compiler-x64" )
 	//.X86ProfileConfig,
 	//.X86ClangConfig
 }
+
+.AllCompilerConfigs = .CompilerConfigs;
 
 .DefaultCompilerConfig =
 [

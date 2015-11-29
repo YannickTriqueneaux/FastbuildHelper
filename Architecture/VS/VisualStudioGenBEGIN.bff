@@ -12,7 +12,7 @@
     //+ ' /D_MSC_VER=1020'// TODO update when changing Windows SDKs version
 	
 	.X86Defines					= "WIN32_LEAN_AND_MEAN;_WIN32;__WINDOWS__;WIN32;"
-	.X64Defines					= "WIN32_LEAN_AND_MEAN;_WIN64;__WINDOWS__;WIN64;"
+	.X64Defines					= "WIN32_LEAN_AND_MEAN;_WIN64;__WINDOWS__;WIN64;_M_X64;"
 	.DebugDefines				= "DEBUG;PROFILING_ENABLED"
 	//.ProfileDefines			= "RELEASE;PROFILING_ENABLED"
 	.ReleaseDefines				= "RELEASE"
@@ -50,10 +50,6 @@
 	//.VSProjectX64Profile, 
 	//.VSProjectX86ClangDebug 
 }
-
-//The user can customize allowed configs for his project
-.VSHasCustomConfigs             = {} //empty == no custom configs
-.VSProjectCustomConfigs         = {}
 
 // Project to compile everything
 VCXProject( "BuildAll-proj" )

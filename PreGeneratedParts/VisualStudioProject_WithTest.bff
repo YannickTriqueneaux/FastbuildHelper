@@ -12,9 +12,6 @@ VCXProject("$ProjectName$-vsproj")//Library or DLL project
 
 #include "../Architecture/VS/Tools/AddIncludePaths.bff"
 #include "../Architecture/VS/Tools/AddExtraDefines.bff"
-
-//if has curtom config, defines them
-#include "../Architecture/VS/Tools/DefineCustomConfigs.bff"
 }
 VCXProject("$ProjectName$-vsproj-test")//Test Project
 {
@@ -26,9 +23,6 @@ VCXProject("$ProjectName$-vsproj-test")//Test Project
 #include "../Architecture/VS/Tools/AddIncludePaths.bff"
 #include "../Architecture/VS/Tools/AddTestIncludePaths.bff"
 #include "../Architecture/VS/Tools/AddExtraDefines.bff"
-
-//if has curtom config, defines them
-#include "../Architecture/VS/Tools/DefineCustomConfigs.bff"
 }
 
 .VSFolder =
