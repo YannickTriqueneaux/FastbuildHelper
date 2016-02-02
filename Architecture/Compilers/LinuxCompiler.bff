@@ -42,7 +42,7 @@ Compiler( "Compiler-x64" )
     .Librarian              = "/usr/bin/ar"
     .Linker                 = "/usr/bin/ld"
     
-    .BaseCompilerOptions    = "-o "%2" "%1" -c -g"
+    .BaseCompilerOptions    = '-o "%2" "%1" -c -g'
                             + " -I./"
                             + " -Wall -Werror -Wfatal-errors"                   // warnings as errors
                             + " -m64"                           // x86-64
