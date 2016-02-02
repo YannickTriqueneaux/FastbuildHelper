@@ -14,6 +14,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     ObjectList( "$aliasName$-Obj" )
     {
         .CompilerOptions            + .DLLCompilerOptions
+                                    + .CppCompilerOptions
                                     + .IsBigObject
         .CompilerInputUnity			= "$ProjectName$-Unity"
         .CompilerOutputPath		   	= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
@@ -24,6 +25,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     Library( "$aliasName$-Obj" )
     {
         .CompilerOptions            + .DLLCompilerOptions
+                                    + .CppCompilerOptions
         .CompilerInputUnity			= "$ProjectName$-Unity"
         .CompilerOutputPath			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
         .LibrarianOutput 			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$' + .staticLibExt
@@ -42,6 +44,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
 #include "../Architecture/Tools/AddExternalLibraries.bff"
         .LinkerOptions              + .DLLLinkerOptions
+                                    + .CppCompilerOptions
                                     + .PlatformDefaultLibs
                                     
         .LinkerOutput = "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .dynamicLibExt

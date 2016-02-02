@@ -17,6 +17,7 @@ ForEach(.CompilerConfig in.CompilerConfigs)
         .LibrarianOutput            = "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .staticLibExt
 
         .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this library
+                                    + .CppCompilerOptions
     }
     Alias("$aliasName$") { .Targets = "$aliasName$-Lib" }
 }

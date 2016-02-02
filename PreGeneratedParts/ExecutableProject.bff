@@ -13,9 +13,11 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #if __WINDOWS__
     ObjectList( "$aliasName$-Obj" )
     {
-        .CompilerOptions            + .DLLCompilerOptions
         .CompilerInputUnity			= "$ProjectName$-Unity"
         .CompilerOutputPath		   	= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
+
+        .CompilerOptions            + .DLLCompilerOptions
+                                    + .CppCompilerOptions
     }
 #endif
 
@@ -23,6 +25,8 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     Library( "$aliasName$-Obj" )
     {
         .CompilerOptions            + .DLLCompilerOptions
+                                    + .CppCompilerOptions
+
         .CompilerInputUnity			= "$ProjectName$-Unity"
         .CompilerOutputPath			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
         .LibrarianOutput 			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$" + .staticLibExt

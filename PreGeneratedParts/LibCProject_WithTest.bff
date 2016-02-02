@@ -17,7 +17,8 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .CompilerOutputPath         = "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
         .LibrarianOutput            = "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .staticLibExt
 
-        .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this 
+        .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this
+                                    + .CppCompilerOptions
     }
 
 #if __WINDOWS__

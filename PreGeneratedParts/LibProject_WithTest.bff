@@ -36,6 +36,8 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 		.CompilerInputFiles         = '$TestSourcesPath$/Main.test.cc'
 		.CompilerOutputPath			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
 		.LibrarianOutput 			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/Main.test' + .staticLibExt
+
+        .CompilerOptions            + .CppCompilerOptions
 	}
 #endif
 
