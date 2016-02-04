@@ -171,6 +171,8 @@
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\HEI_Wrapper.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\Matio.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\MatioExtern.bff" />
+    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\Tests\Triangle.bff" />
+    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\TriangleExtern.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\XPlanePlugin\XPlanePlugin32.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\XPlanePlugin\XPlanePlugin64.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\Zlib.bff" />

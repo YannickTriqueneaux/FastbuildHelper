@@ -1,0 +1,60 @@
+
+ForEach( .CompilerConfig in .CompilerConfigs )
+{
+	Using( .CompilerConfig )
+	Using( .CompiledFileExtensions )
+	
+    .aliasName                      = "$ProjectName$-$Platform$-$Config$"
+
+#include "../Architecture/Tools/AddIncludePaths.bff"
+#include "../Architecture/Tools/AddLibraryPaths.bff"
+#include "../Architecture/Tools/AddExtraDefines.bff"
+
+#if __WINDOWS__
+    ObjectList( "$aliasName$-Obj" )
+    {
+        .CompilerInputUnity			= "$ProjectName$-Unity"
+        .CompilerOutputPath		   	= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
+
+        .CompilerOptions            + .DLLCompilerOptions
+                                    + .CppCompilerOptions
+    }
+#endif
+
+#if __LINUX__
+    Library( "$aliasName$-Obj" )
+    {
+        .CompilerOptions            + .DLLCompilerOptions
+                                    + .CppCompilerOptions
+
+        .CompilerInputUnity			= "$ProjectName$-Unity"
+        .CompilerOutputPath			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
+        .LibrarianOutput 			= "$BuildDestination$/$Platform$-$Config$/Obj/Tests-$ProjectName$" + .staticLibExt
+    }
+#endif
+
+
+    Executable("$aliasName$-EXE")
+    {
+        .Libraries                  = { "$aliasName$-Obj" }
+
+        ForEach(.pdep in .ProjectDependencies)
+        {
+            ^Libraries              + "$pdep$-$Platform$-$Config$-Lib"
+        }
+
+#include "../Architecture/Tools/AddExternalLibraries.bff"
+        .LinkerOptions              + .PlatformDefaultLibs
+                                    
+        .LinkerOutput               = "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + "Tests-$ProjectName$" + .executableExt
+    }
+
+    Alias("$aliasName$") { .Targets = { "$aliasName$-EXE" } }
+}
+
+Alias( "$ProjectName$" )
+{
+	Using( .DefaultCompilerConfig )
+
+	.Targets                        = { "$ProjectName$-$Platform$-$Config$" }
+}
