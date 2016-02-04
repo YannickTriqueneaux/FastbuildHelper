@@ -166,9 +166,11 @@
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Projects.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Services\Core\SimulationSetup.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Tools\Prebuild.bff" />
+    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\CanOpen.bff" />
+    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\CanOpenExtern.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\HEI_Wrapper.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\Matio.bff" />
-    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\MatioC.bff" />
+    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\MatioExtern.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\XPlanePlugin\XPlanePlugin32.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\XPlanePlugin\XPlanePlugin64.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\Zlib.bff" />

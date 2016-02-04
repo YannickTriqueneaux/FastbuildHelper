@@ -1,0 +1,10 @@
+
+
+ForEach(.ipath in .ProjectIncludePaths)
+{
+    ^IncludeSearchPath + ";^$(SolutionDir)$ipath$"
+}
+ForEach(.ipath in .GlobalIncludePaths)
+{
+    ^IncludeSearchPath + ";^$(SolutionDir)$ipath$"
+}
