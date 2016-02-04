@@ -44,7 +44,6 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
 #include "../Architecture/Tools/AddExternalLibraries.bff"
         .LinkerOptions              + .DLLLinkerOptions
-                                    + .CppCompilerOptions
                                     + .PlatformDefaultLibs
 
         .LinkerOutput = "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .dynamicLibExt
@@ -64,6 +63,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     Library('$aliasName$Test-Obj')
     {
 #include "../Architecture/Tools/AddTestIncludePaths.bff"
+        .CompilerOptions            + .CppCompilerOptions
 
         .CompilerInputFiles         = '$TestSourcesPath$/Main.test.cc'
         .CompilerOutputPath         = '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'

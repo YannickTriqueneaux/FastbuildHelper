@@ -40,7 +40,7 @@ Compiler( "Compiler-x64" )
 
     .Compiler               = "Compiler-x64"
     .Librarian              = "/usr/bin/ar"
-    .Linker                 = "/usr/bin/ld"
+    .Linker                 = "/usr/bin/g++"
     
     .BaseCompilerOptions    = '-o "%2" "%1" -c -g'
                             + " -I./"

@@ -44,7 +44,6 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
 #include "../Architecture/Tools/AddExternalLibraries.bff"
         .LinkerOptions              + .DLLLinkerOptions
-                                    + .CppCompilerOptions
                                     + .PlatformDefaultLibs
                                     
         .LinkerOutput = "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .dynamicLibExt

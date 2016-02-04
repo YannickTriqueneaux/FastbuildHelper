@@ -171,6 +171,7 @@
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\MatioC.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\XPlanePlugin\XPlanePlugin32.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\XPlanePlugin\XPlanePlugin64.bff" />
+    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\Zlib.bff" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CodeGenerateVSSolution\CodeGenerateVSSolution.vcxproj">

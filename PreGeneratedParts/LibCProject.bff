@@ -13,7 +13,9 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
     Library("$aliasName$-Lib")
     {
-        .CompilerInputUnity         = { "$ProjectName$-CUnity" }
+        .CompilerInputPath          = "$SourcesPath$/"
+        .CompilerInputPattern       = "*.c"
+        .CompilerInputFiles         = .ProjectExtraCompileFiles
         .CompilerOutputPath         = "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
         .LibrarianOutput            = "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .staticLibExt
 
