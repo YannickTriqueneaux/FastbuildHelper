@@ -2,25 +2,58 @@
 //------------------------------------------------------------------------------
 // Windows Platform
 //------------------------------------------------------------------------------
-.VSBasePath			= "C:/Program Files (x86)/Microsoft Visual Studio 10.0"
-.WindowsSDKBasePath	= "C:/Program Files (x86)/Microsoft SDKs/Windows/v7.1A"
+.VSBasePath			= "C:/Program Files (x86)/Microsoft Visual Studio 12.0"
+.WindowsSDKBasePath	= "C:/Program Files (x86)/Windows Kits/8.1"
 
 Settings
 {
 	.Environment	= { "PATH=$VSBasePath$/Common7/IDE/;$VSBasePath$/VC/bin/",
 						"TMP=C:/Windows/Temp",
-						"SystemRoot=C:/Windows" }
+                        "SystemRoot=C:/Windows" }
+    .CachePath      = "C:\.fbuild.cache"
 }
 Compiler( "Compiler-x86" )
 {
 	.Root		= "$VSBasePath$/VC/bin"
 	.Executable	= "$Root$/cl.exe"
+    .ExtraFiles = { 
+        "$Root$\c1.dll"
+        "$Root$\c1ast.dll",
+        "$Root$\c1xx.dll",
+        "$Root$\c1xxast.dll",
+        "$Root$\c2.dll",
+        "$Root$\msobj120.dll",
+        "$Root$\mspdb120.dll",
+        "$Root$\mspdbsrv.exe",
+        "$Root$\mspdbcore.dll",
+        "$Root$\mspft120.dll",
+        "$Root$\1033\clui.dll",
+        "$VSBasePath$\VC\redist\x86\Microsoft.VC120.CRT\msvcp120.dll",
+        "$VSBasePath$\VC\redist\x86\Microsoft.VC120.CRT\msvcr120.dll",
+        "$VSBasePath$\VC\redist\x86\Microsoft.VC120.CRT\vccorlib120.dll",
+    }
 }
-Compiler( "Compiler-x64" )
-{
-	.Root		= "$VSBasePath$/VC/bin"
-	.Executable	= "$Root$/x86_amd64/cl.exe"
-}
+    Compiler("Compiler-x64")
+    {
+        .Root = "$VSBasePath$\VC\bin"
+        .Executable = "$Root$\x86_amd64\cl.exe"
+        .ExtraFiles = { 
+            "$Root$\x86_amd64\c1.dll"
+            "$Root$\x86_amd64\c1ast.dll",
+            "$Root$\x86_amd64\c1xx.dll",
+            "$Root$\x86_amd64\c1xxast.dll",
+            "$Root$\x86_amd64\c2.dll",
+            "$Root$\x86_amd64\1033\clui.dll"
+            "$Root$\msobj120.dll"
+            "$Root$\mspdb120.dll"
+            "$Root$\mspdbsrv.exe"
+            "$Root$\mspdbcore.dll"
+            "$Root$\mspft120.dll"
+            "$VSBasePath$\VC\redist\x86\Microsoft.VC120.CRT\msvcp120.dll"
+            "$VSBasePath$\VC\redist\x86\Microsoft.VC120.CRT\msvcr120.dll"
+            "$VSBasePath$\VC\redist\x86\Microsoft.VC120.CRT\vccorlib120.dll"
+        }
+    }
 
 .CompiledFileExtensions =
 [
@@ -32,7 +65,7 @@ Compiler( "Compiler-x64" )
 
 .WindowsDefinitions =
 [
-	.Definitions			= ' /D"WIN32_LEAN_AND_MEAN"'
+    .Definitions            = " /DWIN32_LEAN_AND_MEAN"
 							+ " /D_WIN32" 
 							+ " /D__WINDOWS__"
 							+ " /D_GNU_SOURCE"
@@ -91,8 +124,10 @@ Compiler( "Compiler-x64" )
 	
 	.BaseIncludePaths		        = ' /I"./"'
 							        + ' /I"$VSBasePath$/VC/include/"'
-							        + ' /I"$WindowsSDKBasePath$/Include"'
-							        //+ ' /I"$WindowsSDKBasePath$/include/shared"'
+							        + ' /I"$WindowsSDKBasePath$/Include/um"'
+							        + ' /I"$WindowsSDKBasePath$/Include/shared"'
+
+    .WindowsLibPaths                = "$WindowsSDKBasePath$/Lib/winv6.3/um"
 
     .DLLCompilerOptions             = ""
     .DLLLinkerOptions               = " /DLL"
@@ -124,8 +159,8 @@ Compiler( "Compiler-x64" )
 	.CompilerOptions		+ .x86Definitions
 	//.PCHOptions				+ .x86Definitions
 	.LinkerOptions			+ " /MACHINE:X86"
-	.LinkerOptions			+ ' /LIBPATH:"$VSBasePath$/VC/lib"'
-							+ ' /LIBPATH:"$WindowsSDKBasePath$/Lib"'
+    .LinkerOptions          + ' /LIBPATH:"$WindowsLibPaths$/x86"'
+                            + ' /LIBPATH:"$VSBasePath$/VC/lib"'
 ]
 
 .X86DebugConfig =
@@ -190,8 +225,8 @@ Compiler( "Compiler-x64" )
 	.CompilerOptions		+ .x64Definitions
 	//.PCHOptions				+ .x64Definitions
 	.LinkerOptions			+ " /MACHINE:X64"
-	.LinkerOptions			+ ' /LIBPATH:"$VSBasePath$/VC/lib/amd64"'
-							+ ' /LIBPATH:"$WindowsSDKBasePath$/Lib/x64"'
+    .LinkerOptions          + ' /LIBPATH:"$WindowsLibPaths$/x64"'
+                            + ' /LIBPATH:"$VSBasePath$/VC/lib/amd64"'
 ]
 .X64DebugConfig =
 [

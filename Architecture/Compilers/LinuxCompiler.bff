@@ -5,7 +5,7 @@
 
 Settings
 {
-	
+    .CachePath = "/tmp/.fbuild.cache"
 }
 Compiler( "Compiler-x64" )
 {	
