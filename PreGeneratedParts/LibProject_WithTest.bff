@@ -10,6 +10,12 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #include "../Architecture/Tools/AddIncludePaths.bff"
 #include "../Architecture/Tools/AddLibraryPaths.bff"
 #include "../Architecture/Tools/AddExtraDefines.bff"
+#include "../Architecture/Tools/AddExtraFlags.bff"
+
+    .CompilerOptions                + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this library
+                                    + .CppCompilerOptions
+
+    .LinkerOptions                  + .PlatformDefaultLibs
 
 	Library( "$aliasName$-Lib" )
     {
@@ -17,8 +23,6 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 		.CompilerOutputPath			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
 		.LibrarianOutput 			= "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .staticLibExt
 
-        .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this library
-                                    + .CppCompilerOptions
 	}
 
 #if __WINDOWS__
@@ -36,8 +40,6 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 		.CompilerInputFiles         = '$TestSourcesPath$/Main.test.cc'
 		.CompilerOutputPath			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
 		.LibrarianOutput 			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/Main.test' + .staticLibExt
-
-        .CompilerOptions            + .CppCompilerOptions
 	}
 #endif
 
@@ -52,7 +54,6 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         }
 
 #include "../Architecture/Tools/AddExternalLibraries.bff"
-		.LinkerOptions				+ .PlatformDefaultLibs
 
 		.LinkerOutput				= "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + "Tests-$ProjectName$" + .executableExt
 	}	

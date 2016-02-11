@@ -171,6 +171,7 @@
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\HEI_Wrapper.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\Matio.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\MatioExtern.bff" />
+    <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\OpalMainJNI.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\OPC_UA.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\OPC_UAExtern.bff" />
     <None Include="..\..\..\..\Build\fastbuild\Generatedfiles\Wrappers\OPC_UAExternC.bff" />

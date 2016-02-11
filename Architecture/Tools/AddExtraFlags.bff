@@ -1,0 +1,14 @@
+
+
+ForEach(.pflag in .ProjectExtraDefines)
+{
+
+#if __WINDOWS__
+    ^CompilerOptions + " /$pflag$"
+#endif
+
+#if __LINUX__
+    ^CompilerOptions + " -$pflag$"
+#endif
+
+}

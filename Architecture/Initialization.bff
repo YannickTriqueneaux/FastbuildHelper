@@ -37,3 +37,4 @@
 .ProjectExtraDefines        = {} //definitions added to the compiler   (e.g: "#define FOR_WINDOWS" for the compiler)
 .ProjectExtraCompileFiles   = {} //externals files to add for the compilation, used for external libraries who don't support the UnityBuild  (e.g: .cpp , .c or .cc)
 .ProjectExtraHeaderFiles    = {} //externals header files to add to a project. Useless for the compiler but will be added to the VisualStudio's project solution
+.ProjectExtraFlags          = {} //Compilation flags to add in the project (e.g: openmp)  /!\ do not add any '/' for windows  or   '-' for linux
