@@ -71,7 +71,7 @@ Compiler( "Compiler-x86" )
 							+ " /D_GNU_SOURCE"
 							+ " /D_WIN32_WINNT=0x0601"
 							+ " /DWINVER=0x0601"
-							+ " /D_MSC_VER=1020"// TODO update when changing Windows SDKs version
+							+ " /D_MSC_VER=1800"// TODO update when changing Windows SDKs version
 							//+ ' /D"_CRT_SECURE_NO_WARNINGS"' // don't warn about unsafe functions
 								
 		
@@ -124,6 +124,7 @@ Compiler( "Compiler-x86" )
 	
 	.BaseIncludePaths		        = ' /I"./"'
 							        + ' /I"$VSBasePath$/VC/include/"'
+							        + ' /I"$VSBasePath$/VC/atlmfc/Include/"'
 							        + ' /I"$WindowsSDKBasePath$/Include/um"'
 							        + ' /I"$WindowsSDKBasePath$/Include/shared"'
 
@@ -181,6 +182,8 @@ Compiler( "Compiler-x86" )
 							
 	.LibrarianOptions		+ .LibrarianDebugOptimizations
 	.LinkerOptions			+ .LinkerDebugOptimizations
+
+    .DLLCompilerOptions     + " /LDd"
 ]
 .X86ReleaseConfig =
 [
@@ -201,6 +204,9 @@ Compiler( "Compiler-x86" )
 	.CompilerOptions        + .CompilerReleaseOptimizations
 	.LibrarianOptions		+ .LibrarianReleaseOptimizations
 	.LinkerOptions			+ .LinkerReleaseOptimizations
+
+
+    .DLLCompilerOptions     + " /LD"
 ]
 //////////////////////////////////////////////
 
@@ -246,6 +252,9 @@ Compiler( "Compiler-x86" )
 														
 	.LibrarianOptions		+ .LibrarianDebugOptimizations
 	.LinkerOptions			+ .LinkerDebugOptimizations
+
+    
+    .DLLCompilerOptions     + " /LDd"
 ]
 .X64ReleaseConfig =
 [
@@ -259,12 +268,15 @@ Compiler( "Compiler-x86" )
 							+ .ReleaseDefinitions
 							+ .x64ReleaseCompilerOptions
 							
-	//.PCHOptions             + .CompilerReleaseOptimizations
+	//.PCHOptions           + .CompilerReleaseOptimizations
 	//						+ .ReleaseDefinitions
 	//						+ .x64ReleaseCompilerOptions
 							
 	.LibrarianOptions		+ .LibrarianReleaseOptimizations
 	.LinkerOptions			+ .LinkerReleaseOptimizations
+
+    
+    .DLLCompilerOptions     + " /LD"
 ]
 ///////////////////////////////////////////////
 
