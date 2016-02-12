@@ -9,12 +9,16 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #include "../Architecture/Tools/AddIncludePaths.bff"
 #include "../Architecture/Tools/AddLibraryPaths.bff"
 #include "../Architecture/Tools/AddExtraDefines.bff"
-#include "../Architecture/Tools/AddExtraFlags.bff"
+#include "../Architecture/Tools/AddExtraCompileFlags.bff"
+#include "../Architecture/Tools/AddExtraLinkFlags.bff"
+#include "../Architecture/Tools/AddExternalLibraries.bff"
 
 #if __WINDOWS__
     ObjectList( "$aliasName$-Obj" )
     {
-        .CompilerInputUnity			= "$ProjectName$-Unity"
+        .CompilerInputPath          = "$SourcesPath$/"
+        .CompilerInputPattern       = "*.cc"
+        .CompilerInputFiles         = .ProjectExtraCompileFiles
         .CompilerOutputPath		   	= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
 
         .CompilerOptions            + .DLLCompilerOptions
@@ -28,7 +32,9 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .CompilerOptions            + .DLLCompilerOptions
                                     + .CppCompilerOptions
 
-        .CompilerInputUnity			= "$ProjectName$-Unity"
+        .CompilerInputPath          = "$SourcesPath$/"
+        .CompilerInputPattern       = "*.cc"
+        .CompilerInputFiles         = .ProjectExtraCompileFiles
         .CompilerOutputPath			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
         .LibrarianOutput 			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$" + .staticLibExt
     }
@@ -44,7 +50,6 @@ ForEach( .CompilerConfig in .CompilerConfigs )
             ^Libraries              + "$pdep$-$Platform$-$Config$-Lib"
         }
 
-#include "../Architecture/Tools/AddExternalLibraries.bff"
         .LinkerOptions              + .PlatformDefaultLibs
                                     
         .LinkerOutput               = "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + "$ProjectName$" + .executableExt

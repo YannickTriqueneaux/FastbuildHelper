@@ -10,7 +10,9 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #include "../Architecture/Tools/AddIncludePaths.bff"
 #include "../Architecture/Tools/AddLibraryPaths.bff"
 #include "../Architecture/Tools/AddExtraDefines.bff"
-#include "../Architecture/Tools/AddExtraFlags.bff"
+#include "../Architecture/Tools/AddExtraCompileFlags.bff"
+#include "../Architecture/Tools/AddExtraLinkFlags.bff"
+#include "../Architecture/Tools/AddExternalLibraries.bff"
 
     .CompilerOptions                + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this library
                                     + .CppCompilerOptions
@@ -19,7 +21,10 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
 	Library( "$aliasName$-Lib" )
     {
-		.CompilerInputUnity			= "$ProjectName$-Unity"
+		.CompilerInputPath          = "$SourcesPath$/"
+        .CompilerInputPattern       = "*.cc"
+        .CompilerInputFiles         = .ProjectExtraCompileFiles
+        .CompilerInputExcludePath   = "$SourcesPath$/Tests"
 		.CompilerOutputPath			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
 		.LibrarianOutput 			= "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .staticLibExt
 
@@ -45,15 +50,12 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
 	Executable( "$aliasName$-EXE" )
 	{
-        .Libraries                  = { "$aliasName$-Obj" }
-                                    + "$aliasName$-Lib"
+        .Libraries                  = { "$aliasName$-Obj", "$aliasName$-Lib" }
 
         ForEach(.pdep in .ProjectDependencies)
         {
             ^Libraries              + "$pdep$-$Platform$-$Config$-Lib"
         }
-
-#include "../Architecture/Tools/AddExternalLibraries.bff"
 
 		.LinkerOutput				= "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + "Tests-$ProjectName$" + .executableExt
 	}	

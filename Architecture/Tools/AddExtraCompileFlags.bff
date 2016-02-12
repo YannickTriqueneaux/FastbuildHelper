@@ -1,6 +1,6 @@
 
 
-ForEach(.pflag in .ProjectExtraDefines)
+ForEach(.pflag in .ProjectExtraCompileFlags)
 {
 
 #if __WINDOWS__

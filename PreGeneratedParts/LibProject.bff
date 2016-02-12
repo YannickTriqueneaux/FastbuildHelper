@@ -9,7 +9,9 @@ ForEach(.CompilerConfig in.CompilerConfigs)
 #include "../Architecture/Tools/AddIncludePaths.bff"
 #include "../Architecture/Tools/AddLibraryPaths.bff"
 #include "../Architecture/Tools/AddExtraDefines.bff"
-#include "../Architecture/Tools/AddExtraFlags.bff"
+#include "../Architecture/Tools/AddExtraCompileFlags.bff"
+#include "../Architecture/Tools/AddExtraLinkFlags.bff"
+#include "../Architecture/Tools/AddExternalLibraries.bff"
 
     Library("$aliasName$-Lib")
     {

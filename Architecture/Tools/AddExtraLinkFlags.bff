@@ -1,0 +1,14 @@
+
+
+ForEach(.pflag in .ProjectExtraLinkFlags)
+{
+
+#if __WINDOWS__
+    ^LinkerOptions + " /$pflag$"
+#endif
+
+#if __LINUX__
+    ^LinkerOptions + " -$pflag$"
+#endif
+
+}
