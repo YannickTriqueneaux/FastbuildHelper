@@ -7,7 +7,7 @@ ForEach(.pdef in .ProjectExtraDefines)
     ^CompilerOptions + ' /D$pdef$'
 #endif
 #if __LINUX__
-    ^CompilerOptions + " -D$pdef$"
+    ^CompilerOptions + " -D$pdef$ "
 #endif
     
 }

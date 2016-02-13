@@ -4,11 +4,11 @@ ForEach(.pflag in .ProjectExtraCompileFlags)
 {
 
 #if __WINDOWS__
-    ^CompilerOptions + " /$pflag$"
+    ^CompilerOptions + ' /$pflag$'
 #endif
 
 #if __LINUX__
-    ^CompilerOptions + " -$pflag$"
+    ^CompilerOptions + ' "-$pflag$"'
 #endif
 
 }
