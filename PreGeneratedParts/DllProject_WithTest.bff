@@ -13,18 +13,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #include "../Architecture/Tools/AddExtraCompileFlags.bff"
 #include "../Architecture/Tools/AddExtraLinkFlags.bff"
 #include "../Architecture/Tools/AddExternalLibraries.bff"
-
-    Library("$aliasName$-Lib")
-    {
-        .CompilerInputPath = "$SourcesPath$/"
-        .CompilerInputPattern = "*.cc"
-        .CompilerInputFiles = .ProjectExtraCompileFiles
-        .CompilerInputExcludePath = "$SourcesPath$/Tests"
-        .CompilerOutputPath = "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
-        .LibrarianOutput = "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .staticLibExt
-
-    }
-
+    
 #if __WINDOWS__
     ObjectList( "$aliasName$-Obj" )
     {
@@ -94,7 +83,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
     Executable("$aliasName$-EXE")
     {
-        .Libraries                  = { "$aliasName$Test-Obj","$aliasName$-DLL" }
+        .Libraries                  = { "$aliasName$Test-Obj", "$aliasName$-Obj" , "$aliasName$-DLL" }
 
         ForEach(.pdep in .ProjectDependencies)
         {
@@ -107,7 +96,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     }
 
 
-    Alias("$aliasName$") {          .Targets = { "$aliasName$-DLL" } }
+    Alias("$aliasName$")     {      .Targets = { "$aliasName$-DLL" } }
     Alias("$aliasTestName$") {      .Targets = { "$aliasName$-EXE" } }
 }
 
