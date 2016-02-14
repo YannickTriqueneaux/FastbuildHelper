@@ -91,7 +91,8 @@ Compiler( "Compiler-x64" )
 .DefaultDefinitions =
 [
     //Common defines
-    .Definitions            = " /DWIN32_LEAN_AND_MEAN"
+    .Definitions            = " /DFASTBUILD"            //in case of, add FASTBUILD preprocessor definition when building with FASTBuild
+                            + " /DWIN32_LEAN_AND_MEAN"
 							+ " /D_WIN32" 
 							+ " /D__WINDOWS__"
 							+ " /D_GNU_SOURCE"

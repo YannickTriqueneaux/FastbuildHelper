@@ -25,7 +25,8 @@ Compiler( "Compiler-x64" )
 
 .LinuxDefinitions = 
 [
-	.Definitions			= " -D__LINUX__" 		
+    .Definitions            = " -DFASTBUILD"            //in case of, add FASTBUILD preprocessor definition when building with FASTBuild
+                            + " -D__LINUX__" 		
                             + " -D__linux__"
                             + " -DRT"
 		
