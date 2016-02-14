@@ -15,17 +15,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Compilers", "Compilers", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProjectTemplates", "ProjectTemplates", "{25B2FBB8-C62B-4D2F-A69A-3F1968DEE5A1}"
 	ProjectSection(SolutionItems) = preProject
-		..\PreGeneratedParts\BigDllProject.bff = ..\PreGeneratedParts\BigDllProject.bff
-		..\PreGeneratedParts\CUnityBuild.bff = ..\PreGeneratedParts\CUnityBuild.bff
-		..\PreGeneratedParts\DllProject.bff = ..\PreGeneratedParts\DllProject.bff
-		..\PreGeneratedParts\DllProject_WithTest.bff = ..\PreGeneratedParts\DllProject_WithTest.bff
-		..\PreGeneratedParts\ExecutableProject.bff = ..\PreGeneratedParts\ExecutableProject.bff
-		..\PreGeneratedParts\LibCProject.bff = ..\PreGeneratedParts\LibCProject.bff
-		..\PreGeneratedParts\LibProject.bff = ..\PreGeneratedParts\LibProject.bff
-		..\PreGeneratedParts\LibProject_WithTest.bff = ..\PreGeneratedParts\LibProject_WithTest.bff
-		..\PreGeneratedParts\UnityBuild.bff = ..\PreGeneratedParts\UnityBuild.bff
-		..\PreGeneratedParts\VisualStudioProject.bff = ..\PreGeneratedParts\VisualStudioProject.bff
-		..\PreGeneratedParts\VisualStudioProject_WithTest.bff = ..\PreGeneratedParts\VisualStudioProject_WithTest.bff
+		..\ProjectTemplates\BigDllProject.bff = ..\ProjectTemplates\BigDllProject.bff
+		..\ProjectTemplates\CUnityBuild.bff = ..\ProjectTemplates\CUnityBuild.bff
+		..\ProjectTemplates\DllProject.bff = ..\ProjectTemplates\DllProject.bff
+		..\ProjectTemplates\DllProject_WithTest.bff = ..\ProjectTemplates\DllProject_WithTest.bff
+		..\ProjectTemplates\ExecutableProject.bff = ..\ProjectTemplates\ExecutableProject.bff
+		..\ProjectTemplates\LibCProject.bff = ..\ProjectTemplates\LibCProject.bff
+		..\ProjectTemplates\LibCProject_WithTest.bff = ..\ProjectTemplates\LibCProject_WithTest.bff
+		..\ProjectTemplates\LibProject.bff = ..\ProjectTemplates\LibProject.bff
+		..\ProjectTemplates\LibProject_WithTest.bff = ..\ProjectTemplates\LibProject_WithTest.bff
+		..\ProjectTemplates\UnityBuild.bff = ..\ProjectTemplates\UnityBuild.bff
+		..\ProjectTemplates\VisualStudioProject.bff = ..\ProjectTemplates\VisualStudioProject.bff
+		..\ProjectTemplates\VisualStudioProject_WithTest.bff = ..\ProjectTemplates\VisualStudioProject_WithTest.bff
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DefaultLibs", "DefaultLibs", "{BC3D1C55-054A-4217-B796-42BA13B547A1}"
