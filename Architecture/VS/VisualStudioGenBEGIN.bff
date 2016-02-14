@@ -9,7 +9,7 @@
     //+ ' /D_GNU_SOURCE'
     //+ ' /D_WIN32_WINNT=0x0601'
     //+ ' /DWINVER=0x0601'
-    //+ ' /D_MSC_VER=1020'// TODO update when changing Windows SDKs version
+    //+ ' /D_MSC_VER=1800'// TODO update when changing Windows SDKs version
 	
 	.X86Defines					= "WIN32_LEAN_AND_MEAN;_WIN32;__WINDOWS__;WIN32;"
 	.X64Defines					= "WIN32_LEAN_AND_MEAN;_WIN64;__WINDOWS__;WIN64;_M_X64;"
