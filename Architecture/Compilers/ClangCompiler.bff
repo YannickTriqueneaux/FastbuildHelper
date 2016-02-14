@@ -52,11 +52,11 @@ Compiler( 'Compiler-x86Clang' )
 							+ ' -fmsc-version=1700'
 
                             // as of v3.6, these warnings fire inside system headers
-							+ ' -Wno-#pragma-messages'      // warning : %s [-W#pragma-messages]
-                            + ' -Wno-unknown-pragmas'       // unknown pragma ignored [-Wunknown-pragmas]
-                            + ' -Wno-unused-function'       // unused function '%s' [-Wunused-function]
-							+ ' -Wno-microsoft'             // enumerator value is not representable in the underlying type 'int' [-Wmicrosoft]'
-							+ ' -Wno-unused-value'          // expression result unused [-Wunused-value]
+							+ ' -Wno-#pragma-messages'          // warning : %s [-W#pragma-messages]
+                            + ' -Wno-unknown-pragmas'           // unknown pragma ignored [-Wunknown-pragmas]
+                            + ' -Wno-unused-function'           // unused function '%s' [-Wunused-function]
+							+ ' -Wno-microsoft'                 // enumerator value is not representable in the underlying type 'int' [-Wmicrosoft]'
+							+ ' -Wno-unused-value'              // expression result unused [-Wunused-value]
 							+ ' -Wno-ignored-attributes'        // __declspec attribute 'restrict' is not supported [-Werror,-Wignored-attributes]
                             + ' -Wno-incompatible-ms-struct'    // ms_struct may not produce MSVC-compatible layouts for classes with base classes or virtual functions [-Wincompatible-ms-struct]
 
