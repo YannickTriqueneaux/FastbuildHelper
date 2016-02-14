@@ -65,7 +65,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{776F3A91-6D7F-4D12-B728-7855BF61E8BE}"
 	ProjectSection(SolutionItems) = preProject
 		..\Architecture\VS\Tools\AddExtraDefines.bff = ..\Architecture\VS\Tools\AddExtraDefines.bff
+		..\Architecture\VS\Tools\AddExtraFiles.bff = ..\Architecture\VS\Tools\AddExtraFiles.bff
 		..\Architecture\VS\Tools\AddIncludePaths.bff = ..\Architecture\VS\Tools\AddIncludePaths.bff
+		..\Architecture\VS\Tools\AddProjectDependencies.bff = ..\Architecture\VS\Tools\AddProjectDependencies.bff
 		..\Architecture\VS\Tools\AddTestIncludePaths.bff = ..\Architecture\VS\Tools\AddTestIncludePaths.bff
 		..\Architecture\VS\Tools\DefineCustomConfigs.bff = ..\Architecture\VS\Tools\DefineCustomConfigs.bff
 	EndProjectSection
