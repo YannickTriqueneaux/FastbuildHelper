@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Compilers", "Compilers", "{
 		..\Architecture\Compilers\WindowsCompiler.bff = ..\Architecture\Compilers\WindowsCompiler.bff
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PreGeneratedParts", "PreGeneratedParts", "{25B2FBB8-C62B-4D2F-A69A-3F1968DEE5A1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProjectTemplates", "ProjectTemplates", "{25B2FBB8-C62B-4D2F-A69A-3F1968DEE5A1}"
 	ProjectSection(SolutionItems) = preProject
 		..\PreGeneratedParts\BigDllProject.bff = ..\PreGeneratedParts\BigDllProject.bff
 		..\PreGeneratedParts\CUnityBuild.bff = ..\PreGeneratedParts\CUnityBuild.bff
