@@ -3,6 +3,9 @@
 // Linux
 //------------------------------------------------------------------------------
 
+#once   //can be included just one time
+
+
 Settings
 {
     .CachePath = "/tmp/.fbuild.cache"
@@ -135,6 +138,18 @@ Compiler( "Compiler-x64" )
 .DefaultCompilerConfig =
 [
 	Using( .X64DebugConfig )
+]
+.Defaultx64Config =
+[
+    Using(.X64DebugConfig)
+]
+.DefaultDebugConfig =
+[
+    Using(.X64DebugConfig)
+]
+.DefaultReleaseConfig =
+[
+    Using(.X64ReleaseConfig)
 ]
 
 .PlatformDefaultLibs = ""

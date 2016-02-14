@@ -5,6 +5,9 @@
 //!/THIS FILE WAS NEVER TRIED
 //!/PLEASE DO NOT ASSUMS ITS WORKS
 
+#once   //can be included just one time
+
+
 //
 Settings
 {
@@ -95,6 +98,18 @@ Compiler( 'Compiler-x64-OSX' )
 .DefaultCompilerConfig =
 [
 	Using( .X64DebugConfig )
+]
+.Defaultx64Config =
+[
+    Using(.X64DebugConfig)
+]
+.DefaultDebugConfig =
+[
+    Using(.X64DebugConfig)
+]
+.DefaultReleaseConfig =
+[
+    Using(.X64ReleaseConfig)
 ]
 
 .PlatformDefaultLibs = ''

@@ -2,7 +2,10 @@
 //------------------------------------------------------------------------------
 
 //!/THIS FILE WAS NEVER TRIED
-//!/PLEASE DO NOT ASSUMS THAT ITS WORKS
+//!/PLEASE DO NOT ASSUMS ITS WORKS
+
+#once   //can be included just one time
+
 
 //
 Settings
