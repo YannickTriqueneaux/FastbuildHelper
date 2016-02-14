@@ -1,4 +1,26 @@
 
+//-  Project template for building a DLL  -----------------------------------------------------------
+//
+//  This templates is only tested on Windows and Linux
+//  
+//  This one will build all *.cc files in the folder   $SourcesPath$/  including sub folders
+//  also all .ExtraCompileFiles
+//  
+//
+//  The output DLL's name will be:  
+//      * $ProjectName$.dll     pn Windows
+//      * $ProjectName$.so      on Linux
+//
+//
+//  info: This file could be better factorised by using more #include files - but don't do that
+//        The file have to stay like that in order to avoid to get an unreadable template
+//---------------------------------------------------------------------------------------------------
+
+//FASTBuild documentation
+//see   http://www.fastbuild.org/docs/functions/dll.html
+//      http://www.fastbuild.org/docs/functions/objectlist.html
+//      http://www.fastbuild.org/docs/functions/library.html
+
 ForEach( .CompilerConfig in .CompilerConfigs )
 {
 	Using( .CompilerConfig )

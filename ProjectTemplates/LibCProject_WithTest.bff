@@ -1,2 +1,8 @@
 
+//-  Project template for building a Library and its UnitTest executable --------------------------------
+//
+//  Not implemented for the moment
+//
+//---------------------------------------------------------------------------------------------------
+
 #include "LibCProject.bff"

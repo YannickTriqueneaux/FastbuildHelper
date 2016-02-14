@@ -1,4 +1,8 @@
 
+//see https://msdn.microsoft.com/en-us/library/ms173499.aspx
+//Big DLL project are juste a template wrapper on classic DLLProject, but defines the flag "IsBigObject" before to call it
+
+//By default only Windows have to use this flag
 #if __WINDOWS__
 .IsBigObject = .bigObjectFlag
 #endif

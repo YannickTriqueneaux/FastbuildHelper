@@ -1,8 +1,21 @@
 
+//-  Project template for building a VisualStudio Project    ----------------------------------------
+//-  for a Library, Executable or DLL  
+//
+//  This templates is only tested on Windows and Linux
+//  
+//  This one will contains all files in $SourcesPath$ including sub folders
+//  and also contains all files defined in .ProjectExtraCompileFiles ans .ProjectExtraHeaderFiles
+//
+//  The output VCXProject's name will be:  
+//      * $ProjectName$
+//
+//  For more details see below
+//---------------------------------------------------------------------------------------------------
 
-//see http://www.fastbuild.org/docs/functions/vcxproject.html
-
-
+//FASTBuild documentation
+//see   http://www.fastbuild.org/docs/functions/vcxproject.html
+//      http://www.fastbuild.org/docs/functions/vssolution.html
 
 // Visual Studio Project Generation
 //--------------------------------------------------------------------------

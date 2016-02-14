@@ -1,4 +1,35 @@
 
+//-  Project template for building a Library and its UnitTest Executable -----------------------------
+//
+//  This templates is only tested on Windows and Linux
+//  
+//  This one will build all *.cc files in the folder  $SourcesPath$/  including sub folders
+//  also all .ExtraCompileFiles  
+//
+//  The output Library's name will be:  
+//      * $ProjectName$.lib         on Windows
+//      * lib$ProjectName$.a        on Linux
+//
+//
+//
+//  This one will also build a UnityTest executable taking all *.cc files in the folder   $TestSourcesPath$/  including sub folders
+////
+//  The output UnitTest executable's name will be:
+//      * Tests-$ProjectName$.exe   on Windows
+//      * Tests-$ProjectName$       on Linux
+//
+//
+//  info: This file could be better factorised by using more #include files - but don't do that
+//        The file have to stay like that in order to avoid to get an unreadable template
+//---------------------------------------------------------------------------------------------------
+
+
+//FASTBuild documentation
+//      http://www.fastbuild.org/docs/functions/objectlist.html
+//      http://www.fastbuild.org/docs/functions/library.html
+//      http://www.fastbuild.org/docs/functions/executable.html
+
+
 ForEach( .CompilerConfig in .CompilerConfigs )
 {
 	Using( .CompilerConfig )

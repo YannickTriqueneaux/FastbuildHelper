@@ -1,3 +1,25 @@
+//-  Project template for building an Executable    --------------------------------
+//
+//  This templates is only tested on Windows and Linux
+//  
+//  This one will build all *.cc files in the folder  $SourcesPath$/  including sub folders
+//  also all .ExtraCompileFiles
+//  
+//
+//  The output Executable's name will be:  
+//      * $ProjectName$.exe         on Windows
+//      * $ProjectName$             on Linux
+//
+//
+//  info: This file could be better factorised by using more #include files - but don't do that
+//        The file have to stay like that in order to avoid to get an unreadable template
+//---------------------------------------------------------------------------------------------------
+
+
+//FASTBuild documentat
+//      http://www.fastbuild.org/docs/functions/objectlist.html
+//      http://www.fastbuild.org/docs/functions/library.html
+//      http://www.fastbuild.org/docs/functions/executable.html
 
 ForEach( .CompilerConfig in .CompilerConfigs )
 {
