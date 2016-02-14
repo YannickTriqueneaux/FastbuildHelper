@@ -2,9 +2,9 @@
 
 ForEach(.ipath in .ProjectIncludePaths)
 {
-    ^IncludeSearchPath + ";^$(SolutionDir)$ipath$"
+    ^IncludeSearchPath + ";$ipath$"
 }
 ForEach(.ipath in .GlobalIncludePaths)
 {
-    ^IncludeSearchPath + ";^$(SolutionDir)$ipath$"
+    ^IncludeSearchPath + ";$ipath$"
 }

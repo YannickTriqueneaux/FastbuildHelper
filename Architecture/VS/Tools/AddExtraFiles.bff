@@ -1,0 +1,10 @@
+
+
+ForEach(.pfile in.ProjectExtraCompileFiles)
+{
+    ^ProjectFiles + "$pfile;"
+}
+ForEach(.pfile in.ProjectExtraHeaderFiles)
+{
+    ^ProjectFiles + "$pfile;"
+}

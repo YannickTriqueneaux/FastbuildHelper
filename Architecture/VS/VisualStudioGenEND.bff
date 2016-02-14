@@ -2,14 +2,20 @@
 //------------------------------------------------------------------------------
 VSSolution( "vssolution" )
 {
-    .SolutionOutput = "./$VSSolutionName$.sln"
+    .SolutionOutput         = "./$VSSolutionName$.sln"
 	
 	
-    .SolutionProjects	= .VSProjects //filled by Projects.bff
 	
-	.SolutionBuildProject = "BuildAll-proj"
+	.SolutionBuildProject   = "BuildAll-proj"
 						  
-	.SolutionConfigs	= .ProjectConfigs
-	
-    .SolutionFolders	= .VSSolutionFolders //filled by Projects.bff
+	.SolutionConfigs	    = .ProjectConfigs
+
+
+//Add all projects and these settings to the solution
+
+//filled by all includes of  "VisualStudioProject.bff"
+
+    .SolutionProjects       = .VSProjects                       
+    .SolutionFolders	    = .VSSolutionFolders
+    .SolutionDependencies   = .VSSolutionProjectDependencies
 }

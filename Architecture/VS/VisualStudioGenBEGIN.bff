@@ -36,7 +36,7 @@
 
 //.VSProjectX86Profile		    = [ Using( .ProjectCommon )	.Config = 'x86-Profile' .PreprocessorDefinitions = .X86Defines + .ProfileDefines ]
 //.VSProjectX64Profile		    = [ Using( .ProjectCommon )	.Config = 'x64-Profile' .PreprocessorDefinitions = .X64Defines + .ProfileDefines ]
-//.VSProjectX86ClangDebug		    = [ Using( .ProjectCommon )	.Config = 'x86Clang-Debug' ]
+//.VSProjectX86ClangDebug		= [ Using( .ProjectCommon )	.Config = 'x86Clang-Debug' ]
 
 
 .ProjectConfigs = 
@@ -66,5 +66,6 @@ VCXProject( "BuildAll-proj" )
 	.Projects		            = { "BuildAll-proj" }
 ]
 
-.VSSolutionFolders 		= { .AllFolder }
+.VSSolutionFolders 		        = { .AllFolder }
+.VSSolutionProjectDependencies 	= { }
 .VSProjects = { "BuildAll-proj" }
