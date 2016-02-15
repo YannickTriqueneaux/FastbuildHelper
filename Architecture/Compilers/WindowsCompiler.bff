@@ -6,8 +6,8 @@
 #once   //can be included just one time
 
 
-.VSBasePath			= "C:/Program Files (x86)/Microsoft Visual Studio 12.0"
-.WindowsSDKBasePath	= "C:/Program Files (x86)/Windows Kits/8.1"
+.VSBasePath			= "C:/Program Files (x86)/Microsoft Visual Studio 14.0"
+.WindowsSDKBasePath	= "C:/Program Files (x86)/Windows Kits/10"
 
 //Defines global FASTBuild settings.
 Settings
@@ -34,19 +34,18 @@ Compiler( "Compiler-x86" )
     //Additional files (usually dlls) required by the compiler.
     .ExtraFiles     = { 
         "$Root$\c1.dll",
-        "$Root$\c1ast.dll",
         "$Root$\c1xx.dll",
-        "$Root$\c1xxast.dll",
         "$Root$\c2.dll",
-        "$Root$\msobj120.dll",
-        "$Root$\mspdb120.dll",
+        "$Root$\msobj140.dll",
+        "$Root$\mspdb140.dll",
         "$Root$\mspdbsrv.exe",
         "$Root$\mspdbcore.dll",
-        "$Root$\mspft120.dll",
+        "$Root$\mspft140.dll",
         "$Root$\1033\clui.dll",
-        "$VSBasePath$\VC\redist\x86\Microsoft.VC120.CRT\msvcp120.dll",
-        "$VSBasePath$\VC\redist\x86\Microsoft.VC120.CRT\msvcr120.dll",
-        "$VSBasePath$\VC\redist\x86\Microsoft.VC120.CRT\vccorlib120.dll"
+        "$VSBasePath$\VC\redist\x86\Microsoft.VC140.CRT\concrt140.dll",
+        "$VSBasePath$\VC\redist\x86\Microsoft.VC140.CRT\msvcp140.dll",
+        "$VSBasePath$\VC\redist\x86\Microsoft.VC140.CRT\vccorlib140.dll"
+        "$VSBasePath$\VC\redist\x86\Microsoft.VC140.CRT\vcruntime140.dll"
     }
 }
 
@@ -138,8 +137,8 @@ Compiler( "Compiler-x64" )
 	.CompilerOptions 		        + ' /Fo"%2"'
     .CppCompilerOptions             = ""
 		
-	.LibrarianOptions		        = '/NODEFAULTLIB /WX /NOLOGO /OUT:"%2" "%1"'
-	.LinkerOptions			        = '/NODEFAULTLIB /WX /NOLOGO /INCREMENTAL:NO /OUT:"%2" "%1"'
+	.LibrarianOptions		        = '/WX /NOLOGO /OUT:"%2" "%1"'
+	.LinkerOptions			        = '/WX /NOLOGO /INCREMENTAL:NO /OUT:"%2" "%1"'
 	
 	.CompilerDebugOptimizations		= " /Od /Oi /Oy- /RTC1 /MTd /Z7 /GS /Gy /GR-"
 									+ " /fp:precise"
@@ -154,16 +153,17 @@ Compiler( "Compiler-x64" )
 	
 	.BaseIncludePaths		        = ' /I"./"'
 							        + ' /I"$VSBasePath$/VC/include/"'
-							        + ' /I"$VSBasePath$/VC/atlmfc/Include/"'
-							        + ' /I"$WindowsSDKBasePath$/Include/um"'
-							        + ' /I"$WindowsSDKBasePath$/Include/shared"'
+                                    + ' /I"$VSBasePath$/VC/atlmfc/Include/"'
+                                    + ' /I"$WindowsSDKBasePath$/Include/10.0.10586.0/ucrt"'
+                                    + ' /I"$WindowsSDKBasePath$/Include/10.0.10586.0/um"'
+                                    + ' /I"$WindowsSDKBasePath$/Include/10.0.10586.0/shared"'
 
-    .WindowsLibPaths                = "$WindowsSDKBasePath$/Lib/winv6.3/um"
+    .WindowsLibPaths                = "$WindowsSDKBasePath$/Lib/10.0.10586.0/"
 
     .DLLCompilerOptions             = ""
     .DLLLinkerOptions               = " /DLL"
 
-							
+    .LinkerOptions                  + " /NODEFAULTLIB:libcmtd"
 	.CompilerOptions 		        + .BaseIncludePaths
 
     //Options for compiler for precompiled header -- Not recomanded for distributed builds  (is Machine-Specific)
@@ -214,7 +214,8 @@ Compiler( "Compiler-x64" )
 	.CompilerOptions		    + .x86Definitions
 
 	.LinkerOptions			    + " /MACHINE:X86"                        
-    .LinkerOptions              + ' /LIBPATH:"$WindowsLibPaths$/x86"'   //Windows SDK's library path for x86
+    .LinkerOptions              + ' /LIBPATH:"$WindowsLibPaths$/um/x86"'   //Windows SDK's library paths for x86
+                                + ' /LIBPATH:"$WindowsLibPaths$/ucrt/x86"'
                                 + ' /LIBPATH:"$VSBasePath$/VC/lib"'     //VisualStudio library path for x86
 
 
@@ -299,7 +300,8 @@ Compiler( "Compiler-x64" )
 	//.PCHOptions			    + .x64Definitions
 
 	.LinkerOptions			    + " /MACHINE:X64"                                   //x64 specific argurment
-    .LinkerOptions              + ' /LIBPATH:"$WindowsLibPaths$/x64"'               //Windows SDK's library path for x64
+    .LinkerOptions              + ' /LIBPATH:"$WindowsLibPaths$/um/x64"'               //Windows SDK's library path for x64
+                                + ' /LIBPATH:"$WindowsLibPaths$/ucrt/x64"'
                                 + ' /LIBPATH:"$VSBasePath$/VC/lib/amd64"'           //VisualStudio library path for x64
 ]
 .X64DebugConfig =
