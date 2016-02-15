@@ -49,7 +49,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .CompilerInputPath          = "$SourcesPath$/"
         .CompilerInputPattern       = "*.cc"
         .CompilerInputFiles         = .ProjectExtraCompileFiles
-        .CompilerInputExcludePath    = "$SourcesPath$/Tests"
+        .CompilerInputExcludePath   = "$SourcesPath$/Tests"
 
         .CompilerOutputPath		   	= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
         .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this library
