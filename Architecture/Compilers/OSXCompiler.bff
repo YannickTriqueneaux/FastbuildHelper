@@ -111,5 +111,3 @@ Compiler( 'Compiler-x64-OSX' )
 [
     Using(.X64ReleaseConfig)
 ]
-
-.PlatformDefaultLibs = ''
