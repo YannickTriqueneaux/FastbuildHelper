@@ -28,14 +28,7 @@
 
 
 
-//      * All / <No Alias>    -Build all projects with the default platform and configuration   ->  This alias wil be used by default if no alias is specified
-Alias('All')
-{
-    Using( .DefaultCompilerConfig)
 
-    .aliaseName = "All-$Platform$-$Config$"
-    .Targets    = "$aliaseName$"
-}
 
 
 
@@ -138,7 +131,7 @@ ForEach(.CompilerConfig in .Compilerx64Configs)
 {
     Using(.CompilerConfig)
 
-    .aliaseName = "All-$Platform$-$Config$"
+    .aliaseName = "$Platform$-$Config$"
 
     .AliasTargets = {}//init by array type
     ForEach(.pname in.ProjectNames)  //build all projects no-platform specific
@@ -183,11 +176,11 @@ Alias("Debug")
     }
     ForEach(.pname in.x86OnlyProjectNames) //add all x86 only projects
     {
-        ^AliasTargets + "$pname$-$Platform$-$Config$"
+        ^Targets + "$pname$-$Platform$-$Config$"
     }
     ForEach(.pname in.x86OnlyProjectTestNames) //add all x86 only tests projects
     {
-        ^AliasTargets + "$pname$-$Platform$-$Config$"
+        ^Targets + "$pname$-$Platform$-$Config$"
     }
     ForEach(.pname in.x64OnlyProjectNames) //add all x64 only projects
     {
@@ -216,11 +209,11 @@ Alias("Release")
     }
     ForEach(.pname in.x86OnlyProjectNames) //add all x86 only projects
     {
-        ^AliasTargets + "$pname$-$Platform$-$Config$"
+        ^Targets + "$pname$-$Platform$-$Config$"
     }
     ForEach(.pname in.x86OnlyProjectTestNames) //add all x86 only tests projects
     {
-        ^AliasTargets + "$pname$-$Platform$-$Config$"
+        ^Targets + "$pname$-$Platform$-$Config$"
     }
     ForEach(.pname in.x64OnlyProjectNames) //add all x64 only projects
     {
@@ -230,4 +223,14 @@ Alias("Release")
     {
         ^Targets + "$pname$-$Platform$-$Config$"
     }
+}
+
+
+//      * All / <No Alias>    -Build all projects with the default platform and configuration   ->  This alias wil be used by default if no alias is specified
+Alias('All')
+{
+    Using(.DefaultCompilerConfig)
+
+    .aliaseName = "$Platform$-$Config$"
+    .Targets = "$aliaseName$"
 }

@@ -2,9 +2,9 @@
 
 ForEach(.pfile in.ProjectExtraCompileFiles)
 {
-    ^ProjectFiles + "$pfile;"
+    ^ProjectFiles + "^$(SolutionDir)$pfile$;"
 }
 ForEach(.pfile in.ProjectExtraHeaderFiles)
 {
-    ^ProjectFiles + "$pfile;"
+    ^ProjectFiles + "^$(SolutionDir)$pfile$;"
 }

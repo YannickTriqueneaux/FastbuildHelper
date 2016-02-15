@@ -23,7 +23,7 @@ VSSolution( "$VSSolutionName$" )
 	
 	
 	
-	.SolutionBuildProject   = "BuildAll-proj"
+	.SolutionBuildProject   = "Build_$VSSolutionName$-proj"
 						  
 	.SolutionConfigs	    = .ProjectConfigs
 
@@ -35,4 +35,14 @@ VSSolution( "$VSSolutionName$" )
     .SolutionProjects       = .VSProjects                       
     .SolutionFolders	    = .VSSolutionFolders
     .SolutionDependencies   = .VSSolutionProjectDependencies
+}
+
+ForEach(.CompileConfig in.CompilerConfigs){
+    Using(.CompileConfig)
+
+
+    Alias("All-$VSSolutionName$-$Platform$-$Config$")
+    {
+        .Targets = "$Platform$-$Config$"
+    }
 }

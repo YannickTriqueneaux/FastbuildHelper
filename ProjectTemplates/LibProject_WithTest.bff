@@ -33,7 +33,6 @@
 ForEach( .CompilerConfig in .CompilerConfigs )
 {
 	Using( .CompilerConfig )
-	Using( .CompiledFileExtensions )
 	
 	.aliasName 	= "$ProjectName$-$Platform$-$Config$"
     .aliasTestName = "Tests-$aliasName$"

@@ -118,7 +118,7 @@ Compiler( "Compiler-x64" )
 //Base configuration for all Windows Compilation
 .BaseConfigurations = 
 [
-    Using(.CompiledFileExtensions)
+    Using(.PlatformFileExtensions)
     Using(.DefaultDefinitions)
     
 	.AdditionalWarnings		        = " /we4062" // enumerator 'identifier' in a switch of enum 'enumeration' is not handled
@@ -265,7 +265,7 @@ Compiler( "Compiler-x64" )
 							    
 	.CompilerOptions            + .CompilerReleaseOptimizations     
 	.LibrarianOptions		    + .LibrarianReleaseOptimizations    //Release specific libarian optimization
-	.LinkerOptions			    + .LinkerReleaseOptimizationson     //Release specific linker Optimization
+	.LinkerOptions			    + .LinkerReleaseOptimizations     //Release specific linker Optimization
                                                                   
 
     .DLLCompilerOptions         + " /LD"                            //Release specific DLL argument - //Creates a release DLL. Defines _MT and _RELEASE.

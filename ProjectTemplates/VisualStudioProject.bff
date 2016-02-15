@@ -22,22 +22,23 @@
 VCXProject("$ProjectName$-vsproj")//Executable, Library or DLL project
 {
     Using(.ProjectCommon)
-        .ProjectOutput          = "$VSSolutionDestination$/Projects/$ProjectName$/$ProjectName$.vcxproj"    //Filename of project file.
 
-        //Adding files in project-------------
-        .ProjectInputPaths      = { "$SourcesPath$/" }                              //Paths to include in project
-        .ProjectBasePath        = "$SourcesPath$/"                                  //Base path(s) for root folder(s) in project
+    .ProjectOutput          = "$VSSolutionDestination$/Projects/$ProjectName$/$ProjectName$.vcxproj"    //Filename of project file.
 
+    //Adding files in project-------------
+    .ProjectInputPaths      = { "$SourcesPath$/" }                              //Paths to include in project
+    .ProjectBasePath        = "$SourcesPath$/"                                  //Base path(s) for root folder(s) in project
+    .ProjectFiles           = {}
 #include "../Architecture/VS/Tools/AddExtraFiles.bff"                               //List of files to include in project
-        //-------------------------------------
+    //-------------------------------------
 
-        //Intellisense Options ----------------
-        .ForcedIncludes         = "$SourcesPath$/Public.hpp"                        //Force included files.
-        .IncludeSearchPath      + "$SourcesPath$/"                                  //Include search paths.
+    //Intellisense Options ----------------
+    .ForcedIncludes         = "^$(SolutionDir)$SourcesPath$/Public.hpp"                        //Force included files.
+    .IncludeSearchPath      + "$SourcesPath$/"                                  //Include search paths.
 
 #include "../Architecture/VS/Tools/AddIncludePaths.bff"                     
 #include "../Architecture/VS/Tools/AddExtraDefines.bff"                             //Preprocessor definitions.
-        //-------------------------------------
+    //-------------------------------------
 }
 					
 

@@ -31,7 +31,6 @@
 ForEach( .CompilerConfig in .CompilerConfigs )
 {
 	Using( .CompilerConfig )
-	Using( .CompiledFileExtensions )
 	
     .aliasName      = "$ProjectName$-$Platform$-$Config$"
     .aliasTestName  = "Tests-$aliasName$"
@@ -112,7 +111,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
     Executable("$aliasName$-EXE")
     {
-        .Libraries                  = { "$aliasName$Test-Obj", "$aliasName$-Obj" , "$aliasName$-DLL" }
+        .Libraries                  = { "$aliasName$Test-Obj", "$aliasName$-DLL" }
 
         ForEach(.pdep in .ProjectDependencies)
         {

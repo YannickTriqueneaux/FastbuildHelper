@@ -52,20 +52,26 @@
 }
 
 // Project to compile everything
-VCXProject( "BuildAll-proj" )
+VCXProject( "Build_$VSSolutionName$-proj" )
 {
     Using( .ProjectCommon )
-	.ProjectOutput				= "VSSolution/All.vcxproj"
+	.ProjectOutput				= "VSSolution/All-$VSSolutionName$.vcxproj"
 	.ProjectFiles				= { "./fbuild.bff" }
 	.ProjectBasePath			= './'
 }
 
-.AllFolder = 
+.AllProjectFolder = 
 [
 	.Path			            = "__FastBuild__"
-	.Projects		            = { "BuildAll-proj" }
+	.Projects		            = { "Build_$VSSolutionName$-proj" }
 ]
 
-.VSSolutionFolders 		        = { .AllFolder }
-.VSSolutionProjectDependencies 	= { }
-.VSProjects = { "BuildAll-proj" }
+.AllProjectDependencies =
+[
+    .Projects = { "Build_$VSSolutionName$-proj" }          //Project(s) to specify dependencies for
+    .Dependencies = {}                                     //init as array type
+]
+
+.VSSolutionFolders 		        = { .AllProjectFolder }
+.VSSolutionProjectDependencies  = { .AllProjectDependencies }
+.VSProjects = { "Build_$VSSolutionName$-proj" }
