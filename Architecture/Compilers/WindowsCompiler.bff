@@ -246,7 +246,7 @@ Compiler( "Compiler-x64" )
 
 	.LibrarianOptions		    + .LibrarianDebugOptimizations      //Debug specific libarian optimization
 	.LinkerOptions			    + .LinkerDebugOptimizations         //Debug specific linker Optimization
-                                + .PlaformDebugDefaultLibs
+    .PlatformDefaultLibs        = .PlaformDebugDefaultLibs
         
     .DLLCompilerOptions         + " /LDd"                           //Debug specific DLL argument - //Creates a debug DLL. Defines _MT and _DEBUG.
 ]
@@ -271,7 +271,7 @@ Compiler( "Compiler-x64" )
 	.CompilerOptions            + .CompilerReleaseOptimizations     
 	.LibrarianOptions		    + .LibrarianReleaseOptimizations    //Release specific libarian optimization
 	.LinkerOptions			    + .LinkerReleaseOptimizations     //Release specific linker Optimization
-                                + .PlaformReleaseDefaultLibs
+    .PlatformDefaultLibs        = .PlaformReleaseDefaultLibs
                                                                   
 
     .DLLCompilerOptions         + " /LD"                            //Release specific DLL argument - //Creates a release DLL. Defines _MT and _RELEASE.
@@ -328,7 +328,7 @@ Compiler( "Compiler-x64" )
 							    							
 	.LibrarianOptions		    + .LibrarianDebugOptimizations                      //Debug specific libarian optimization
 	.LinkerOptions			    + .LinkerDebugOptimizations                         //Debug specific linker Optimization
-                                + .PlaformDebugDefaultLibs                                                    
+    .PlatformDefaultLibs        = .PlaformDebugDefaultLibs                                                    
                                                                                     
     .DLLCompilerOptions         + " /LDd"                                           //Debug specific DLL argument - //Creates a debug DLL. Defines _MT and _DEBUG.
 ]                                                                                   
@@ -352,7 +352,7 @@ Compiler( "Compiler-x64" )
 							                                                        
 	.LibrarianOptions		    + .LibrarianReleaseOptimizations                    //Release specific libarian optimization
 	.LinkerOptions			    + .LinkerReleaseOptimizations                       //Release specific linker Optimization
-                                + .PlaformReleaseDefaultLibs                                                   
+    .PlatformDefaultLibs        = .PlaformReleaseDefaultLibs                                                   
                                                                                     
     .DLLCompilerOptions         + " /LD"                                            //Release specific DLL argument - //Creates a release DLL. Defines _MT and _RELEASE.
 ]
