@@ -24,7 +24,7 @@
 	.ProjectRebuildCommand		= "cd ^$(SolutionDir)/ &amp; fbuild -vs -dist -cache -clean ^$(ProjectName)-^$(Configuration)"
 	.OutputDirectory			= "^$(SolutionDir)/Build/^$(Configuration)"
 	.IntermediateDirectory		= "^$(SolutionDir)/Build/^$(Configuration)"
-	.PlatformToolset            = "v120"
+	.PlatformToolset            = "v140"
 	.IncludeSearchPath			= "^$(SolutionDir)../..;./"
     .PreprocessorDefinitions    = "FASTBUILD;" //default defines for intellisence
 ]
