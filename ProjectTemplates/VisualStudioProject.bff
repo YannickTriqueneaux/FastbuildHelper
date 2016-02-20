@@ -28,7 +28,7 @@ VCXProject("$ProjectName$-vsproj")//Executable, Library or DLL project
     //Adding files in project-------------
     .ProjectInputPaths      = { "$SourcesPath$/" }                              //Paths to include in project
     .ProjectBasePath        = "$SourcesPath$/"                                  //Base path(s) for root folder(s) in project
-    .ProjectFiles           = {}
+    .ProjectFiles           = { "$SourcesPath$/Project.opal"}
 #include "../Architecture/VS/Tools/AddExtraFiles.bff"                               //List of files to include in project
     //-------------------------------------
 

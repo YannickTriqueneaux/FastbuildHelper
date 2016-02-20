@@ -43,7 +43,7 @@ VCXProject("$ProjectName$-vsproj")//Executable, Library or DLL project
     .ProjectBasePath            = "$SourcesPath$/"                          //Base path(s) for root folder(s) in project
 
     .ProjectInputPathsExclude   = "$TestSourcesPath$/"                      //Paths to exclude from project
-    .ProjectFiles = {}
+    .ProjectFiles               = { "$SourcesPath$/Project.opal" }
 #include "../Architecture/VS/Tools/AddExtraFiles.bff"                       //List of files to include in project
 //-------------------------------------
 
