@@ -111,7 +111,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
     Executable("$aliasName$-EXE")
     {
-        .Libraries                  = { "$aliasName$Test-Obj", "$aliasName$-DLL" }
+        .Libraries                  = { "$aliasName$Test-Obj", "$aliasName$-Obj" }
 
         ForEach(.pdep in .ProjectDependencies)
         {
