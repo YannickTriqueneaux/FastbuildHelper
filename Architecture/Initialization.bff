@@ -33,6 +33,8 @@
 //they have to be cleaned after be used 
 .ProjectIncludePaths        = {} //paths to add during compilation in order to find exta solution's files   example  "#include <boost/any.h>"
 .ProjectLibraryPaths        = {} //library paths to add during compilation in order to find the librairies given in argument of compiler
+.ProjectLibraryPathsx86     = {} //Only for x86 - library paths to add during compilation in order to find the librairies given in argument of compiler
+.ProjectLibraryPathsx64     = {} //Only for x64 - library paths to add during compilation in order to find the librairies given in argument of compiler
 .ProjectExternalLibraries   = {} //librairies given in argument of compiler
 .ProjectExtraDefines        = {} //definitions added to the compiler   (e.g: "#define FOR_WINDOWS" for the compiler)
 .ProjectExtraCompileFiles   = {} //externals files to add for the compilation, used for external libraries who don't support the UnityBuild  (e.g: .cpp , .c or .cc)

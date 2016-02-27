@@ -61,7 +61,7 @@ Alias("x86")
 
 
 //      * x86-Debug           -Build all projects in Debug and in 32bits
-//      * x64-Release         -Build all projects in Release and in 64bits
+//      * x86-Release         -Build all projects in Release and in 64bits
 ForEach(.CompilerConfig in .Compilerx86Configs)
 {
     Using(.CompilerConfig)
