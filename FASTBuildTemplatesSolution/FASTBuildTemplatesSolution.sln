@@ -49,6 +49,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{0578E0C7
 		..\Architecture\Tools\AddLibraryPaths.bff = ..\Architecture\Tools\AddLibraryPaths.bff
 		..\Architecture\Tools\AddTestIncludePaths.bff = ..\Architecture\Tools\AddTestIncludePaths.bff
 		..\Architecture\Tools\AliasesMaker.bff = ..\Architecture\Tools\AliasesMaker.bff
+		..\Architecture\Tools\ConstructBuildDest.bff = ..\Architecture\Tools\ConstructBuildDest.bff
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Architecture", "Architecture", "{788E2983-C108-47E3-8F1C-EF743A35736D}"

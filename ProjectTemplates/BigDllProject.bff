@@ -4,9 +4,9 @@
 
 //By default only Windows have to use this flag
 #if __WINDOWS__
-.IsBigObject = .bigObjectFlag
+.ProjectIsBigObject = .bigObjectFlag
 #endif
 
 #include "DLLProject.bff"
 
-.IsBigObject = ""
+.ProjectIsBigObject = ""

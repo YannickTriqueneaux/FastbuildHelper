@@ -34,22 +34,25 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #include "../Architecture/Tools/AddExtraLinkFlags.bff"
 #include "../Architecture/Tools/AddExternalLibraries.bff"
 
+    .buildDest = ""
+#include "../Architecture/Tools/ConstructBuildDest.bff"
+
 #if __WINDOWS__
     ObjectList( "$aliasName$-Obj" )
     {
         .CompilerOptions            + .DLLCompilerOptions
                                     + .CppCompilerOptions
-                                    + .IsBigObject
+                                    + .ProjectIsBigObject
 
         .CompilerInputPath          = "$SourcesPath$/"
         .CompilerInputPattern       = "*.cc"
         .CompilerInputFiles         = .ProjectExtraCompileFiles
-        .CompilerOutputPath		   	= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
+        .CompilerOutputPath		   	= .buildDest + "Obj/$ProjectName$/"
     }
 #endif
 
 #if __LINUX__
-    Library( "$aliasName$-Obj" )
+    Library("$aliasName$-Obj")
     {
         .CompilerOptions            + .DLLCompilerOptions
                                     + .CppCompilerOptions
@@ -57,8 +60,9 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .CompilerInputPath          = "$SourcesPath$/"
         .CompilerInputPattern       = "*.cc"
         .CompilerInputFiles         = .ProjectExtraCompileFiles
-        .CompilerOutputPath			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
-        .LibrarianOutput 			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$' + .staticLibExt
+
+        .CompilerOutputPath         = .buildDest + "Obj/$ProjectName$/"
+        .LibrarianOutput            = .buildDest + "Obj/$ProjectName$" + .staticLibExt
     }
 #endif
 
@@ -75,7 +79,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .LinkerOptions              + .DLLLinkerOptions
                                     + .PlatformDefaultLibs
                                     
-        .LinkerOutput = "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .dynamicLibExt
+        .LinkerOutput               = .buildDest + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .dynamicLibExt
     }
 
     Alias("$aliasName$") { .Targets = { "$aliasName$-DLL" } }

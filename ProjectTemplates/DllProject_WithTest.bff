@@ -41,6 +41,10 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #include "../Architecture/Tools/AddExtraCompileFlags.bff"
 #include "../Architecture/Tools/AddExtraLinkFlags.bff"
 #include "../Architecture/Tools/AddExternalLibraries.bff"
+
+
+    .buildDest = ""
+#include "../Architecture/Tools/ConstructBuildDest.bff"
     
 #if __WINDOWS__
     ObjectList( "$aliasName$-Obj" )
@@ -50,7 +54,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .CompilerInputFiles         = .ProjectExtraCompileFiles
         .CompilerInputExcludePath   = "$SourcesPath$/Tests"
 
-        .CompilerOutputPath		   	= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
+        .CompilerOutputPath         = .buildDest + "Obj/$ProjectName$/"
         .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this library
                                     + .CppCompilerOptions
     }
@@ -63,12 +67,13 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .CompilerInputPattern       = "*.cc"
         .CompilerInputFiles         = .ProjectExtraCompileFiles
         .CompilerInputExcludePath    = "$SourcesPath$/Tests"
+        
+        .CompilerOutputPath			= .buildDest + "Obj/$ProjectName$/"
+        .LibrarianOutput 			= .buildDest + "Obj/$ProjectName$" + .staticLibExt
 
-        .CompilerOutputPath			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
-        .LibrarianOutput 			= '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$' + .staticLibExt
         .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this library
                                     + .CppCompilerOptions
-}
+    }
 #endif
 
 
@@ -84,7 +89,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .LinkerOptions              + .DLLLinkerOptions
                                     + .PlatformDefaultLibs
 
-        .LinkerOutput = "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .dynamicLibExt
+        .LinkerOutput               = .buildDest + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .dynamicLibExt
     }
 
 
@@ -94,7 +99,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #include "../Architecture/Tools/AddTestIncludePaths.bff"
 
         .CompilerInputFiles         = "$TestSourcesPath$/Main.test.cc"
-        .CompilerOutputPath         = "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
+        .CompilerOutputPath         = .buildDest + "Obj/$ProjectName$/"
     }
 #endif
 #if __LINUX__
@@ -103,9 +108,9 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #include "../Architecture/Tools/AddTestIncludePaths.bff"
         .CompilerOptions            + .CppCompilerOptions
 
-        .CompilerInputFiles         = '$TestSourcesPath$/Main.test.cc'
-        .CompilerOutputPath         = '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/'
-        .LibrarianOutput            = '$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/Main.test' + .staticLibExt
+        .CompilerInputFiles         = "$TestSourcesPath$/Main.test.cc"
+        .CompilerOutputPath         = .buildDest + "Obj/$ProjectName$/"
+        .LibrarianOutput            = .buildDest + "Obj/$ProjectName$/Main.test" + .staticLibExt
     }
 #endif
 
@@ -120,7 +125,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
         .LinkerOptions              + .PlatformDefaultLibs
 
-        .LinkerOutput               = "$BuildDestination$/$Platform$-$Config$/Tests-$ProjectName$" + .executableExt
+        .LinkerOutput               = .buildDest + "Tests-$ProjectName$" + .executableExt
     }
 
 

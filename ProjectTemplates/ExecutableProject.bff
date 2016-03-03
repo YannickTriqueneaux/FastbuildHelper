@@ -34,13 +34,16 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #include "../Architecture/Tools/AddExtraLinkFlags.bff"
 #include "../Architecture/Tools/AddExternalLibraries.bff"
 
+    .buildDest = ""
+#include "../Architecture/Tools/ConstructBuildDest.bff"
+
 #if __WINDOWS__
     ObjectList( "$aliasName$-Obj" )
     {
         .CompilerInputPath          = "$SourcesPath$/"
         .CompilerInputPattern       = "*.cc"
         .CompilerInputFiles         = .ProjectExtraCompileFiles
-        .CompilerOutputPath		   	= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
+        .CompilerOutputPath		   	= .buildDest + "Obj/$ProjectName$/"
 
         .CompilerOptions            + .DLLCompilerOptions
                                     + .CppCompilerOptions
@@ -56,8 +59,10 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .CompilerInputPath          = "$SourcesPath$/"
         .CompilerInputPattern       = "*.cc"
         .CompilerInputFiles         = .ProjectExtraCompileFiles
-        .CompilerOutputPath			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
-        .LibrarianOutput 			= "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$" + .staticLibExt
+
+       
+        .CompilerOutputPath			= .buildDest + "Obj/$ProjectName$/"
+        .LibrarianOutput 			= .buildDest + "Obj/$ProjectName$" + .staticLibExt
     }
 #endif
 
@@ -73,7 +78,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
         .LinkerOptions              + .PlatformDefaultLibs
                                     
-        .LinkerOutput               = "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + "$ProjectName$" + .executableExt
+        .LinkerOutput               = .buildDest + .buildDestinationFolder + "$ProjectName$" + .executableExt
     }
 
     Alias("$aliasName$") { .Targets = { "$aliasName$-EXE" } }

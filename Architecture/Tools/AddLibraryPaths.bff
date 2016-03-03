@@ -15,10 +15,12 @@ ForEach(.libpath in .ProjectLibraryPaths)
 
 ForEach(.libpath in ."ProjectLibraryPaths$Platform$")
 {
+
 #if __WINDOWS__
     ^LinkerOptions + ' /LIBPATH:"$libpath$"'
 #endif
 #if __LINUX__
     ^LinkerOptions + " -L$libpath$"
 #endif
+
 }

@@ -37,13 +37,17 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #include "../Architecture/Tools/AddExtraLinkFlags.bff"
 #include "../Architecture/Tools/AddExternalLibraries.bff"
 
+
+    .buildDest = ""
+#include "../Architecture/Tools/ConstructBuildDest.bff"
+
     Library("$aliasName$-Lib")
     {
         .CompilerInputPath          = "$SourcesPath$/"
         .CompilerInputPattern       = "*.c"
         .CompilerInputFiles         = .ProjectExtraCompileFiles
-        .CompilerOutputPath         = "$BuildDestination$/$Platform$-$Config$/Obj/$ProjectName$/"
-        .LibrarianOutput            = "$BuildDestination$/$Platform$-$Config$/" + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .staticLibExt
+        .CompilerOutputPath         = .buildDest + "Obj/$ProjectName$/"
+        .LibrarianOutput            = .buildDest + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .staticLibExt
 
         .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this
     }

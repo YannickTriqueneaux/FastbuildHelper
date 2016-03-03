@@ -5,7 +5,7 @@ Unity( "$ProjectName$-CUnity" /*Dasabled for the moment*/ )
 	.UnityInputPath             = { "$SourcesPath$/" }	// (optional) Path (or paths) to find files
 							 
 	.UnityInputExcludePattern 	= "*.cpp"	// (optional) Wildcard pattern(s) of files/folders to exclude
-    .UnityInputExcludePath      = .TestSourcesPath	// (optional) Path (or paths) in which to ignore files
+    .UnityInputExcludePath      = .ProjectTestSourcesPath	// (optional) Path (or paths) in which to ignore files
 	.UnityInputPattern        	= "*.c" //support *.c (optional) Pattern of files to find (default *.cpp)
 	.UnityOutputPath         	= "$BuildDestination$/Unity/"	// Path to output generated Unity files
 	.UnityOutputPattern      	= "$ProjectName$.c"			// (optional) Pattern of output Unity file names (default Unity*.cpp)

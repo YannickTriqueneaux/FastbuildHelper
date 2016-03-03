@@ -22,8 +22,13 @@
 [
 	.ProjectBuildCommand		= "cd ^$(SolutionDir)/ &amp; fbuild -vs -dist -cache ^$(ProjectName)-^$(Configuration)"
 	.ProjectRebuildCommand		= "cd ^$(SolutionDir)/ &amp; fbuild -vs -dist -cache -clean ^$(ProjectName)-^$(Configuration)"
-	.OutputDirectory			= "^$(SolutionDir)/Build/^$(Configuration)"
-	.IntermediateDirectory		= "^$(SolutionDir)/Build/^$(Configuration)"
+	.OutputDirectory			= "^$(SolutionDir)/$BuildDestination$/"
+    .IntermediateDirectory      = "^$(SolutionDir)/$BuildDestination$/"
+    ForEach(.elm in .EnableBuildDestByConfig)
+    {
+        ^OutputDirectory        + "^$(Configuration)"
+        ^IntermediateDirectory  + "^$(Configuration)"
+    }
 	.PlatformToolset            = "v140"
 	.IncludeSearchPath			= "^$(SolutionDir)../..;./"
     .PreprocessorDefinitions    = "FASTBUILD;" //default defines for intellisence
