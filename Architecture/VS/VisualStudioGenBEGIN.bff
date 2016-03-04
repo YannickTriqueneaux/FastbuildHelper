@@ -13,15 +13,15 @@
 	
 	.X86Defines					= "WIN32_LEAN_AND_MEAN;_WIN32;__WINDOWS__;WIN32;"
 	.X64Defines					= "WIN32_LEAN_AND_MEAN;_WIN64;__WINDOWS__;WIN64;_M_X64;"
-	.DebugDefines				= "DEBUG;PROFILING_ENABLED"
+	.DebugDefines				= "DEBUG;PROFILING_ENABLED;FOR_DEBUG"
 	//.ProfileDefines			= "RELEASE;PROFILING_ENABLED"
-	.ReleaseDefines				= "RELEASE"
+	.ReleaseDefines				= "RELEASE;FOR_RELEASE"
 ]
 
 .ProjectCommon = 
 [
-	.ProjectBuildCommand		= "cd ^$(SolutionDir)/ &amp; fbuild -vs -dist -cache ^$(ProjectName)-^$(Configuration)"
-	.ProjectRebuildCommand		= "cd ^$(SolutionDir)/ &amp; fbuild -vs -dist -cache -clean ^$(ProjectName)-^$(Configuration)"
+	.ProjectBuildCommand		= "cd ^$(SolutionDir)/ &amp; fbuild ^$(ProjectName)-^$(Configuration) -vs -dist -cache -nostoponerror"
+	.ProjectRebuildCommand		= "cd ^$(SolutionDir)/ &amp; fbuild -clean ^$(ProjectName)-^$(Configuration) -vs -dist -cache -nostoponerror"
 	.OutputDirectory			= "^$(SolutionDir)/$BuildDestination$/"
     .IntermediateDirectory      = "^$(SolutionDir)/$BuildDestination$/"
     ForEach(.elm in .EnableBuildDestByConfig)

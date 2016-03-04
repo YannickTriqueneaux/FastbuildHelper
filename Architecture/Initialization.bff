@@ -16,7 +16,7 @@
 
 //list of all projects to build
 .ProjectNames               = {}  //add any project allowing all platfoms
-.ProjectTestNames           = {}  //(Optional) add any project allowing all platfoms
+.ProjectTestNames           = {}  //(Optional) add any project tests allowing all platfoms
 
 //-- any project with platfom specification
 .x86OnlyProjectNames        = {}  //(Optional) add all projects for x86 Only
@@ -38,6 +38,7 @@
 .ProjectSourcesPath         = "" // Specify the project sources path, should be relative to the "fbuild.bff"
 .ProjectTestSourcesPath     = "" //(Optional) Specify the project's test sources path, should be relative to the "fbuild.bff"
 
+.ProjectFolder              = "" //(Optional) Specify the folder to place your project in VisualStudio Solution (e.g: "Common/Tools")
 .ProjectBuildDestination    = "" //(Optional) appended to the .BuildDestination, speficy the sub folder to the project
 
 //Projects arguments
@@ -59,7 +60,10 @@
 .ProjectExtraLinkFlags      = {} //(Optional) Link flags to add in the project (e.g: ignore:4099 for desabling link warning on windows)
 
 
-
+//Project Test arguments
+.ProjectTestLogsPath        = "" // Output file for captured test output, relative to the "fbuild.bff"
+.ProjectTestArguments       = {} // (optional)Arguments to pass to test executable
+.ProjectTestWorkingDir      = "" // (optional)Working dir for test execution, relative to the "fbuild.bff"
 
 
 
@@ -68,3 +72,4 @@
 
 //Projects Extra arguments
 .ProjectIsBigObject         = "" // flag to specify that the object to build will contains more than 65,536 (2^16) of number of sections (see: https://msdn.microsoft.com/en-us/library/ms173499.aspx)
+.SolutionTests              = {} // list all Test to launch with the current solution

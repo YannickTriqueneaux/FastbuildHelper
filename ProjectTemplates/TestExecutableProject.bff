@@ -1,0 +1,19 @@
+
+#include  "ExecutableProject.bff"
+
+ForEach(.CompilerConfig in.CompilerConfigs)
+{
+    Using(.CompilerConfig)
+
+    .aliasName = "$ProjectName$-$Platform$-$Config$"
+
+    
+    Test( "$aliasName$-TEST" )
+    {
+        .TestExecutable             = "$aliasName$-EXE"                                 // Executable to execute
+        .TestOutput                 = .buildDest + ".testlogs/" + .ProjectName          // Output file for captured test output
+        .TestArguments              = { .ProjectTestArguments }                         // (optional)Arguments to pass to test executable
+        .TestWorkingDir             = .buildDest                                        // (optional)Working dir for test execution
+    }
+    ^SolutionTests                  + "$aliasName$-TEST"
+}

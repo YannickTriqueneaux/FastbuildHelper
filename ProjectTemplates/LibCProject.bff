@@ -2,7 +2,7 @@
 //
 //  This templates is only tested on Windows and Linux
 //  
-//  This one will build all *.c files in the folder  $SourcesPath$/  including sub folders
+//  This one will build all *.c files in the folder  $ProjectSourcesPath$/  including sub folders
 //  also all .ExtraCompileFiles
 //
 //  Because the Linux compiler do not accpet C++ specific arguments
@@ -43,11 +43,11 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
     Library("$aliasName$-Lib")
     {
-        .CompilerInputPath          = "$SourcesPath$/"
+        .CompilerInputPath          = "$ProjectSourcesPath$/"
         .CompilerInputPattern       = "*.c"
         .CompilerInputFiles         = .ProjectExtraCompileFiles
         .CompilerOutputPath         = .buildDest + "Obj/$ProjectName$/"
-        .LibrarianOutput            = .buildDest + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .staticLibExt
+        .LibrarianOutput            = .buildDest + .ProjectBuildDestination + .libNamePrefix + "$ProjectName$" + .staticLibExt
 
         .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this
     }

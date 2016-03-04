@@ -24,6 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProjectTemplates", "Project
 		..\ProjectTemplates\LibCProject_WithTest.bff = ..\ProjectTemplates\LibCProject_WithTest.bff
 		..\ProjectTemplates\LibProject.bff = ..\ProjectTemplates\LibProject.bff
 		..\ProjectTemplates\LibProject_WithTest.bff = ..\ProjectTemplates\LibProject_WithTest.bff
+		..\ProjectTemplates\TestExecutableProject.bff = ..\ProjectTemplates\TestExecutableProject.bff
 		..\ProjectTemplates\UnityBuild.bff = ..\ProjectTemplates\UnityBuild.bff
 		..\ProjectTemplates\VisualStudioProject.bff = ..\ProjectTemplates\VisualStudioProject.bff
 		..\ProjectTemplates\VisualStudioProject_WithTest.bff = ..\ProjectTemplates\VisualStudioProject_WithTest.bff

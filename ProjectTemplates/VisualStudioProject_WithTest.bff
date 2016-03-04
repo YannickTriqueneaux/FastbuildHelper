@@ -5,9 +5,9 @@
 //
 //  This templates is only tested on Windows and Linux
 //  
-//  This one will contains all files in $SourcesPath$ including sub folders
+//  This one will contains all files in $ProjectSourcesPath$ including sub folders
 //  and also contains all files defined in .ProjectExtraCompileFiles ans .ProjectExtraHeaderFiles
-//  And will be placed in the "$currentFolder$/$ProjectName$" SolutionFolder
+//  And will be placed in the "$ProjectFolder$/$ProjectName$" SolutionFolder
 //
 //  The output VCXProject's name will be:  
 //      * $ProjectName$
@@ -39,18 +39,18 @@ VCXProject("$ProjectName$-vsproj")//Executable, Library or DLL project
     .ProjectOutput              = "$VSSolutionDestination$/Projects/$ProjectName$/$ProjectName$.vcxproj"    //Filename of project file.
 
 //Adding files in project-------------
-    .ProjectInputPaths          = { "$SourcesPath$/" }                      //Paths to include in project
-    .ProjectBasePath            = "$SourcesPath$/"                          //Base path(s) for root folder(s) in project
+    .ProjectInputPaths          = { "$ProjectSourcesPath$/" }                      //Paths to include in project
+    .ProjectBasePath            = "$ProjectSourcesPath$/"                          //Base path(s) for root folder(s) in project
 
-    .ProjectInputPathsExclude   = "$TestSourcesPath$/"                      //Paths to exclude from project
-    .ProjectFiles               = { "$SourcesPath$/Project.opal" }
+    .ProjectInputPathsExclude   = "$ProjectTestSourcesPath$/"                      //Paths to exclude from project
+    .ProjectFiles               = { "$ProjectSourcesPath$/Project.opal" }
 #include "../Architecture/VS/Tools/AddExtraFiles.bff"                       //List of files to include in project
 //-------------------------------------
 
 
 //Intellisense Options ----------------
-    .ForcedIncludes             = "^$(SolutionDir)$SourcesPath$/Public.hpp"                //Force included files.
-    .IncludeSearchPath          + "$SourcesPath$/"                          //Include search paths.
+    .ForcedIncludes             = "^$(SolutionDir)$ProjectSourcesPath$/Public.hpp"                //Force included files.
+    .IncludeSearchPath          + "$ProjectSourcesPath$/"                          //Include search paths.
 
 #include "../Architecture/VS/Tools/AddIncludePaths.bff"                     
 #include "../Architecture/VS/Tools/AddExtraDefines.bff"                     //Preprocessor definitions.
@@ -67,13 +67,13 @@ VCXProject("$ProjectName$-vsproj-test")//Associated Test Project
 
 
 //Adding files in project-------------
-    .ProjectInputPaths          = { "$TestSourcesPath$/" }                  //Paths to include in project
-    .ProjectBasePath            = "$TestSourcesPath$/"                      //Base path(s) for root folder(s) in project
+    .ProjectInputPaths          = { "$ProjectTestSourcesPath$/" }                  //Paths to include in project
+    .ProjectBasePath            = "$ProjectTestSourcesPath$/"                      //Base path(s) for root folder(s) in project
 //------------------------------------
 
 
 //Intellisense Options ---------------
-    .IncludeSearchPath          + "$TestSourcesPath$/"                      //Include search paths.
+    .IncludeSearchPath          + "$ProjectTestSourcesPath$/"                      //Include search paths.
 
 #include "../Architecture/VS/Tools/AddIncludePaths.bff"                     
 #include "../Architecture/VS/Tools/AddTestIncludePaths.bff"                 
@@ -87,7 +87,7 @@ VCXProject("$ProjectName$-vsproj-test")//Associated Test Project
 
 .VSFolder =
 [
-    .Path                       = "$currentFolder$/$ProjectName$"                           //Folder path in Solution
+    .Path                       = "$ProjectFolder$/$ProjectName$"                           //Folder path in Solution
     .Projects                   = { "$ProjectName$-vsproj", "$ProjectName$-vsproj-test" }   //Project(s) to store in this folder
 ]
 

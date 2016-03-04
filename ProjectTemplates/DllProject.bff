@@ -3,7 +3,7 @@
 //
 //  This templates is only tested on Windows and Linux
 //  
-//  This one will build all *.cc files in the folder   $SourcesPath$/  including sub folders
+//  This one will build all *.cc files in the folder   $ProjectSourcesPath$/  including sub folders
 //  also all .ExtraCompileFiles
 //  
 //
@@ -44,7 +44,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
                                     + .CppCompilerOptions
                                     + .ProjectIsBigObject
 
-        .CompilerInputPath          = "$SourcesPath$/"
+        .CompilerInputPath          = "$ProjectSourcesPath$/"
         .CompilerInputPattern       = "*.cc"
         .CompilerInputFiles         = .ProjectExtraCompileFiles
         .CompilerOutputPath		   	= .buildDest + "Obj/$ProjectName$/"
@@ -57,7 +57,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .CompilerOptions            + .DLLCompilerOptions
                                     + .CppCompilerOptions
 
-        .CompilerInputPath          = "$SourcesPath$/"
+        .CompilerInputPath          = "$ProjectSourcesPath$/"
         .CompilerInputPattern       = "*.cc"
         .CompilerInputFiles         = .ProjectExtraCompileFiles
 
@@ -79,7 +79,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .LinkerOptions              + .DLLLinkerOptions
                                     + .PlatformDefaultLibs
                                     
-        .LinkerOutput               = .buildDest + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .dynamicLibExt
+        .LinkerOutput               = .buildDest + .ProjectBuildDestination + .libNamePrefix + "$ProjectName$" + .dynamicLibExt
     }
 
     Alias("$aliasName$") { .Targets = { "$aliasName$-DLL" } }

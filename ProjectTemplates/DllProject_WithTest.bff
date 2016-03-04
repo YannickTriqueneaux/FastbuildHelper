@@ -2,7 +2,7 @@
 //
 //  This templates is only tested on Windows and Linux
 //  
-//  This one will build all *.cc files in the folder   $SourcesPath$/  including sub folders
+//  This one will build all *.cc files in the folder   $ProjectSourcesPath$/  including sub folders
 //  also all .ExtraCompileFiles
 //
 //  The output DLL's name will be:  
@@ -11,7 +11,7 @@
 //
 //
 //
-//  This one will also build a UnityTest executable taking all *.cc files in the folder   $TestSourcesPath$/  including sub folders
+//  This one will also build a UnityTest executable taking all *.cc files in the folder   $ProjectTestSourcesPath$/  including sub folders
 //
 //  The output UnitTest executable's name will be:
 //      * Tests-$ProjectName$.exe   on Windows
@@ -49,10 +49,10 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #if __WINDOWS__
     ObjectList( "$aliasName$-Obj" )
     {
-        .CompilerInputPath          = "$SourcesPath$/"
+        .CompilerInputPath          = "$ProjectSourcesPath$/"
         .CompilerInputPattern       = "*.cc"
         .CompilerInputFiles         = .ProjectExtraCompileFiles
-        .CompilerInputExcludePath   = "$SourcesPath$/Tests"
+        .CompilerInputExcludePath   = "$ProjectSourcesPath$/Tests"
 
         .CompilerOutputPath         = .buildDest + "Obj/$ProjectName$/"
         .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this library
@@ -63,10 +63,10 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #if __LINUX__
     Library( "$aliasName$-Obj" )
     {
-        .CompilerInputPath          = "$SourcesPath$/"
+        .CompilerInputPath          = "$ProjectSourcesPath$/"
         .CompilerInputPattern       = "*.cc"
         .CompilerInputFiles         = .ProjectExtraCompileFiles
-        .CompilerInputExcludePath    = "$SourcesPath$/Tests"
+        .CompilerInputExcludePath    = "$ProjectSourcesPath$/Tests"
         
         .CompilerOutputPath			= .buildDest + "Obj/$ProjectName$/"
         .LibrarianOutput 			= .buildDest + "Obj/$ProjectName$" + .staticLibExt
@@ -89,7 +89,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .LinkerOptions              + .DLLLinkerOptions
                                     + .PlatformDefaultLibs
 
-        .LinkerOutput               = .buildDest + .buildDestinationFolder + .libNamePrefix + "$ProjectName$" + .dynamicLibExt
+        .LinkerOutput               = .buildDest + .ProjectBuildDestination + .libNamePrefix + "$ProjectName$" + .dynamicLibExt
     }
 
 
@@ -98,7 +98,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     {
 #include "../Architecture/Tools/AddTestIncludePaths.bff"
 
-        .CompilerInputFiles         = "$TestSourcesPath$/Main.test.cc"
+        .CompilerInputFiles         = "$ProjectTestSourcesPath$/Main.test.cc"
         .CompilerOutputPath         = .buildDest + "Obj/$ProjectName$/"
     }
 #endif
@@ -108,7 +108,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #include "../Architecture/Tools/AddTestIncludePaths.bff"
         .CompilerOptions            + .CppCompilerOptions
 
-        .CompilerInputFiles         = "$TestSourcesPath$/Main.test.cc"
+        .CompilerInputFiles         = "$ProjectTestSourcesPath$/Main.test.cc"
         .CompilerOutputPath         = .buildDest + "Obj/$ProjectName$/"
         .LibrarianOutput            = .buildDest + "Obj/$ProjectName$/Main.test" + .staticLibExt
     }
@@ -127,6 +127,15 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
         .LinkerOutput               = .buildDest + "Tests-$ProjectName$" + .executableExt
     }
+
+    Test( "$aliasName$-TEST" )
+    {
+        .TestExecutable             = "$aliasName$-EXE"                                 // Executable to execute
+        .TestOutput                 = .buildDest + ".testlogs/" + .ProjectName          // Output file for captured test output
+        .TestArguments              = .ProjectTestArguments                             // (optional)Arguments to pass to test executable
+        .TestWorkingDir             = .buildDest                                        // (optional)Working dir for test execution
+    }
+    ^SolutionTests                  + "$aliasName$-TEST"
 
 
     Alias("$aliasName$")     {      .Targets = { "$aliasName$-DLL" } }

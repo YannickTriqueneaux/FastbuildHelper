@@ -125,6 +125,8 @@ Alias("x64")
 
 
 
+
+
 //      * x64-Debug             -Build all projects in Debug and in 64bits
 //      * x64-Release           -Build all projects in Release and in 64bits
 ForEach(.CompilerConfig in .Compilerx64Configs)
