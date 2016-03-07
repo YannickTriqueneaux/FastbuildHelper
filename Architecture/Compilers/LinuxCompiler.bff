@@ -49,13 +49,13 @@ Compiler( "Compiler-x64" )
     
     .BaseCompilerOptions    = '-o "%2" "%1" -c -g'
                             + " -I./"
-                            + " -Wall -Werror -Wfatal-errors"                   // warnings as errors
+                            + " -Werror -Wfatal-errors"                   // warnings as errors
                             + " -m64"                           // x86-64
 							+ .Definitions
                             
     .CompilerOptions        = .BaseCompilerOptions
 
-    .CppCompilerOptions     = " -std=c++11"
+    .CppCompilerOptions     = " -Wall -std=c++11"
                             // Disabled warnings
                             + " -Wno-invalid-offsetof" // we get the offset of members in non-POD types
                             + " -Wno-unused-variable"
