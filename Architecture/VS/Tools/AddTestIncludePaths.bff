@@ -1,0 +1,6 @@
+
+
+ForEach(.ipath in .GlobalTestIncludePaths)
+{
+    ^IncludeSearchPath + ";^$(SolutionDir)$ipath$"
+}

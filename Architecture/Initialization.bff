@@ -1,0 +1,75 @@
+
+
+
+//Archeture Initialization
+
+//--------------------------------------------------------------------------------//
+//  Solution parameters
+
+//Here are all variables initization, required for this FASTBuild architecture
+.VSSolutionName             = "" //spcify the name of the VisualStudio solution - this one will also become the Alias to build the Solution
+.VSSolutionDestination      = "" //specify the Path to the VisualStudio solution /!\ should be relative to the current "fbuild.bff" position
+
+.BuildDestination           = "" //specify the Path to the build destination folder /!\ should be relative to the current "fbuild.bff" position
+.EnableBuildDestByConfig    = {"yes"} //(Optional) put any value inside it to create a subfolder by configuration into the .BuildDestination. (e.g: EnableBuildDestByConfig = {"yes"} -> $BuildDestination$/x64-Release/ )
+
+
+//list of all projects to build
+.ProjectNames               = {}  //add any project allowing all platfoms
+.ProjectTestNames           = {}  //(Optional) add any project tests allowing all platfoms
+
+//-- any project with platfom specification
+.x86OnlyProjectNames        = {}  //(Optional) add all projects for x86 Only
+.x64OnlyProjectNames        = {}  //(Optional) add all projects for x64 Only
+.x86OnlyProjectTestNames    = {}  //(Optional) add all project tests for x86 Only
+.x64OnlyProjectTestNames    = {}  //(Optional) add all project tests for x64 Only
+
+
+//Global Extra projects arguments
+.GlobalIncludePaths         = {} //(Optional) Include path to add for all libs, DLL and Executables (including unit-tests)
+.GlobalTestIncludePaths     = {} //(Optional) Include path to add for all Test executable
+
+
+
+//------------------------------------------------------------------------------//
+// Projects parameters
+// If not cleared, the configuration will be applied to next projects
+.ProjectName                = "" // Specify the project name /!\ this one should be unique !
+.ProjectSourcesPath         = "" // Specify the project sources path, should be relative to the "fbuild.bff"
+.ProjectTestSourcesPath     = "" //(Optional) Specify the project's test sources path, should be relative to the "fbuild.bff"
+
+.ProjectFolder              = "" //(Optional) Specify the folder to place your project in VisualStudio Solution (e.g: "Common/Tools")
+.ProjectBuildDestination    = "" //(Optional) appended to the .BuildDestination, speficy the sub folder to the project
+
+//Projects arguments
+.ProjectDependencies        = {} //(Optional) Dependencies with an other project, /!\ have to be ordered -> upper to lower   (e.g:  Infrastructure, Framework, Matio,System)
+
+
+
+//Because the folowing projects options are OPTIONAL
+//they have to be cleaned after be used 
+.ProjectIncludePaths        = {} //(Optional) paths to add during compilation in order to find exta solution's files   example  "#include <boost/any.h>"
+.ProjectLibraryPaths        = {} //(Optional) library paths to add during compilation in order to find the librairies given in argument of compiler, should be relative to the "fbuild.bff"
+.ProjectLibraryPathsx86     = {} //(Optional) Only for x86 - library paths to add during compilation in order to find the librairies given in argument of compiler, should be relative to the "fbuild.bff"
+.ProjectLibraryPathsx64     = {} //(Optional) Only for x64 - library paths to add during compilation in order to find the librairies given in argument of compiler, should be relative to the "fbuild.bff"
+.ProjectExternalLibraries   = {} //(Optional) librairies given in argument of compiler
+.ProjectExtraDefines        = {} //(Optional) definitions added to the compiler   (e.g: "#define FOR_WINDOWS" for the compiler)
+.ProjectExtraCompileFiles   = {} //(Optional) externals files to add for the compilation, used for external libraries who don't support the UnityBuild  (e.g: .cpp , .c or .cc)
+.ProjectExtraHeaderFiles    = {} //(Optional) externals header files to add to a project. Useless for the compiler but will be added to the VisualStudio's project solution
+.ProjectExtraCompileFlags   = {} //(Optional) Compilation flags to add in the project (e.g: openmp)  /!\ do not add any '/' for windows  or   '-' for linux
+.ProjectExtraLinkFlags      = {} //(Optional) Link flags to add in the project (e.g: ignore:4099 for desabling link warning on windows)
+
+
+//Project Test arguments
+.ProjectTestLogsPath        = "" // Output file for captured test output, relative to the "fbuild.bff"
+.ProjectTestArguments       = {} // (optional)Arguments to pass to test executable
+.ProjectTestWorkingDir      = "" // (optional)Working dir for test execution, relative to the "fbuild.bff"
+
+
+
+//------------------------------------------------------------------------------------//
+//Do not use these arguments, they are used by architecture itself
+
+//Projects Extra arguments
+.ProjectIsBigObject         = "" // flag to specify that the object to build will contains more than 65,536 (2^16) of number of sections (see: https://msdn.microsoft.com/en-us/library/ms173499.aspx)
+.SolutionTests              = {} // list all Test to launch with the current solution

@@ -1,0 +1,238 @@
+
+//--------------------------------------------------------------------------
+//
+//      This file AliasMaker sould be used to build all Alias possibilities when the Architecture and ProjectTemplates are used correctly
+//      
+//      This one will create the folowwing Aliases:
+//      
+//      * All / <No Alias>    -Build all projects with the default platform and configuration   ->  This alias wil be used by default if no alias is specified
+//      * x86                 -Build all projects with the default configuration in 32bits
+//      * x64                 -Build all projects with the default configuration in 64bits
+//
+//      * Debug               -Build all project in Debug with the default platform
+//      * Release             -Build all project in Release with the defaut plaftform
+//      
+//      * x86-Debug           -Build all projects in Debug and in 32bits
+//      * x64-Debug           -Build all projects in Debug and in 64bits
+//      * x86-Release         -Build all projects in Release and in 32bits
+//      * x64-Release         -Build all projects in Release and in 64bits
+//
+//
+//      All compiler configurations are specified in the Compiler<Platform>.bff  files
+//
+//      /!\ Only Windows supports x86 platform
+//
+//--------------------------------------------------------------------------
+
+#once   //can be included just one time ,   this file should be included only at the end
+
+
+
+
+
+
+
+#if __WINDOWS__    //only Windows supports the x86 platforms
+//FOR 32 bits only --------------------------------------------------------
+
+//      * x86                 -Build all projects with the default configuration in 32bits
+Alias("x86")
+{
+    Using(.Defaultx86Config)
+
+    .Targets = {}//init by array type
+    ForEach(.pname in.ProjectNames) //build all projects no-platform specific
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.ProjectTestNames) //add all test projects no-platform specific
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.x86OnlyProjectNames) //add all x86 only projects
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.x86OnlyProjectTestNames) //add all x86 only tests projects
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
+}
+
+
+//      * x86-Debug           -Build all projects in Debug and in 32bits
+//      * x86-Release         -Build all projects in Release and in 64bits
+ForEach(.CompilerConfig in .Compilerx86Configs)
+{
+    Using(.CompilerConfig)
+
+    .aliaseName = "$Platform$-$Config$"
+
+    .AliasTargets = {}//init by array type
+    ForEach(.pname in.ProjectNames) //build all projects no-platform specific
+    {
+        ^AliasTargets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.ProjectTestNames) //add all test projects no-platform specific
+    {
+        ^AliasTargets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.x86OnlyProjectNames) //add all x86 only projects
+    {
+        ^AliasTargets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.x86OnlyProjectTestNames) //add all x86 only tests projects
+    {
+        ^AliasTargets + "$pname$-$Platform$-$Config$"
+    }
+
+    Alias("$aliaseName$")
+    {
+        .Targets = .AliasTargets
+    }
+}
+
+//--------------------------------------------------------
+
+#endif //__WINDOWS__
+
+
+//FOR 64 bits only --------------------------------------------------------
+
+//      * x64                 -Build all projects with the default configuration in 64bits
+Alias("x64")
+{
+    Using(.Defaultx64Config)
+
+    .Targets = {}//init by array type
+    ForEach(.pname in.ProjectNames)  //build all projects no-platform specific
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.ProjectTestNames) //add all test projects no-platform specific
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.x64OnlyProjectNames) //add all x64 only projects
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.x64OnlyProjectTestNames) //add all x64 only tests projects
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
+}
+
+
+
+
+
+//      * x64-Debug             -Build all projects in Debug and in 64bits
+//      * x64-Release           -Build all projects in Release and in 64bits
+ForEach(.CompilerConfig in .Compilerx64Configs)
+{
+    Using(.CompilerConfig)
+
+    .aliaseName = "$Platform$-$Config$"
+
+    .AliasTargets = {}//init by array type
+    ForEach(.pname in.ProjectNames)  //build all projects no-platform specific
+    {
+        ^AliasTargets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.ProjectTestNames) //add all test projects no-platform specific
+    {
+        ^AliasTargets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.x64OnlyProjectNames) //add all x64 only projects
+    {
+        ^AliasTargets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.x64OnlyProjectTestNames) //add all x64 only tests projects
+    {
+        ^AliasTargets + "$pname$-$Platform$-$Config$"
+    }
+
+    Alias("$aliaseName$")
+    {
+        .Targets = .AliasTargets
+        
+    }
+}
+//-----------------------------------------------------------------------
+
+
+//      * Debug               -Build all project in Debug with the default platform
+Alias("Debug")
+{
+    Using(.DefaultDebugConfig)
+
+    .Targets = {}//init by array type
+    ForEach(.pname in.ProjectNames)  //build all projects no-platform specific
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.ProjectTestNames) //add all test projects no-platform specific
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.x86OnlyProjectNames) //add all x86 only projects
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.x86OnlyProjectTestNames) //add all x86 only tests projects
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.x64OnlyProjectNames) //add all x64 only projects
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.x64OnlyProjectTestNames) //add all x64 only tests projects
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
+}
+
+
+//      * Release             -Build all project in Release with the defaut plaftform
+Alias("Release")
+{
+    Using(.DefaultDebugConfig)
+
+    .Targets = {}//init by array type
+    ForEach(.pname in.ProjectNames)  //build all projects no-platform specific
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.ProjectTestNames) //add all test projects no-platform specific
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.x86OnlyProjectNames) //add all x86 only projects
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.x86OnlyProjectTestNames) //add all x86 only tests projects
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.x64OnlyProjectNames) //add all x64 only projects
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
+    ForEach(.pname in.x64OnlyProjectTestNames) //add all x64 only tests projects
+    {
+        ^Targets + "$pname$-$Platform$-$Config$"
+    }
+}
+
+
+//      * All / <No Alias>    -Build all projects with the default platform and configuration   ->  This alias wil be used by default if no alias is specified
+Alias('All')
+{
+    Using(.DefaultCompilerConfig)
+
+    .aliaseName = "$Platform$-$Config$"
+    .Targets = "$aliaseName$"
+}

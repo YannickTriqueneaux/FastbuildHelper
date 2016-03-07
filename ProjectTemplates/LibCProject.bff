@@ -1,0 +1,65 @@
+//-  Project template for building a Library    ----------------------------------------------------
+//
+//  This templates is only tested on Windows and Linux
+//  
+//  This one will build all *.c files in the folder  $ProjectSourcesPath$/  including sub folders
+//  also all .ExtraCompileFiles
+//
+//  Because the Linux compiler do not accpet C++ specific arguments
+//  In order to build C code with right compilation arguments
+//  This project have to be used instead of LibProject.bff
+//  
+//
+//  The output Library's name will be:  
+//      * $ProjectName$.lib         on Windows
+//      * lib$ProjectName$.a        on Linux
+//
+//
+//  info: This file could be better factorised by using more #include files - but don't do that
+//        The file have to stay like that in order to avoid to get an unreadable template
+//---------------------------------------------------------------------------------------------------
+
+
+//FASTBuild documentation
+//      http://www.fastbuild.org/docs/functions/objectlist.html
+//      http://www.fastbuild.org/docs/functions/library.html
+
+ForEach( .CompilerConfig in .CompilerConfigs )
+{
+	Using( .CompilerConfig )
+	
+	.aliasName 	    = "$ProjectName$-$Platform$-$Config$"
+
+#include "../Architecture/Tools/AddIncludePaths.bff"
+#include "../Architecture/Tools/AddLibraryPaths.bff"
+#include "../Architecture/Tools/AddExtraDefines.bff"
+#include "../Architecture/Tools/AddExtraCompileFlags.bff"
+#include "../Architecture/Tools/AddExtraLinkFlags.bff"
+#include "../Architecture/Tools/AddExternalLibraries.bff"
+
+
+    .buildDest = ""
+#include "../Architecture/Tools/ConstructBuildDest.bff"
+
+    Library("$aliasName$-Lib")
+    {
+        .CompilerInputPath          = "$ProjectSourcesPath$/"
+        .CompilerInputPattern       = "*.c"
+        .CompilerInputFiles         = .ProjectExtraCompileFiles
+        .CompilerOutputPath         = .buildDest + "Obj/$ProjectName$/"
+        .LibrarianOutput            = .buildDest + .ProjectBuildDestination + .libNamePrefix + "$ProjectName$" + .staticLibExt
+
+        .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this
+    }
+
+	Alias( "$aliasName$" ) {        .Targets = { "$aliasName$-Lib" } }
+
+}
+
+Alias( "$ProjectName$" )
+{
+	Using( .DefaultCompilerConfig )
+        
+    .aliasName                      = "$ProjectName$-$Platform$-$Config$"
+    .Targets                        = { .aliasName }
+}

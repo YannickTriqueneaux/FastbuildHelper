@@ -1,0 +1,82 @@
+
+
+//defines for intellisence
+.VistualStudioDefinitions =
+[
+	//= ' /D"WIN32_LEAN_AND_MEAN"'
+    //+ ' /D_WIN32' 
+    //+ ' /D__WINDOWS__'
+    //+ ' /D_GNU_SOURCE'
+    //+ ' /D_WIN32_WINNT=0x0601'
+    //+ ' /DWINVER=0x0601'
+    //+ ' /D_MSC_VER=1800'// TODO update when changing Windows SDKs version
+	
+	.X86Defines					= "WIN32_LEAN_AND_MEAN;_WIN32;__WINDOWS__;WIN32;"
+	.X64Defines					= "WIN32_LEAN_AND_MEAN;_WIN64;__WINDOWS__;WIN64;_M_X64;"
+	.DebugDefines				= "DEBUG;PROFILING_ENABLED;FOR_DEBUG"
+	//.ProfileDefines			= "RELEASE;PROFILING_ENABLED"
+	.ReleaseDefines				= "RELEASE;FOR_RELEASE"
+]
+
+.ProjectCommon = 
+[
+	.ProjectBuildCommand		= "cd ^$(SolutionDir)/ &amp; fbuild ^$(ProjectName)-^$(Configuration) -vs -dist -cache -nostoponerror"
+	.ProjectRebuildCommand		= "cd ^$(SolutionDir)/ &amp; fbuild -clean ^$(ProjectName)-^$(Configuration) -vs -dist -cache -nostoponerror"
+	.OutputDirectory			= "^$(SolutionDir)/$BuildDestination$/"
+    .IntermediateDirectory      = "^$(SolutionDir)/$BuildDestination$/"
+    ForEach(.elm in .EnableBuildDestByConfig)
+    {
+        ^OutputDirectory        + "^$(Configuration)"
+        ^IntermediateDirectory  + "^$(Configuration)"
+    }
+	.PlatformToolset            = "v140"
+	.IncludeSearchPath			= "^$(SolutionDir)../..;./"
+    .PreprocessorDefinitions    = "FASTBUILD;" //default defines for intellisence
+]
+
+.VSProjectX86Debug		        = [ Using( .VistualStudioDefinitions ) .Platform = "Win32" .Config = "x86-Debug"	.PreprocessorDefinitions = .X86Defines + .DebugDefines ]
+.VSProjectX86Release		    = [ Using( .VistualStudioDefinitions ) .Platform = "Win32" .Config = "x86-Release"  .PreprocessorDefinitions = .X86Defines + .ReleaseDefines ]
+.VSProjectX64Debug		        = [ Using( .VistualStudioDefinitions ) .Platform = "Win32" .Config = "x64-Debug"	.PreprocessorDefinitions = .X64Defines + .DebugDefines ]
+.VSProjectX64Release		    = [ Using( .VistualStudioDefinitions ) .Platform = "Win32" .Config = "x64-Release"  .PreprocessorDefinitions = .X64Defines + .ReleaseDefines ]
+
+//.VSProjectX86Profile		    = [ Using( .ProjectCommon )	.Config = 'x86-Profile' .PreprocessorDefinitions = .X86Defines + .ProfileDefines ]
+//.VSProjectX64Profile		    = [ Using( .ProjectCommon )	.Config = 'x64-Profile' .PreprocessorDefinitions = .X64Defines + .ProfileDefines ]
+//.VSProjectX86ClangDebug		= [ Using( .ProjectCommon )	.Config = 'x86Clang-Debug' ]
+
+
+.ProjectConfigs = 
+{ 
+	.VSProjectX86Debug, 
+	.VSProjectX86Release,
+	.VSProjectX64Debug, 
+	.VSProjectX64Release,
+	
+	//.VSProjectX86Profile, 
+	//.VSProjectX64Profile, 
+	//.VSProjectX86ClangDebug 
+}
+
+// Project to compile everything
+VCXProject( "Build_$VSSolutionName$-proj" )
+{
+    Using( .ProjectCommon )
+	.ProjectOutput				= "VSSolution/All-$VSSolutionName$.vcxproj"
+	.ProjectFiles				= { "./fbuild.bff" }
+	.ProjectBasePath			= './'
+}
+
+.AllProjectFolder = 
+[
+	.Path			            = "__FastBuild__"
+	.Projects		            = { "Build_$VSSolutionName$-proj" }
+]
+
+.AllProjectDependencies =
+[
+    .Projects = { "Build_$VSSolutionName$-proj" }          //Project(s) to specify dependencies for
+    .Dependencies = {}                                     //init as array type
+]
+
+.VSSolutionFolders 		        = { .AllProjectFolder }
+.VSSolutionProjectDependencies  = { .AllProjectDependencies }
+.VSProjects = { "Build_$VSSolutionName$-proj" }

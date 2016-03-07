@@ -1,0 +1,6 @@
+
+
+ForEach(.pdep in .ProjectDependencies)
+{
+    ^Dependencies + "$pdep$-vsproj"
+}

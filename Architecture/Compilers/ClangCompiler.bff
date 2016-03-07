@@ -1,0 +1,88 @@
+// X86 Clang COMPILATION
+//------------------------------------------------------------------------------
+
+//!/THIS FILE WAS NEVER TRIED
+//!/PLEASE DO NOT ASSUMS ITS WORKS
+
+#once   //can be included just one time
+
+
+//
+Settings
+{
+	
+}
+Compiler( 'Compiler-x86Clang' )
+{
+	.Root		= '$ClangBasePath$'
+	.Executable	= '$Root$/bin/clang++.exe'
+}
+
+.X86ClangConfig = 
+[
+	.ToolsBasePath			= '$ClangBasePath$'
+	.Compiler				= 'Compiler-x86Clang'
+	.Librarian				= '$ToolsBasePath$/bin/llvm-ar.exe'
+	.Linker					= '$VSBasePath$/VC/bin/link.exe' //'$ToolsBasePath$/lld.exe'								
+
+	.WindowsLibPaths		= '$WindowsSDKBasePath$/lib/winv6.3/um'
+
+	.BaseCompilerOptions	= '-o"%2" "%1" -c -g'
+                            + ' -Wall -Werror -Wfatal-errors'   // warnings as errors
+
+                            // includes
+							+ ' -I"./"'
+							+ ' -I"$VSBasePath$/VC/include/"'
+							+ ' -I"$WindowsSDKBasePath$/include/um"'
+							+ ' -I"$WindowsSDKBasePath$/include/shared"'
+
+                            // defines
+							+ ' -D"WIN32_LEAN_AND_MEAN" -D_WIN32 -D__WINDOWS__'
+							+ ' -DWIN32'
+                            + ' -D_CRT_SECURE_NO_WARNINGS'
+
+                            // release
+							+ ' -DRELEASE'
+
+                            // x86
+                            + ' -m32'
+							+ ' -D"_X86_=1" -D_M_IX86'
+							+ ' -D"_INTEGRAL_MAX_BITS=64"'
+
+							// MS compatibility
+							+ ' -fms-compatibility'
+							+ ' -fms-extensions'
+							+ ' -fmsc-version=1700'
+
+                            // as of v3.6, these warnings fire inside system headers
+							+ ' -Wno-#pragma-messages'          // warning : %s [-W#pragma-messages]
+                            + ' -Wno-unknown-pragmas'           // unknown pragma ignored [-Wunknown-pragmas]
+                            + ' -Wno-unused-function'           // unused function '%s' [-Wunused-function]
+							+ ' -Wno-microsoft'                 // enumerator value is not representable in the underlying type 'int' [-Wmicrosoft]'
+							+ ' -Wno-unused-value'              // expression result unused [-Wunused-value]
+							+ ' -Wno-ignored-attributes'        // __declspec attribute 'restrict' is not supported [-Werror,-Wignored-attributes]
+                            + ' -Wno-incompatible-ms-struct'    // ms_struct may not produce MSVC-compatible layouts for classes with base classes or virtual functions [-Wincompatible-ms-struct]
+
+							// Extra warnings
+							+ ' -Wshadow'
+
+							+ ' -fno-exceptions'
+							+ ' -fno-rtti'
+
+    .CompilerOptionsC       = '-x c '
+                            + .BaseCompilerOptions
+    .CompilerOptions        = '-std=c++11 '                     // allow C++11 features
+                            + .BaseCompilerOptions
+
+	.PCHOptions				= .CompilerOptions // TODO: Configure this properly
+
+	.LibrarianOptions		= 'rc "%2" "%1"' // NOTE: output must come first
+	.LinkerOptions			= '/NODEFAULTLIB /WX /NOLOGO /INCREMENTAL:NO /OUT:"%2" "%1" /DEBUG'
+							+ ' /LIBPATH:"$WindowsLibPaths$/x86" /LIBPATH:"$VSBasePath$/VC/lib"'
+							+ ' /MACHINE:X86'
+
+	.Platform				= 'x86Clang'
+	.Config					= 'Debug'
+
+	.UseExceptions			= ' -fexceptions'
+]

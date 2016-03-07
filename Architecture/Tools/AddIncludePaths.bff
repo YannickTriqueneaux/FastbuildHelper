@@ -1,0 +1,24 @@
+
+
+ForEach(.ipath in.GlobalIncludePaths)
+{
+
+#if __WINDOWS__
+    ^CompilerOptions + ' /I"' + .ipath + '"'
+#endif
+#if __LINUX__
+    ^CompilerOptions + ' -I' + .ipath
+#endif
+
+
+}
+
+ForEach(.ipath in.ProjectIncludePaths)
+{
+#if __WINDOWS__
+    ^CompilerOptions + ' /I"' + .ipath + '"'
+#endif
+#if __LINUX__
+    ^CompilerOptions + ' -I' + .ipath
+#endif
+}

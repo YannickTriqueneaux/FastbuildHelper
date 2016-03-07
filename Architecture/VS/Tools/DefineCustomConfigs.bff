@@ -1,0 +1,6 @@
+
+
+ForEach(.ifnotEmpty in .VSHasCustomConfigs)
+{
+    //^ProjectConfigs = .VSProjectCustomConfigs
+}

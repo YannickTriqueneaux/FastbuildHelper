@@ -1,0 +1,116 @@
+
+//-  Project template for building a Library and its UnitTest Executable -----------------------------
+//
+//  This templates is only tested on Windows and Linux
+//  
+//  This one will build all *.cc files in the folder  $ProjectSourcesPath$/  including sub folders
+//  also all .ExtraCompileFiles  
+//
+//  The output Library's name will be:  
+//      * $ProjectName$.lib         on Windows
+//      * lib$ProjectName$.a        on Linux
+//
+//
+//
+//  This one will also build a UnityTest executable taking all *.cc files in the folder   $ProjectTestSourcesPath$/  including sub folders
+////
+//  The output UnitTest executable's name will be:
+//      * Tests-$ProjectName$.exe   on Windows
+//      * Tests-$ProjectName$       on Linux
+//
+//
+//  info: This file could be better factorised by using more #include files - but don't do that
+//        The file have to stay like that in order to avoid to get an unreadable template
+//---------------------------------------------------------------------------------------------------
+
+
+//FASTBuild documentation
+//      http://www.fastbuild.org/docs/functions/objectlist.html
+//      http://www.fastbuild.org/docs/functions/library.html
+//      http://www.fastbuild.org/docs/functions/executable.html
+
+
+ForEach( .CompilerConfig in .CompilerConfigs )
+{
+	Using( .CompilerConfig )
+	
+	.aliasName 	= "$ProjectName$-$Platform$-$Config$"
+    .aliasTestName = "Tests-$aliasName$"
+
+#include "../Architecture/Tools/AddIncludePaths.bff"
+#include "../Architecture/Tools/AddLibraryPaths.bff"
+#include "../Architecture/Tools/AddExtraDefines.bff"
+#include "../Architecture/Tools/AddExtraCompileFlags.bff"
+#include "../Architecture/Tools/AddExtraLinkFlags.bff"
+#include "../Architecture/Tools/AddExternalLibraries.bff"
+
+    .buildDest = ""
+#include "../Architecture/Tools/ConstructBuildDest.bff"
+
+    .CompilerOptions                + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this library
+                                    + .CppCompilerOptions
+
+    .LinkerOptions                  + .PlatformDefaultLibs
+
+	Library( "$aliasName$-Lib" )
+    {
+		.CompilerInputPath          = "$ProjectSourcesPath$/"
+        .CompilerInputPattern       = "*.cc"
+        .CompilerInputFiles         = .ProjectExtraCompileFiles
+        .CompilerInputExcludePath   = "$ProjectSourcesPath$/Tests"
+		.CompilerOutputPath			= .buildDest + "Obj/$ProjectName$/"
+		.LibrarianOutput 			= .buildDest + .ProjectBuildDestination + .libNamePrefix + "$ProjectName$" + .staticLibExt
+
+	}
+
+#if __WINDOWS__
+	ObjectList( "$aliasName$-Obj" )
+    {
+#include "../Architecture/Tools/AddTestIncludePaths.bff"
+		.CompilerInputFiles        	= "$ProjectTestSourcesPath$/Main.test.cc"
+		.CompilerOutputPath		   	= .buildDest + "Obj/$ProjectName$/"
+	}
+#endif
+#if __LINUX__
+	Library( '$aliasName$-Obj' )
+    {
+#include "../Architecture/Tools/AddTestIncludePaths.bff"
+		.CompilerInputFiles         = "$ProjectTestSourcesPath$/Main.test.cc"
+		.CompilerOutputPath			= .buildDest + "Obj/$ProjectName$/"
+		.LibrarianOutput 			= .buildDest + "Obj/$ProjectName$/Main.test" + .staticLibExt
+	}
+#endif
+
+	Executable( "$aliasName$-EXE" )
+	{
+        .Libraries                  = { "$aliasName$-Obj", "$aliasName$-Lib" }
+
+        ForEach(.pdep in .ProjectDependencies)
+        {
+            ^Libraries              + "$pdep$-$Platform$-$Config$-Lib"
+        }
+
+        .LinkerOptions + .PlatformDefaultLibs
+
+		.LinkerOutput				= .buildDest + .ProjectBuildDestination + "Tests-$ProjectName$" + .executableExt
+	}	
+
+    Test( "$aliasName$-TEST" )
+    {
+        .TestExecutable             = "$aliasName$-EXE"                                 // Executable to execute
+        .TestOutput                 = .buildDest + ".testlogs/" + .ProjectName          // Output file for captured test output
+        .TestArguments              = .ProjectTestArguments                             // (optional)Arguments to pass to test executable
+        .TestWorkingDir             = .buildDest                                        // (optional)Working dir for test execution
+    }
+    ^SolutionTests                  + "$aliasName$-TEST"
+
+	Alias( "$aliasName$" ) {        .Targets = { "$aliasName$-Lib" } }
+	Alias( "$aliasTestName$" ) {    .Targets = { "$aliasName$-EXE" } }
+}
+
+Alias( "$ProjectName$" )
+{
+	Using( .DefaultCompilerConfig )
+    .aliasName                      = "$ProjectName$-$Platform$-$Config$"
+    .Targets                        = { .aliasName , "Tests-$aliasName$" }
+}

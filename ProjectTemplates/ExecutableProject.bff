@@ -1,0 +1,92 @@
+//-  Project template for building an Executable    --------------------------------
+//
+//  This templates is only tested on Windows and Linux
+//  
+//  This one will build all *.cc files in the folder  $ProjectSourcesPath$/  including sub folders
+//  also all .ExtraCompileFiles
+//  
+//
+//  The output Executable's name will be:  
+//      * $ProjectName$.exe         on Windows
+//      * $ProjectName$             on Linux
+//
+//
+//  info: This file could be better factorised by using more #include files - but don't do that
+//        The file have to stay like that in order to avoid to get an unreadable template
+//---------------------------------------------------------------------------------------------------
+
+
+//FASTBuild documentat
+//      http://www.fastbuild.org/docs/functions/objectlist.html
+//      http://www.fastbuild.org/docs/functions/library.html
+//      http://www.fastbuild.org/docs/functions/executable.html
+
+ForEach( .CompilerConfig in .CompilerConfigs )
+{
+	Using( .CompilerConfig )
+	
+    .aliasName                      = "$ProjectName$-$Platform$-$Config$"
+
+#include "../Architecture/Tools/AddIncludePaths.bff"
+#include "../Architecture/Tools/AddLibraryPaths.bff"
+#include "../Architecture/Tools/AddExtraDefines.bff"
+#include "../Architecture/Tools/AddExtraCompileFlags.bff"
+#include "../Architecture/Tools/AddExtraLinkFlags.bff"
+#include "../Architecture/Tools/AddExternalLibraries.bff"
+
+    .buildDest = ""
+#include "../Architecture/Tools/ConstructBuildDest.bff"
+
+#if __WINDOWS__
+    ObjectList( "$aliasName$-Obj" )
+    {
+        .CompilerInputPath          = "$ProjectSourcesPath$/"
+        .CompilerInputPattern       = "*.cc"
+        .CompilerInputFiles         = .ProjectExtraCompileFiles
+        .CompilerOutputPath		   	= .buildDest + "Obj/$ProjectName$/"
+
+        .CompilerOptions            + .DLLCompilerOptions
+                                    + .CppCompilerOptions
+    }
+#endif
+
+#if __LINUX__
+    Library( "$aliasName$-Obj" )
+    {
+        .CompilerOptions            + .DLLCompilerOptions
+                                    + .CppCompilerOptions
+
+        .CompilerInputPath          = "$ProjectSourcesPath$/"
+        .CompilerInputPattern       = "*.cc"
+        .CompilerInputFiles         = .ProjectExtraCompileFiles
+
+       
+        .CompilerOutputPath			= .buildDest + "Obj/$ProjectName$/"
+        .LibrarianOutput 			= .buildDest + "Obj/$ProjectName$" + .staticLibExt
+    }
+#endif
+
+
+    Executable("$aliasName$-EXE")
+    {
+        .Libraries                  = { "$aliasName$-Obj" }
+
+        ForEach(.pdep in .ProjectDependencies)
+        {
+            ^Libraries              + "$pdep$-$Platform$-$Config$-Lib"
+        }
+
+        .LinkerOptions              + .PlatformDefaultLibs
+                                    
+        .LinkerOutput               = .buildDest + .ProjectBuildDestination + "$ProjectName$" + .executableExt
+    }
+
+    Alias("$aliasName$") { .Targets = { "$aliasName$-EXE" } }
+}
+
+Alias( "$ProjectName$" )
+{
+	Using( .DefaultCompilerConfig )
+
+	.Targets                        = { "$ProjectName$-$Platform$-$Config$" }
+}

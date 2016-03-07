@@ -1,0 +1,6 @@
+
+
+ForEach(.pdef in.ProjectExtraDefines)
+{
+    ^PreprocessorDefinitions + "$pdef$;"
+}

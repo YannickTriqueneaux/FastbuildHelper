@@ -1,0 +1,48 @@
+
+//-  Project template to create a VisualStudio Solution    --------------------------------
+//  
+//  This one will create a VisualStudio Solution containing all VCXProject defined using Project Templates
+//
+//  The output Solution's name will be:  
+//      * $VSSolutionName$.sln
+//
+//  In order to create this solution use the folowing command "fbuild $VSSolutionName$"
+//---------------------------------------------------------------------------------------------------
+
+
+
+//FASTBuild documentation 
+//see   http://www.fastbuild.org/docs/functions/vcxproject.html
+//      http://www.fastbuild.org/docs/functions/vssolution.html
+
+
+//
+VSSolution( "$VSSolutionName$" )
+{
+    .SolutionOutput         = "./$VSSolutionName$.sln"
+	
+	
+	
+	.SolutionBuildProject   = "Build_$VSSolutionName$-proj"
+						  
+	.SolutionConfigs	    = .ProjectConfigs
+
+
+//Add all projects and these settings to the solution
+
+//filled by all includes of  "VisualStudioProject.bff"
+
+    .SolutionProjects       = .VSProjects                       
+    .SolutionFolders	    = .VSSolutionFolders
+    .SolutionDependencies   = .VSSolutionProjectDependencies
+}
+
+ForEach(.CompileConfig in.CompilerConfigs){
+    Using(.CompileConfig)
+
+
+    Alias("All-$VSSolutionName$-$Platform$-$Config$")
+    {
+        .Targets = "$Platform$-$Config$"
+    }
+}

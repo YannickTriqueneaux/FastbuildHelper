@@ -1,0 +1,14 @@
+
+
+ForEach(.ipath in.GlobalTestIncludePaths)
+{
+
+#if __WINDOWS__
+    ^CompilerOptions + ' /I"' + .ipath + '"'
+#endif
+#if __LINUX__
+    ^CompilerOptions + ' -I' + .ipath
+#endif
+
+
+}

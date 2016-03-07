@@ -1,0 +1,429 @@
+
+//------------------------------------------------------------------------------
+// Windows Platform
+//------------------------------------------------------------------------------
+
+#once   //can be included just one time
+
+//Compiler MSVC 15
+.VSBasePath			= "C:/Program Files (x86)/Microsoft Visual Studio 14.0"
+.WindowsSDKBasePath	= "C:/Program Files (x86)/Windows Kits/10"
+//Target platform version: 8.1
+.WindowsSDK81Path   = "C:/Program Files (x86)/Windows Kits/8.1"
+
+//Defines global FASTBuild settings.
+Settings
+{
+    //Array of environment variables to use
+	.Environment	= { 
+        "PATH=$VSBasePath$/Common7/IDE/;$VSBasePath$/VC/bin/",
+		"TMP=C:/Windows/Temp",
+        "SystemRoot=C:/Windows" 
+    }
+
+    //Path to cache location
+    //.CachePath      = "C:\.fbuild.cache"   //if commented -> use no cache or the Network Cache
+}
+
+//Specifies compiler and related files for network distribution.
+Compiler( "Compiler-x86" )
+{
+	.Root		    = "$VSBasePath$/VC/bin"
+
+    // Primary compiler executable
+	.Executable	    = "$Root$/cl.exe"
+
+    //Additional files (usually dlls) required by the compiler.
+    .ExtraFiles     = { 
+        "$Root$\c1.dll",
+        "$Root$\c1xx.dll",
+        "$Root$\c2.dll",
+        "$Root$\msobj140.dll",
+        "$Root$\mspdb140.dll",
+        "$Root$\mspdbsrv.exe",
+        "$Root$\mspdbcore.dll",
+        "$Root$\mspft140.dll",
+        "$Root$\msvcdis140.dll",
+        "$Root$\1033\clui.dll",
+        "$VSBasePath$\VC\redist\x86\Microsoft.VC140.CRT\concrt140.dll",
+        "$VSBasePath$\VC\redist\x86\Microsoft.VC140.CRT\msvcp140.dll",
+        "$VSBasePath$\VC\redist\x86\Microsoft.VC140.CRT\vccorlib140.dll"
+        "$VSBasePath$\VC\redist\x86\Microsoft.VC140.CRT\vcruntime140.dll"
+    }
+}
+
+//Specifies compiler and related files for network distribution.
+Compiler( "Compiler-x64" )
+{
+    .Root           = "$VSBasePath$\VC\bin"
+
+    // Primary compiler executable
+    .Executable     = "$Root$\x86_amd64\cl.exe"
+
+    //Additional files (usually dlls) required by the compiler.
+    .ExtraFiles     = { 
+        "$Root$\x86_amd64\c1.dll",
+        "$Root$\x86_amd64\c1xx.dll",
+        "$Root$\x86_amd64\c2.dll",
+        "$Root$\x86_amd64\1033\clui.dll"
+        "$Root$\msobj140.dll"
+        "$Root$\mspdb140.dll"
+        "$Root$\mspdbsrv.exe"
+        "$Root$\mspdbcore.dll"
+        "$Root$\mspft140.dll"
+        "$VSBasePath$\VC\redist\x64\Microsoft.VC140.CRT\concrt140.dll",
+        "$VSBasePath$\VC\redist\x64\Microsoft.VC140.CRT\msvcp140.dll",
+        "$VSBasePath$\VC\redist\x64\Microsoft.VC140.CRT\vccorlib140.dll"
+        "$VSBasePath$\VC\redist\x64\Microsoft.VC140.CRT\vcruntime140.dll"
+    }
+}
+//For others compilers: http://www.fastbuild.org/docs/functions/compiler.html
+
+//Default platform specific file extension - used in templates compilation settings
+.PlatformFileExtensions =
+[
+	.staticLibExt           = ".lib"
+	.dynamicLibExt          = ".dll"
+	.executableExt          = ".exe"
+    .libNamePrefix          = ""
+]
+
+//Regroup all default "#define" in compile time for Windows
+.DefaultDefinitions =
+[
+    //Common defines
+    .Definitions            = " /DFASTBUILD"            //in case of, add FASTBUILD preprocessor definition when building with FASTBuild
+                            + " /DWIN32_LEAN_AND_MEAN"
+							+ " /D_WIN32" 
+							+ " /D__WINDOWS__"
+							+ " /D_GNU_SOURCE"
+							+ " /D_WIN32_WINNT=0x0601"
+							+ " /DWINVER=0x0601"
+							+ " /D_MSC_VER=1800"// TODO update when changing Windows SDKs version
+							//+ ' /D"_CRT_SECURE_NO_WARNINGS"' // don't warn about unsafe functions
+								
+		
+	//Default defines for Debug configuration
+	.DebugDefinitions       = " /DDEBUG"	
+							+ " /DFOR_DEBUG"
+							+ " /D_DEBUG"
+								//+ ' /DPROFILING_ENABLED'
+	
+    //Default defines for Release configuration
+	.ReleaseDefinitions     = " /DRELEASE"
+							+ " /DFOR_RELEASE"
+	//////////////////
+]
+
+
+//Base configuration for all Windows Compilation
+.BaseConfigurations = 
+[
+    Using(.PlatformFileExtensions)
+    Using(.DefaultDefinitions)
+    
+	.AdditionalWarnings		        = " /we4062" // enumerator 'identifier' in a switch of enum 'enumeration' is not handled
+							        
+	.CompilerOptions 		        = '"%1" /nologo /c /W3 /WX-'
+							        + .AdditionalWarnings
+							        + .Definitions
+							        + " /Zc:forScope"
+							        + " /Zc:wchar_t"            //TODO change for -std=c++11
+							        //+ " /Zc:inline"			// Remove unreferenced COMDATs at compile time (VS2013.2+)
+							        //+ " /Zc:strictStrings"	// Require const only usage of string literals (VS2013+)
+							        //+ " /analyze" 			//(VS2013+)
+	
+	//.PCHOptions			        = .CompilerOptions
+	//						        + ' /Fp"%2" /Fo"%3"'
+							        
+	.CompilerOptions 		        + ' /Fo"%2"'
+    .CppCompilerOptions             = ""
+		
+	.LibrarianOptions		        = '/WX /NOLOGO /OUT:"%2" "%1"'
+	.LinkerOptions			        = '/WX /NOLOGO /INCREMENTAL:NO /OUT:"%2" "%1"'
+	
+	.CompilerDebugOptimizations		= " /Od /Oi /Oy- /RTC1 /MTd /Z7 /GS /Gy /GR-"
+									+ " /fp:precise"
+									
+	.CompilerReleaseOptimizations	= " /MT /Ox /Oy /Oi /GS- /GF /GL /Gy /GR-"
+									+ " /fp:fast"
+									
+	.LibrarianDebugOptimizations	= ""
+	.LibrarianReleaseOptimizations  = " /LTCG"
+	.LinkerDebugOptimizations		= " /DEBUG"
+	.LinkerReleaseOptimizations		= " /LTCG /OPT:REF,ICF"
+	
+	.BaseIncludePaths		        = ' /I"./"'
+							        + ' /I"$VSBasePath$/VC/include/"'
+                                    + ' /I"$VSBasePath$/VC/atlmfc/include"'
+                                    + ' /I"$WindowsSDKBasePath$/Include/10.0.10150.0/ucrt/"'
+                                    + ' /I"$WindowsSDK81Path$/Include/um/"'
+                                    + ' /I"$WindowsSDK81Path$/Include/shared/"'
+
+    .WindowsLibPaths                = "$WindowsSDKBasePath$/Lib/10.0.10150.0"
+    .WindowsLibPaths81              = "$WindowsSDK81Path$/Lib/winv6.3"
+
+    .DLLCompilerOptions             = ""
+    .DLLLinkerOptions               = " /DLL"
+
+    .LinkerOptions                  + " /NODEFAULTLIB:libcmtd"
+	.CompilerOptions 		        + .BaseIncludePaths
+
+    //Options for compiler for precompiled header -- Not recomanded for distributed builds  (is Machine-Specific)
+	//.PCHOptions				    + .BaseIncludePaths
+	
+    //Disabled at OPAL-RT TECHNOLOGIES
+	//.CompilerOptions			    + " /EHsc"
+]
+
+
+
+// Resource Compiler features - unsed for the moment
+//------------------------------------------------------------------------------
+//.ResourceCompiler =
+//[
+//	.Compiler					= "$WindowsSDKBasePath$/Bin/x86/RC.exe"
+//	.CompilerOutputExtension	= ".res"
+//	.CompilerOptions			= "/nologo /fo"%2" %1"
+//]
+
+
+
+
+//Big object compilation flag for Windows : https://msdn.microsoft.com/en-us/library/ms173499.aspx
+.bigObjectFlag = " /bigobj"
+
+//Contains all default libraries for Windows platform 
+#include "DefaultLibs/WindowsDefaultLibs.bff"
+
+
+//Configurations and plaform specific compliation settings
+
+.X86BaseConfig = 
+[
+    //Inherit of .BaseConfigurations content
+	Using( .BaseConfigurations )    
+
+    .Platform                   = "x86"                                 //Used in templates compilation settings - for Alias
+
+
+	.x86Definitions       	    = " /DWIN32"                            //x86 specific define
+							    + " /arch:SSE2"                         //x86 specific argurment
+
+	.ToolsBasePath			    = "$VSBasePath$/VC/bin"                 //path to x86 compiler tools
+
+	.Compiler				    = "Compiler-x86"                        //Compiler to use   -  FASTBuild function Compiler()
+	.Librarian				    = "$ToolsBasePath$/lib.exe"
+	.Linker					    = "$ToolsBasePath$/link.exe"
+	.CompilerOptions		    + .x86Definitions
+
+	.LinkerOptions			    + " /MACHINE:X86"                        
+    .LinkerOptions              + ' /LIBPATH:"$WindowsLibPaths81$/um/x86"'   //Windows SDK's library paths for x86
+                                + ' /LIBPATH:"$WindowsLibPaths$/ucrt/x86"'
+                                + ' /LIBPATH:"$VSBasePath$/VC/lib"'     //VisualStudio library path for x86
+
+
+    //.PCHOptions			    + .x86Definitions
+]
+
+.X86DebugConfig =
+[
+    //Inherit of .X86Baseconfig content
+	Using( .X86BaseConfig )     
+
+	.Config					    = "Debug"                           //Used in templates compilation settings - for Alias
+
+	.x86DebugCompilerOptions	= ""                                //Add x86 Debug Compiler Options here
+
+
+	.CompilerOptions		    + .DebugDefinitions                 //Debug specific definitions
+							    + .CompilerDebugOptimizations       //Debug specific Optimization flags
+							    + .x86DebugCompilerOptions          
+						
+	//.PCHOptions			    + .DebugDefinitions
+	//						    + .CompilerDebugOptimizations
+	//						    + .x86DebugCompilerOptions
+
+
+	.LibrarianOptions		    + .LibrarianDebugOptimizations      //Debug specific libarian optimization
+	.LinkerOptions			    + .LinkerDebugOptimizations         //Debug specific linker Optimization
+    .PlatformDefaultLibs        = .PlaformDebugDefaultLibs
+        
+    .DLLCompilerOptions         + " /LDd"                           //Debug specific DLL argument - //Creates a debug DLL. Defines _MT and _DEBUG.
+]
+.X86ReleaseConfig =
+[
+    //Inherit of .X86BaseConfig content
+	Using( .X86BaseConfig )
+	
+	.x86ReleaseCompilerOptions	= ""
+	
+	.Config					    = "Release"
+	
+	.CompilerOptions		    + .ReleaseDefinitions               //Release specific definitions
+                                + .CompilerReleaseOptimizations     //Release specific Optimization flags
+							    + .x86ReleaseCompilerOptions
+							    //+ " /d2Zi+"		                // Improve optimized debugging VS2013.3+
+							    
+	//.PCHOptions			    + .ReleaseDefinitions
+	//						    + .x86ReleaseCompilerOptions
+	//						    + .CompilerReleaseOptimizations
+							    
+	.CompilerOptions            + .CompilerReleaseOptimizations     
+	.LibrarianOptions		    + .LibrarianReleaseOptimizations    //Release specific libarian optimization
+	.LinkerOptions			    + .LinkerReleaseOptimizations     //Release specific linker Optimization
+    .PlatformDefaultLibs        = .PlaformReleaseDefaultLibs
+                                                                  
+
+    .DLLCompilerOptions         + " /LD"                            //Release specific DLL argument - //Creates a release DLL. Defines _MT and _RELEASE.
+]
+//////////////////////////////////////////////
+
+
+
+
+
+//x64 CONFIGURATIONS///////////////////////////
+.X64BaseConfig = 
+[
+    //Inherit of .BaseConfigurations content
+	Using( .BaseConfigurations )                                                    
+	
+    .Platform = "x64"                                                               //Used in templates compilation settings - for Alias
+
+    .x64Definitions             = " /DWIN64"
+                                + " /D_M_X64"                                       //x64 specific defines
+	                                                                                
+
+	.ToolsBasePath			    = "$VSBasePath$/VC/bin/amd64"                   //path to x86 compiler tools
+	
+	.Compiler				    = "Compiler-x64"                                    //Compiler to use   -  FASTBuild function Compiler()
+	.Librarian				    = "$ToolsBasePath$/lib.exe"
+	.Linker					    = "$ToolsBasePath$/link.exe"
+
+	.CompilerOptions		    + .x64Definitions
+
+	//.PCHOptions			    + .x64Definitions
+
+	.LinkerOptions			    + " /MACHINE:X64"                                   //x64 specific argurment
+    .LinkerOptions              + ' /LIBPATH:"$WindowsLibPaths81$/um/x64"'   //Windows SDK's library paths for x86
+                                + ' /LIBPATH:"$WindowsLibPaths$/ucrt/x64"'
+                                + ' /LIBPATH:"$VSBasePath$/VC/lib/amd64"'     //VisualStudio library path for x86
+]
+.X64DebugConfig =
+[
+    //Inherit of .X64BaseConfig content
+	Using( .X64BaseConfig )
+
+	.Config					    = "Debug"                                           //Used in templates compilation settings - for Alias 
+	
+	.x64DebugCompilerOptions	= ""                                                //Add x86 Debug Compiler Options here                                         
+	
+	.CompilerOptions		    + .DebugDefinitions                                 //Debug specific definitions
+							    + .CompilerDebugOptimizations                       //Debug specific Optimization flags
+							    + .x64DebugCompilerOptions                          
+							    
+	//.PCHOptions			    + .DebugDefinitions
+	//						    + .CompilerDebugOptimizations
+	//						    + .x64DebugCompilerOptions
+							    							
+	.LibrarianOptions		    + .LibrarianDebugOptimizations                      //Debug specific libarian optimization
+	.LinkerOptions			    + .LinkerDebugOptimizations                         //Debug specific linker Optimization
+    .PlatformDefaultLibs        = .PlaformDebugDefaultLibs                                                    
+                                                                                    
+    .DLLCompilerOptions         + " /LDd"                                           //Debug specific DLL argument - //Creates a debug DLL. Defines _MT and _DEBUG.
+]                                                                                   
+.X64ReleaseConfig =
+[
+    //Inherit of .X64BaseConfig content
+	Using( .X64BaseConfig )
+	
+	.x64ReleaseCompilerOptions	= ""
+	
+	.Config					    = "Release"                                         
+                                                                                    
+	.CompilerOptions            + .ReleaseDefinitions                               //Release specific definitions
+							    + .CompilerReleaseOptimizations	                    //Release specific Optimization flags
+                                + .x64ReleaseCompilerOptions                        
+                                //+ " /d2Zi+"		                                // Improve optimized debugging VS2013.3+
+							                                                        
+	//.PCHOptions               + .CompilerReleaseOptimizations                     
+	//						    + .ReleaseDefinitions                               
+	//						    + .x64ReleaseCompilerOptions                        
+							                                                        
+	.LibrarianOptions		    + .LibrarianReleaseOptimizations                    //Release specific libarian optimization
+	.LinkerOptions			    + .LinkerReleaseOptimizations                       //Release specific linker Optimization
+    .PlatformDefaultLibs        = .PlaformReleaseDefaultLibs                                                   
+                                                                                    
+    .DLLCompilerOptions         + " /LD"                                            //Release specific DLL argument - //Creates a release DLL. Defines _MT and _RELEASE.
+]
+///////////////////////////////////////////////
+
+//#include "ClangCompiler.bff"   //add Clang Compilation configurations
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Compile Configurations list 
+//------------------------------------------------------------------------------
+//All templates compilation settings will iterate through these configurations - to create all Aliases
+//This one is also used in VisualStudio to define all configurations
+.CompilerConfigs = 
+{ 
+	.X86DebugConfig,  
+	.X86ReleaseConfig,
+	.X64DebugConfig, 
+	.X64ReleaseConfig
+	
+	//.X64ProfileConfig, 
+	//.X86ProfileConfig,
+	//.X86ClangConfig
+}
+.AllCompilerConfigs = .CompilerConfigs;
+
+//Regroup all x86 Configs
+.Compilerx86Configs = 
+{
+    .X86DebugConfig,
+    .X86ReleaseConfig,
+}
+
+//Regroup all x64Configs
+.Compilerx64Configs = 
+{
+	.X64DebugConfig, 
+	.X64ReleaseConfig
+}
+
+//Default configurations when using minimalist arguments with the "fbuild" command
+.DefaultCompilerConfig  =
+[
+	Using( .X86DebugConfig )
+]
+.Defaultx86Config       =
+[
+    Using( .X86DebugConfig )
+]
+.Defaultx64Config       =
+[
+    Using(.X64DebugConfig)
+]
+.DefaultDebugConfig     =
+[
+    Using(.X86DebugConfig)
+]
+.DefaultReleaseConfig   =
+[
+    Using(.X86ReleaseConfig)
+]
+
+

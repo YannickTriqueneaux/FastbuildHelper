@@ -1,0 +1,67 @@
+
+//-  Project template for building a VisualStudio Project    ----------------------------------------
+//-  for a Library, Executable or DLL  
+//
+//  This templates is only tested on Windows and Linux
+//  
+//  This one will contains all files in $ProjectSourcesPath$ including sub folders
+//  and also contains all files defined in .ProjectExtraCompileFiles ans .ProjectExtraHeaderFiles
+//
+//  The output VCXProject's name will be:  
+//      * $ProjectName$
+//
+//  For more details see below
+//---------------------------------------------------------------------------------------------------
+
+//FASTBuild documentation
+//see   http://www.fastbuild.org/docs/functions/vcxproject.html
+//      http://www.fastbuild.org/docs/functions/vssolution.html
+
+// Visual Studio Project Generation
+//--------------------------------------------------------------------------
+VCXProject("$ProjectName$-vsproj")//Executable, Library or DLL project
+{
+    Using(.ProjectCommon)
+
+    .ProjectOutput          = "$VSSolutionDestination$/Projects/$ProjectName$/$ProjectName$.vcxproj"    //Filename of project file.
+
+    //Adding files in project-------------
+    .ProjectInputPaths      = { "$ProjectSourcesPath$/" }                              //Paths to include in project
+    .ProjectBasePath        = "$ProjectSourcesPath$/"                                  //Base path(s) for root folder(s) in project
+    .ProjectFiles           = { "$ProjectSourcesPath$/Project.opal"}
+#include "../Architecture/VS/Tools/AddExtraFiles.bff"                               //List of files to include in project
+    //-------------------------------------
+
+    //Intellisense Options ----------------
+    .ForcedIncludes         = "^$(SolutionDir)$ProjectSourcesPath$/Public.hpp"                        //Force included files.
+    .IncludeSearchPath      + "$ProjectSourcesPath$/"                                  //Include search paths.
+
+#include "../Architecture/VS/Tools/AddIncludePaths.bff"                     
+#include "../Architecture/VS/Tools/AddExtraDefines.bff"                             //Preprocessor definitions.
+    //-------------------------------------
+}
+					
+
+
+//Defines this project into the solution  ------------------------------------
+
+.VSFolder =
+[
+    .Path                       = "$ProjectFolder$/$ProjectName$"                   //Folder path in Solution
+    .Projects                   = { "$ProjectName$-vsproj" }                        //Project(s) to store in this folder
+]
+
+.VSProjectDependencies =
+[
+    .Projects                   = { "$ProjectName$-vsproj" }                        //Project(s) to specify dependencies for
+    .Dependencies               = {}                                                //init as array type
+#include "../Architecture/VS/Tools/AddProjectDependencies.bff"
+]
+
+
+.VSSolutionFolders              + .VSFolder                                         //Add it to the list of folder
+.VSSolutionProjectDependencies  + .VSProjectDependencies                            //Add it to the list of project dependencies
+
+.VSProjects                     + "$ProjectName$-vsproj"                            //Add it to the list of VCXProject
+
+//----------------------------------------------------------------------------

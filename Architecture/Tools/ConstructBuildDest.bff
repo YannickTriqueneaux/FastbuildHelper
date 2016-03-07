@@ -1,0 +1,7 @@
+
+
+.buildDest + "$BuildDestination$/"
+
+ForEach(.elm in.EnableBuildDestByConfig){
+    ^buildDest + "$Platform$-$Config$/"
+}

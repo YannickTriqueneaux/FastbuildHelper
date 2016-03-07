@@ -1,0 +1,10 @@
+
+
+ForEach(.pfile in.ProjectExtraCompileFiles)
+{
+    ^ProjectFiles + "^$(SolutionDir)$pfile$;"
+}
+ForEach(.pfile in.ProjectExtraHeaderFiles)
+{
+    ^ProjectFiles + "^$(SolutionDir)$pfile$;"
+}

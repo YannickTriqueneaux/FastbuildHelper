@@ -1,0 +1,116 @@
+
+//-  Project template for building two VisualStudio Project ----------------------------------------
+//-  one for a Library, Executable or DLL  
+//-  ans an other for The UnitTest executable
+//
+//  This templates is only tested on Windows and Linux
+//  
+//  This one will contains all files in $ProjectSourcesPath$ including sub folders
+//  and also contains all files defined in .ProjectExtraCompileFiles ans .ProjectExtraHeaderFiles
+//  And will be placed in the "$ProjectFolder$/$ProjectName$" SolutionFolder
+//
+//  The output VCXProject's name will be:  
+//      * $ProjectName$
+//
+//
+//
+//  The second project is for the UnitTest executable
+//  This one will be placed next to the main VCXProject
+//
+//  The output VCXProject's name for the UnityTest will be:
+//      * Tests-$ProjectName$
+//
+//
+//
+//  For more details see below
+//---------------------------------------------------------------------------------------------------
+
+//FASTBuild documentation
+//see   http://www.fastbuild.org/docs/functions/vcxproject.html
+//      http://www.fastbuild.org/docs/functions/vssolution.html
+
+
+
+// Visual Studio Project Generation
+//--------------------------------------------------------------------------
+VCXProject("$ProjectName$-vsproj")//Executable, Library or DLL project
+{
+    Using(.ProjectCommon)
+    .ProjectOutput              = "$VSSolutionDestination$/Projects/$ProjectName$/$ProjectName$.vcxproj"    //Filename of project file.
+
+//Adding files in project-------------
+    .ProjectInputPaths          = { "$ProjectSourcesPath$/" }                      //Paths to include in project
+    .ProjectBasePath            = "$ProjectSourcesPath$/"                          //Base path(s) for root folder(s) in project
+
+    .ProjectInputPathsExclude   = "$ProjectTestSourcesPath$/"                      //Paths to exclude from project
+    .ProjectFiles               = { "$ProjectSourcesPath$/Project.opal" }
+#include "../Architecture/VS/Tools/AddExtraFiles.bff"                       //List of files to include in project
+//-------------------------------------
+
+
+//Intellisense Options ----------------
+    .ForcedIncludes             = "^$(SolutionDir)$ProjectSourcesPath$/Public.hpp"                //Force included files.
+    .IncludeSearchPath          + "$ProjectSourcesPath$/"                          //Include search paths.
+
+#include "../Architecture/VS/Tools/AddIncludePaths.bff"                     
+#include "../Architecture/VS/Tools/AddExtraDefines.bff"                     //Preprocessor definitions.
+//-------------------------------------
+}
+
+
+
+
+VCXProject("$ProjectName$-vsproj-test")//Associated Test Project
+{
+    Using(.ProjectCommon)
+    .ProjectOutput              = "$VSSolutionDestination$/Projects/$ProjectName$/Tests-$ProjectName$.vcxproj"
+
+
+//Adding files in project-------------
+    .ProjectInputPaths          = { "$ProjectTestSourcesPath$/" }                  //Paths to include in project
+    .ProjectBasePath            = "$ProjectTestSourcesPath$/"                      //Base path(s) for root folder(s) in project
+//------------------------------------
+
+
+//Intellisense Options ---------------
+    .IncludeSearchPath          + "$ProjectTestSourcesPath$/"                      //Include search paths.
+
+#include "../Architecture/VS/Tools/AddIncludePaths.bff"                     
+#include "../Architecture/VS/Tools/AddTestIncludePaths.bff"                 
+#include "../Architecture/VS/Tools/AddExtraDefines.bff"                     //Preprocessor definitions.
+//------------------------------------
+}
+
+
+
+//Defines these projects into the solution  ------------------------------------
+
+.VSFolder =
+[
+    .Path                       = "$ProjectFolder$/$ProjectName$"                           //Folder path in Solution
+    .Projects                   = { "$ProjectName$-vsproj", "$ProjectName$-vsproj-test" }   //Project(s) to store in this folder
+]
+
+.VSProjectDependencies =
+[
+    .Projects                   = { "$ProjectName$-vsproj" }                                //Project(s) to specify dependencies for
+    .Dependencies               = {}                                                        //init as array type
+#include "../Architecture/VS/Tools/AddProjectDependencies.bff"
+]
+
+.VSTestProjectDependencies =
+[
+    .Projects                   = { "$ProjectName$-vsproj-test" }                           //Project(s) to specify dependencies for
+    .Dependencies               = { "$ProjectName$-vsproj" }
+#include "../Architecture/VS/Tools/AddProjectDependencies.bff"
+]
+
+
+.VSSolutionFolders              + .VSFolder                                                 //Add it to the list of folder
+.VSSolutionProjectDependencies  + .VSProjectDependencies                                    //Add them to the list of project dependencies
+                                + .VSTestProjectDependencies
+                                                                                    
+.VSProjects                     + "$ProjectName$-vsproj"                                    //Add them to the list of VCXProject
+                                + "$ProjectName$-vsproj-test"
+
+//----------------------------------------------------------------------------

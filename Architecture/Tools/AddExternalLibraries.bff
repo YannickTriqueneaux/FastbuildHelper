@@ -1,0 +1,14 @@
+
+
+ForEach(.libname in .ProjectExternalLibraries)
+{
+
+#if __WINDOWS__
+    ^LinkerOptions + ' $libname$.lib'
+#endif
+#if __LINUX__
+    ^LinkerOptions + " -l$libname$"
+#endif
+
+
+}

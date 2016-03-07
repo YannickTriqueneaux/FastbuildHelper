@@ -1,0 +1,158 @@
+
+
+// Linux
+//------------------------------------------------------------------------------
+
+#once   //can be included just one time
+
+
+Settings
+{
+    .CachePath = "/tmp/.fbuild.cache"
+}
+Compiler( "Compiler-x64" )
+{	
+    .Executable = "/usr/bin/gcc"
+}
+
+.PlatformFileExtensions =
+[
+	.staticLibExt  = ".a"
+    .dynamicLibExt = ".so"
+    .executableExt = ""
+    .libNamePrefix = "lib"
+]
+
+.LinuxDefinitions = 
+[
+    .Definitions            = " -DFASTBUILD"            //in case of, add FASTBUILD preprocessor definition when building with FASTBuild
+                            + " -D__LINUX__" 		
+                            + " -D__linux__"
+                            + " -DRT"
+		
+	//DEFINES////////
+	.DebugDefinitions       = " -DDEBUG"
+						  //+ ' -DPROFILING_ENABLED'
+								
+	.ReleaseDefinitions     = " -DRELEASE"
+	//////////////////
+]
+
+.LinuxBaseConfig =
+[
+    Using( .PlatformFileExtensions )
+	Using( .LinuxDefinitions )
+
+    .Compiler               = "Compiler-x64"
+    .Librarian              = "/usr/bin/ar"
+    .Linker                 = "/usr/bin/g++"
+    
+    .BaseCompilerOptions    = '-o "%2" "%1" -c -g'
+                            + " -I./"
+                            + " -Werror -Wfatal-errors"                   // warnings as errors
+                            + " -m64"                           // x86-64
+							+ .Definitions
+                            
+    .CompilerOptions        = .BaseCompilerOptions
+
+    .CppCompilerOptions     = " -Wall -std=c++11"
+                            // Disabled warnings
+                            + " -Wno-invalid-offsetof" // we get the offset of members in non-POD types
+                            + " -Wno-unused-variable"
+                            + " -Wno-unused-but-set-variable"
+                            + " -Wno-reorder"
+                            + " -Wno-sign-compare"
+                            + " -Wno-strict-aliasing"
+                            + " -Wno-unused-result"
+                            + " -Wno-unused-function"
+                            + " -Wno-maybe-uninitialized"
+
+                            + " -fstack-protector --param=ssp-buffer-size=4"  //Ubuntu compilation only  //error with file open in FileLockPosix.cpp
+
+                    // allow C++11 features
+                            
+    .LinkerOptions          = '"%1" -o "%2"'
+                                
+    .LibrarianOptions       = 'rcs "%2" "%1"'
+    
+    // Optimizations
+    .CompilerDebugOptimizations     = " -O0"
+    .CompilerReleaseOptimizations   = " -O3"
+    .LibrarianDebugOptimizations    = ""
+    .LibrarianReleaseOptimizations  = ""
+    .LinkerDebugOptimizations       = ""
+    .LinkerReleaseOptimizations     = ""    
+
+    .DLLCompilerOptions             = " -fPIC"
+    .DLLLinkerOptions               = " -shared"
+    
+    //.UseExceptions          = ' -fexceptions'  add it to the CompilerOptions  to add exceptions support
+]
+
+
+
+.X64BaseConfig = 
+[
+    Using( .LinuxBaseConfig )
+    .Platform               = 'x64'
+]
+.X64DebugConfig =
+[
+    Using( .X64BaseConfig )
+    .Config                 = "Debug"
+    .CompilerOptions        + .DebugDefinitions
+                            + .CompilerDebugOptimizations                           
+    .LibrarianOptions       + .LibrarianDebugOptimizations
+    .LinkerOptions          + .LinkerDebugOptimizations
+]
+.X64ReleaseConfig =
+[
+    Using( .X64BaseConfig )
+    .Config                 = "Release"
+    .CompilerOptions        + .ReleaseDefinitions
+                            + .CompilerReleaseOptimizations
+    .LibrarianOptions       + .LibrarianReleaseOptimizations
+    .LinkerOptions          + .LinkerReleaseOptimizations
+]
+
+
+
+
+
+// Configurations
+//------------------------------------------------------------------------------
+.CompilerConfigs = 
+{ 
+	.X64DebugConfig,  
+	.X64ReleaseConfig,
+	//.X64ProfileConfig_Linux,
+}
+
+.Compilerx86Configs = 
+{
+}
+.Compilerx64Configs = 
+{
+	.X64DebugConfig, 
+	.X64ReleaseConfig
+}
+
+.DefaultCompilerConfig =
+[
+	Using( .X64DebugConfig )
+]
+.Defaultx64Config =
+[
+    Using(.X64DebugConfig)
+]
+.DefaultDebugConfig =
+[
+    Using(.X64DebugConfig)
+]
+.DefaultReleaseConfig =
+[
+    Using(.X64ReleaseConfig)
+]
+
+.PlatformDefaultLibs = ""
+#include "DefaultLibs/LinuxDefaultLibs.bff"
