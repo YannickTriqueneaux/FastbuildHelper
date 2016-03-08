@@ -1,1 +1,1 @@
-# Fastbuild
+http://yannicktriqueneaux.github.io/FastbuildHelper
