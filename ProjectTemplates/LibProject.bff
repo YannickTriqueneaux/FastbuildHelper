@@ -26,16 +26,16 @@ ForEach(.CompilerConfig in.CompilerConfigs)
 
     .aliasName = "$ProjectName$-$Platform$-$Config$"
 
-#include "../Architecture/Tools/AddIncludePaths.bff"
-#include "../Architecture/Tools/AddLibraryPaths.bff"
-#include "../Architecture/Tools/AddExtraDefines.bff"
-#include "../Architecture/Tools/AddExtraCompileFlags.bff"
-#include "../Architecture/Tools/AddExtraLinkFlags.bff"
-#include "../Architecture/Tools/AddExternalLibraries.bff"
+#include "../Commands/AddIncludePaths.bff"
+#include "../Commands/AddLibraryPaths.bff"
+#include "../Commands/AddExtraDefines.bff"
+#include "../Commands/AddExtraCompileFlags.bff"
+#include "../Commands/AddExtraLinkFlags.bff"
+#include "../Commands/AddExternalLibraries.bff"
 
 
     .buildDest = ""
-#include "../Architecture/Tools/ConstructBuildDest.bff"
+#include "../Commands/ConstructBuildDest.bff"
 
     Library("$aliasName$-Lib")
     {

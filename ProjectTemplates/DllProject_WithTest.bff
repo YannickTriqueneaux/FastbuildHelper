@@ -35,16 +35,16 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     .aliasName      = "$ProjectName$-$Platform$-$Config$"
     .aliasTestName  = "Tests-$aliasName$"
 
-#include "../Architecture/Tools/AddIncludePaths.bff"
-#include "../Architecture/Tools/AddLibraryPaths.bff"
-#include "../Architecture/Tools/AddExtraDefines.bff"
-#include "../Architecture/Tools/AddExtraCompileFlags.bff"
-#include "../Architecture/Tools/AddExtraLinkFlags.bff"
-#include "../Architecture/Tools/AddExternalLibraries.bff"
+#include "../Commands/AddIncludePaths.bff"
+#include "../Commands/AddLibraryPaths.bff"
+#include "../Commands/AddExtraDefines.bff"
+#include "../Commands/AddExtraCompileFlags.bff"
+#include "../Commands/AddExtraLinkFlags.bff"
+#include "../Commands/AddExternalLibraries.bff"
 
 
     .buildDest = ""
-#include "../Architecture/Tools/ConstructBuildDest.bff"
+#include "../Commands/ConstructBuildDest.bff"
     
 #if __WINDOWS__
     ObjectList( "$aliasName$-Obj" )
@@ -96,7 +96,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #if __WINDOWS__
     ObjectList("$aliasName$Test-Obj")
     {
-#include "../Architecture/Tools/AddTestIncludePaths.bff"
+#include "../Commands/AddTestIncludePaths.bff"
 
         .CompilerInputFiles         = "$ProjectTestSourcesPath$/Main.test.cc"
         .CompilerOutputPath         = .buildDest + "Obj/$ProjectName$/"
@@ -105,7 +105,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #if __LINUX__
     Library('$aliasName$Test-Obj')
     {
-#include "../Architecture/Tools/AddTestIncludePaths.bff"
+#include "../Commands/AddTestIncludePaths.bff"
         .CompilerOptions            + .CppCompilerOptions
 
         .CompilerInputFiles         = "$ProjectTestSourcesPath$/Main.test.cc"

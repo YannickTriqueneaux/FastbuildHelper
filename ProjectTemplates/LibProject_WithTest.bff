@@ -37,15 +37,15 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 	.aliasName 	= "$ProjectName$-$Platform$-$Config$"
     .aliasTestName = "Tests-$aliasName$"
 
-#include "../Architecture/Tools/AddIncludePaths.bff"
-#include "../Architecture/Tools/AddLibraryPaths.bff"
-#include "../Architecture/Tools/AddExtraDefines.bff"
-#include "../Architecture/Tools/AddExtraCompileFlags.bff"
-#include "../Architecture/Tools/AddExtraLinkFlags.bff"
-#include "../Architecture/Tools/AddExternalLibraries.bff"
+#include "../Commands/AddIncludePaths.bff"
+#include "../Commands/AddLibraryPaths.bff"
+#include "../Commands/AddExtraDefines.bff"
+#include "../Commands/AddExtraCompileFlags.bff"
+#include "../Commands/AddExtraLinkFlags.bff"
+#include "../Commands/AddExternalLibraries.bff"
 
     .buildDest = ""
-#include "../Architecture/Tools/ConstructBuildDest.bff"
+#include "../Commands/ConstructBuildDest.bff"
 
     .CompilerOptions                + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this library
                                     + .CppCompilerOptions
@@ -66,7 +66,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #if __WINDOWS__
 	ObjectList( "$aliasName$-Obj" )
     {
-#include "../Architecture/Tools/AddTestIncludePaths.bff"
+#include "../Commands/AddTestIncludePaths.bff"
 		.CompilerInputFiles        	= "$ProjectTestSourcesPath$/Main.test.cc"
 		.CompilerOutputPath		   	= .buildDest + "Obj/$ProjectName$/"
 	}
@@ -74,7 +74,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 #if __LINUX__
 	Library( '$aliasName$-Obj' )
     {
-#include "../Architecture/Tools/AddTestIncludePaths.bff"
+#include "../Commands/AddTestIncludePaths.bff"
 		.CompilerInputFiles         = "$ProjectTestSourcesPath$/Main.test.cc"
 		.CompilerOutputPath			= .buildDest + "Obj/$ProjectName$/"
 		.LibrarianOutput 			= .buildDest + "Obj/$ProjectName$/Main.test" + .staticLibExt

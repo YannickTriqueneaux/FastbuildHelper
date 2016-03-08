@@ -44,7 +44,7 @@ VCXProject("$ProjectName$-vsproj")//Executable, Library or DLL project
 
     .ProjectInputPathsExclude   = "$ProjectTestSourcesPath$/"                      //Paths to exclude from project
     .ProjectFiles               = { "$ProjectSourcesPath$/Project.opal" }
-#include "../Architecture/VS/Tools/AddExtraFiles.bff"                       //List of files to include in project
+#include "../VisualStudioTemplates/Commands/AddExtraFiles.bff"                       //List of files to include in project
 //-------------------------------------
 
 
@@ -52,8 +52,8 @@ VCXProject("$ProjectName$-vsproj")//Executable, Library or DLL project
     .ForcedIncludes             = "^$(SolutionDir)$ProjectSourcesPath$/Public.hpp"                //Force included files.
     .IncludeSearchPath          + "$ProjectSourcesPath$/"                          //Include search paths.
 
-#include "../Architecture/VS/Tools/AddIncludePaths.bff"                     
-#include "../Architecture/VS/Tools/AddExtraDefines.bff"                     //Preprocessor definitions.
+#include "../VisualStudioTemplates/Commands/AddIncludePaths.bff"                     
+#include "../VisualStudioTemplates/Commands/AddExtraDefines.bff"                     //Preprocessor definitions.
 //-------------------------------------
 }
 
@@ -75,9 +75,9 @@ VCXProject("$ProjectName$-vsproj-test")//Associated Test Project
 //Intellisense Options ---------------
     .IncludeSearchPath          + "$ProjectTestSourcesPath$/"                      //Include search paths.
 
-#include "../Architecture/VS/Tools/AddIncludePaths.bff"                     
-#include "../Architecture/VS/Tools/AddTestIncludePaths.bff"                 
-#include "../Architecture/VS/Tools/AddExtraDefines.bff"                     //Preprocessor definitions.
+#include "../VisualStudioTemplates/Commands/AddIncludePaths.bff"                     
+#include "../VisualStudioTemplates/Commands/AddTestIncludePaths.bff"                 
+#include "../VisualStudioTemplates/Commands/AddExtraDefines.bff"                     //Preprocessor definitions.
 //------------------------------------
 }
 
@@ -95,14 +95,14 @@ VCXProject("$ProjectName$-vsproj-test")//Associated Test Project
 [
     .Projects                   = { "$ProjectName$-vsproj" }                                //Project(s) to specify dependencies for
     .Dependencies               = {}                                                        //init as array type
-#include "../Architecture/VS/Tools/AddProjectDependencies.bff"
+#include "../VisualStudioTemplates/Commands/AddProjectDependencies.bff"
 ]
 
 .VSTestProjectDependencies =
 [
     .Projects                   = { "$ProjectName$-vsproj-test" }                           //Project(s) to specify dependencies for
     .Dependencies               = { "$ProjectName$-vsproj" }
-#include "../Architecture/VS/Tools/AddProjectDependencies.bff"
+#include "../VisualStudioTemplates/Commands/AddProjectDependencies.bff"
 ]
 
 
