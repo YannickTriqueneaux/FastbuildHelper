@@ -173,7 +173,7 @@ Compiler( "Compiler-x64" )
 	//.PCHOptions				    + .BaseIncludePaths
 	
     //Disabled at OPAL-RT TECHNOLOGIES
-	//.CompilerOptions			    + " /EHsc"
+	.CompilerOptions			    + " /EHsc"
 ]
 
 

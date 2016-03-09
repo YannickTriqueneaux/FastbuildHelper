@@ -1,0 +1,58 @@
+
+//############### fbuild.bff equivalent ######################
+//Starting by including the initialization of the FASTBuild's build architecture
+#include "../../Initialization.bff"
+
+
+.VSSolutionName 		= 'HelloWorld'
+.VSSolutionDestination = 'VSSolution/'
+
+#if __WINDOWS__
+.BuildDestination = 'Build/'
+#endif
+
+#if __LINUX__
+.BuildDestination = '/home/xubuntu/CodeBuild/'
+#endif
+
+
+//############### CodeBuild.bff equivalent ######################
+#if __WINDOWS__
+#include "../../Compilers/WindowsCompiler.bff"
+#endif
+#if __LINUX__
+#include "../../Compilers/LinuxCompiler.bff"
+#endif
+
+
+//Begin part of VisualStudio Solution Generation
+#if __WINDOWS__
+#include "../../VisualStudioTemplates/VisualStudioGenBEGIN.bff"
+#endif
+
+
+//############### <project>.bff equivalent ######################
+.ProjectName                  = "HelloWorldProject"
+.ProjectSourcesPath           = "."
+
+//Add project to the list(s) of projects
+.ProjectNames     + "$ProjectName$"
+
+
+
+#if __WINDOWS__
+#include "../../VisualStudioTemplates/VisualStudioProject.bff"
+#endif
+
+#include "../../ProjectTemplates/ExecutableProject.bff"
+
+
+//############### end CodeBuild.b`ff equivalent ######################
+//Tool used to generate all alias ex:  $projectname$-x86-Debug
+#include "../../AliasMaker.bff"
+
+//End part of VisualStudio Solution Generation
+#if __WINDOWS__
+#include "../../VisualStudioTemplates/VisualStudioGenEND.bff"
+#endif
+//end

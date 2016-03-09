@@ -1,2 +1,2 @@
-cd Tools\Installer
+cd ExternalTools\Installer
 start setup.bat
