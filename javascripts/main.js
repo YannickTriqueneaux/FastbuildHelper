@@ -1,7 +1,7 @@
 console.log('This would be the main JS file.');
 
-
-var counter = 0, // to keep track of current slide
+$( document ).ready(function() {
+    counter = 0, // to keep track of current slide
     $items = $('.diy-slideshow figure'), // a collection of all of the slides, caching for performance
     numItems = $items.length; // total number of slides
 
@@ -36,3 +36,4 @@ if('ontouchstart' in window){
     }
   });
 }
+});
