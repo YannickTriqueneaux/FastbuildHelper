@@ -370,6 +370,45 @@ Full-Width Styles
 
 
 
+div#captioned-gallery {
+	width: 100%;
+	overflow: hidden;
+}
+figure { margin: 0; }
+figure.slider {
+	position: relative;
+	width: 500%;
+	font-size: 0;
+	animation: 1s slidy infinite; 
+}
+figure.slider figure { 
+	width: 20%;
+	height: auto;
+	display: inline-block;
+	position: inherit; 
+}
+figure.slider img {
+	width: 100%;
+	height: auto;
+}
+figure.slider figure figcaption {
+	position: absolute;
+	bottom: -3.5rem;
+	background: rgba(0,0,0,0.3);
+	color: #fff;
+	width: 100%;
+	font-size: 2rem;
+	padding: .6rem;
+	transition: .5s bottom; 
+}
+figure.slider figure:hover figcaption {
+	bottom: 0;
+}
+figure.slider figure:hover + figure figcaption { 
+	bottom: 0;
+}
+
+
 /*******************************************************************************
 Small Device Styles
 *******************************************************************************/
@@ -420,6 +459,9 @@ Small Device Styles
     min-width: 320px;
     max-width: 480px;
     font-size: 11px;
+  }
+  figure.slider figure figcaption {
+		font-size: 1.2rem;
   }
 
 }
