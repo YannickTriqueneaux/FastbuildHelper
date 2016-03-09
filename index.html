@@ -39,8 +39,8 @@
 <a id="the-idea" class="anchor" href="#the-idea" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><strong>The idea</strong>
 </h3>
 
-<p>Personally a really like FASTBuild, this build tool do a very powerful job without any dependencies et complicated installations. But the problem is: if you want to use it, you must be an experimented programmer specially in compilation things and the final syntax is unreadable for a non-fastbuild-integrator.
-When I started to integrate FASTBuild in my last company I was beginer with compilations things and the challenge was to port approximately 375 C++ projects (like VisualStudio projects), so the challenge was really tough but very interesting.</p>
+<p>Personally a really like FASTBuild, this build tool do a very powerful job without any dependencies et complicated installations. But the problem is: if you want to use it, you must be an experimented programmer specially with compilation things and the final syntax is unreadable for a non-fastbuild-integrator.
+When I started to integrate FASTBuild in my last company I was beginer with compilers settings and the challenge was to port approximately 375 C++ projects (like VisualStudio projects), so the challenge was really tough but very interesting.</p>
 
 <p>In order to succeed I imaginated an only one interface achieving the following goals:</p>
 
@@ -59,9 +59,11 @@ When I started to integrate FASTBuild in my last company I was beginer with comp
 
 <p>First, start by reading about the FASTBuild's language. The interface is readable without it but you may be handicapped and quickly do some mistakes. (see: <a href="http://www.fastbuild.org/docs/syntaxguide.html">FASTBuild language</a>)</p>
 
-<p>You have to know that this helper is not perfectly generic for all needs, this one provide a generic interface but in order to support you owns you will have to customize it according to your personnal requirements. In example: this one works with <strong>VisualStudio 2015 in Windows</strong> and <strong>GCC in Linux</strong>, also it will compile all *.cpp files inside your projects directories. But no worries, it's pretty easy change those things.</p>
+<p>You have to know that this helper is not perfectly generic for all needs, this one provides a generic interface but in order to support your owns you will have to customize it according to your personnal requirements. In example: this one works with <strong>VisualStudio 2015 in Windows</strong> and <strong>GCC in Linux</strong>, also it will compile all *.cpp files inside your projects directories. But no worries, it's pretty easy to change those settings.</p>
 
 <p>I advise you to start with a little "hello world" test. The helper provides an easy interface but not enough to stay in few lignes. Also you can rely on these <a href="https://github.com/YannickTriqueneaux/FastbuildHelper/tree/master/Examples">Examples</a>.</p>
+
+<p>The interesting thing is if your are interested by <a href="http://www.fastbuild.org/docs/home.html">FASTBuild</a> but you don't need this Helper, at a minimum, it should probably provide you a realy good example of how to use FASTBuild. </p>
 
 <p>Finally, in order to understand this "FASTBuild Helper", I suggest you to read the following slides:</p>
 
