@@ -26,18 +26,18 @@ VCXProject("$ProjectName$-vsproj")//Executable, Library or DLL project
     .ProjectOutput          = "$VSSolutionDestination$/Projects/$ProjectName$/$ProjectName$.vcxproj"    //Filename of project file.
 
     //Adding files in project-------------
-    .ProjectInputPaths      = { "$ProjectSourcesPath$/" }                              //Paths to include in project
-    .ProjectBasePath        = "$ProjectSourcesPath$/"                                  //Base path(s) for root folder(s) in project
-    .ProjectFiles           = { "$ProjectSourcesPath$/Project.opal"}
-#include "../VisualStudioTemplates/Commands/AddExtraFiles.bff"                               //List of files to include in project
+    .ProjectInputPaths      = { "$ProjectSourcesPath$/" }                               //Paths to include in project
+    .ProjectBasePath        = "$ProjectSourcesPath$/"                                   //Base path(s) for root folder(s) in project
+
+#include "../VisualStudioTemplates/Commands/AddExtraFiles.bff"                          //List of files to include in project
     //-------------------------------------
 
     //Intellisense Options ----------------
-    .ForcedIncludes         = "^$(SolutionDir)$ProjectSourcesPath$/Public.hpp"                        //Force included files.
-    .IncludeSearchPath      + "$ProjectSourcesPath$/"                                  //Include search paths.
+    .IncludeSearchPath      + "$ProjectSourcesPath$/"                                   //Include search paths.
 
-#include "../VisualStudioTemplates/Commands/AddIncludePaths.bff"                     
-#include "../VisualStudioTemplates/Commands/AddExtraDefines.bff"                             //Preprocessor definitions.
+#include "../VisualStudioTemplates/Commands/AddIncludePaths.bff"
+#include "../VisualStudioTemplates/Commands/AddForcedIncludeFiles.bff"                  //Add Forced included files for Intellisense.
+#include "../VisualStudioTemplates/Commands/AddExtraDefines.bff"                        //Preprocessor definitions.
     //-------------------------------------
 }
 					
@@ -45,11 +45,14 @@ VCXProject("$ProjectName$-vsproj")//Executable, Library or DLL project
 
 //Defines this project into the solution  ------------------------------------
 
-.VSFolder =
-[
-    .Path                       = "$ProjectFolder$/$ProjectName$"                   //Folder path in Solution
-    .Projects                   = { "$ProjectName$-vsproj" }                        //Project(s) to store in this folder
-]
+ForEach(.folder in .ProjectVSFolder){
+    .VSFolder =
+    [
+        .Path                   = "$folder$/$ProjectName$"                          //Folder path in Solution
+        .Projects               = { "$ProjectName$-vsproj" }                        //Project(s) to store in this folder
+        ^VSSolutionFolders      + .VSFolder                                         //Add it to the list of folder
+    ]
+}
 
 .VSProjectDependencies =
 [
@@ -59,7 +62,6 @@ VCXProject("$ProjectName$-vsproj")//Executable, Library or DLL project
 ]
 
 
-.VSSolutionFolders              + .VSFolder                                         //Add it to the list of folder
 .VSSolutionProjectDependencies  + .VSProjectDependencies                            //Add it to the list of project dependencies
 
 .VSProjects                     + "$ProjectName$-vsproj"                            //Add it to the list of VCXProject

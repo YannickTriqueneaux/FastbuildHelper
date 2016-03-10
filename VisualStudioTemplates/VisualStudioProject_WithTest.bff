@@ -39,21 +39,22 @@ VCXProject("$ProjectName$-vsproj")//Executable, Library or DLL project
     .ProjectOutput              = "$VSSolutionDestination$/Projects/$ProjectName$/$ProjectName$.vcxproj"    //Filename of project file.
 
 //Adding files in project-------------
-    .ProjectInputPaths          = { "$ProjectSourcesPath$/" }                      //Paths to include in project
-    .ProjectBasePath            = "$ProjectSourcesPath$/"                          //Base path(s) for root folder(s) in project
+    .ProjectInputPaths          = { "$ProjectSourcesPath$/" }                       //Paths to include in project
+    .ProjectBasePath            = "$ProjectSourcesPath$/"                           //Base path(s) for root folder(s) in project
 
-    .ProjectInputPathsExclude   = "$ProjectTestSourcesPath$/"                      //Paths to exclude from project
-    .ProjectFiles               = { "$ProjectSourcesPath$/Project.opal" }
-#include "../VisualStudioTemplates/Commands/AddExtraFiles.bff"                       //List of files to include in project
+    .ProjectInputPathsExclude   = "$ProjectTestSourcesPath$/"                       //Paths to exclude from project
+
+#include "../VisualStudioTemplates/Commands/AddExtraFiles.bff"                      //List of files to include in project
 //-------------------------------------
 
 
 //Intellisense Options ----------------
-    .ForcedIncludes             = "^$(SolutionDir)$ProjectSourcesPath$/Public.hpp"                //Force included files.
-    .IncludeSearchPath          + "$ProjectSourcesPath$/"                          //Include search paths.
+    .ForcedIncludes             = "^$(SolutionDir)$ProjectSourcesPath$/Public.hpp"  //Force included files.
+    .IncludeSearchPath          + "$ProjectSourcesPath$/"                           //Include search paths.
 
 #include "../VisualStudioTemplates/Commands/AddIncludePaths.bff"                     
-#include "../VisualStudioTemplates/Commands/AddExtraDefines.bff"                     //Preprocessor definitions.
+#include "../VisualStudioTemplates/Commands/AddForcedIncludeFiles.bff"                  //Add Forced included files for Intellisense.
+#include "../VisualStudioTemplates/Commands/AddExtraDefines.bff"                    //Preprocessor definitions.
 //-------------------------------------
 }
 
@@ -67,17 +68,18 @@ VCXProject("$ProjectName$-vsproj-test")//Associated Test Project
 
 
 //Adding files in project-------------
-    .ProjectInputPaths          = { "$ProjectTestSourcesPath$/" }                  //Paths to include in project
-    .ProjectBasePath            = "$ProjectTestSourcesPath$/"                      //Base path(s) for root folder(s) in project
+    .ProjectInputPaths          = { "$ProjectTestSourcesPath$/" }                   //Paths to include in project
+    .ProjectBasePath            = "$ProjectTestSourcesPath$/"                       //Base path(s) for root folder(s) in project
 //------------------------------------
 
 
 //Intellisense Options ---------------
-    .IncludeSearchPath          + "$ProjectTestSourcesPath$/"                      //Include search paths.
+    .IncludeSearchPath          + "$ProjectTestSourcesPath$/"                       //Include search paths.
 
 #include "../VisualStudioTemplates/Commands/AddIncludePaths.bff"                     
 #include "../VisualStudioTemplates/Commands/AddTestIncludePaths.bff"                 
-#include "../VisualStudioTemplates/Commands/AddExtraDefines.bff"                     //Preprocessor definitions.
+#include "../VisualStudioTemplates/Commands/AddForcedIncludeFiles.bff"              //Add Forced included files for Intellisense.
+#include "../VisualStudioTemplates/Commands/AddExtraDefines.bff"                    //Preprocessor definitions.
 //------------------------------------
 }
 
@@ -85,32 +87,34 @@ VCXProject("$ProjectName$-vsproj-test")//Associated Test Project
 
 //Defines these projects into the solution  ------------------------------------
 
-.VSFolder =
-[
-    .Path                       = "$ProjectFolder$/$ProjectName$"                           //Folder path in Solution
-    .Projects                   = { "$ProjectName$-vsproj", "$ProjectName$-vsproj-test" }   //Project(s) to store in this folder
-]
+ForEach(.folder in .ProjectVSFolder){
+    .VSFolder =
+    [
+        .Path                   = "$folder$/$ProjectName$"                          //Folder path in Solution
+        .Projects               = { "$ProjectName$-vsproj", "$ProjectName$-vsproj-test" } //Project(s) to store in the folder
+    ]
+    ^VSSolutionFolders          + .VSFolder                                         //Add it to the list of folder
+}
 
 .VSProjectDependencies =
 [
-    .Projects                   = { "$ProjectName$-vsproj" }                                //Project(s) to specify dependencies for
-    .Dependencies               = {}                                                        //init as array type
+    .Projects                   = { "$ProjectName$-vsproj" }                        //Project(s) to specify dependencies for
+    .Dependencies               = {}                                                //init as array type
 #include "../VisualStudioTemplates/Commands/AddProjectDependencies.bff"
 ]
 
 .VSTestProjectDependencies =
 [
-    .Projects                   = { "$ProjectName$-vsproj-test" }                           //Project(s) to specify dependencies for
+    .Projects                   = { "$ProjectName$-vsproj-test" }                   //Project(s) to specify dependencies for
     .Dependencies               = { "$ProjectName$-vsproj" }
 #include "../VisualStudioTemplates/Commands/AddProjectDependencies.bff"
 ]
 
 
-.VSSolutionFolders              + .VSFolder                                                 //Add it to the list of folder
-.VSSolutionProjectDependencies  + .VSProjectDependencies                                    //Add them to the list of project dependencies
+.VSSolutionProjectDependencies  + .VSProjectDependencies                            //Add them to the list of project dependencies
                                 + .VSTestProjectDependencies
                                                                                     
-.VSProjects                     + "$ProjectName$-vsproj"                                    //Add them to the list of VCXProject
+.VSProjects                     + "$ProjectName$-vsproj"                            //Add them to the list of VCXProject
                                 + "$ProjectName$-vsproj-test"
 
 //----------------------------------------------------------------------------

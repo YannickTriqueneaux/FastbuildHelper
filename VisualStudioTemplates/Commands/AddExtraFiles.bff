@@ -1,10 +1,15 @@
 
 
-ForEach(.pfile in.ProjectExtraCompileFiles)
+ForEach(.pfile in .ProjectExtraCompileFiles)
 {
     ^ProjectFiles + "^$(SolutionDir)$pfile$;"
 }
-ForEach(.pfile in.ProjectExtraHeaderFiles)
+ForEach(.pfile in .ProjectExtraHeaderFiles)
+{
+    ^ProjectFiles + "^$(SolutionDir)$pfile$;"
+}
+
+ForEach(.pfile in .ProjectVSExtraFiles)
 {
     ^ProjectFiles + "^$(SolutionDir)$pfile$;"
 }

@@ -11,7 +11,7 @@
 .VSSolutionDestination      = "" //specify the Path to the VisualStudio solution /!\ should be relative to the current "fbuild.bff" position
 
 .BuildDestination           = "" //specify the Path to the build destination folder /!\ should be relative to the current "fbuild.bff" position
-.EnableBuildDestByConfig    = {"yes"} //(Optional) put any value inside it to create a subfolder by configuration into the .BuildDestination. (e.g: EnableBuildDestByConfig = {"yes"} -> $BuildDestination$/x64-Release/ )
+.EnableBuildDestByConfig    = {"yes"} //(Optional) put any value inside it to create a subfolder by configuration into the .BuildDestination. (e.g: EnableBuildDestByConfig = {"yes"} -> $BuildDestination$/x64-Release/ ) /!\ this variable should stay an array and have only one or no item inside it (FASTBuild has not 'if' so we use array as tips)
 
 
 //list of all projects to build
@@ -38,7 +38,6 @@
 .ProjectSourcesPath         = "" // Specify the project sources path, should be relative to the "fbuild.bff"
 .ProjectTestSourcesPath     = "" //(Optional) Specify the project's test sources path, should be relative to the "fbuild.bff"
 
-.ProjectFolder              = "" //(Optional) Specify the folder to place your project in VisualStudio Solution (e.g: "Common/Tools")
 .ProjectBuildDestination    = "" //(Optional) appended to the .BuildDestination, speficy the sub folder to the project
 
 //Projects arguments
@@ -66,6 +65,11 @@
 .ProjectTestWorkingDir      = "" // (optional)Working dir for test execution, relative to the "fbuild.bff"
 
 
+
+
+.ProjectVSFolder            = {} //(Optional) Specify the folder to place your project in VisualStudio Solution (e.g: {"Common/Tools"}) /!\ this variable should stay an array and have only one or no item inside it (FASTBuild has not 'if' so we use array as tips)
+.ProjectVSExtraFiles        = {} //(Optional) Add some extra file to the VisualStudio Project, mostly some unbuilded files like documentation or your own *.bff files.
+.ProjectVSForcedIncludes    = {} //(Optional) Intellisense Options, Add some headers file which will be consider as included for the Intellisense
 
 //------------------------------------------------------------------------------------//
 //Do not use these arguments, they are used by architecture itself
