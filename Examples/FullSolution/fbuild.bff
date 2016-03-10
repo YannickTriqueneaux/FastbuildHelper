@@ -1,9 +1,18 @@
+//Entry point for FASTBuild
+//The order is very important
 
+//Note that all includes path are relative to the current file
+
+//   /!\  Note that all file paths have to be relative to this file  /!\
+//   /!\  Like in the C++, you can consider that all     #include ""   as a copy of the content inside the current file. (This is recusive)    /!\
+
+
+
+//Start by initializing all the FASTBuild Helper variables
 #include "../../../FastbuildHelper/Initialization.bff"
 
 
-.BuildDestination = "./"
-
+//Second include the proper compiler settings to use
 #if __WINDOWS__
 	#include "../../../FastbuildHelper/Compilers/WindowsCompiler.bff"
 #endif
@@ -11,27 +20,38 @@
 	#include "../../../FastbuildHelper/Compilers/LinuxCompiler.bff"
 #endif
 
+//Setup the build Destination
+.BuildDestination = "./"
 
-.VSSolutionName = 'FullSolution'
-.VSSolutionDestination = 'VSSolution/'
+//Setup the VisualStudio solution requiements
+.VSSolutionName         = 'FullSolution'
+.VSSolutionDestination  = 'VSSolution/'
 
-//Begin part of VisualStudio Solution Generation
+
+//Decalre the BEGIN part of VisualStudio Solution Generation
 #if __WINDOWS__
-    #include "../../../FastbuildHelper/VisualStudioTemplates/VisualStudioGenBEGIN.bff"
+	#include "../../../FastbuildHelper/VisualStudioTemplates/VisualStudioGenBEGIN.bff"
 #endif
 
-//List of projects
+
+
+//List your projects   (The order is important when projects links together)
 #include "CommonLib/CommonLib.bff"
 #include "FirstLib/FirstLib.bff"
 #include "SecondLib/SecondLib.bff"
 #include "SimpleDLL/SimpleDLL.bff"
 #include "MainExecutable/MainExecutable.bff"
 
+
+
+
+//Generate all Aliases (see decription inside)
 #include "../../../FastbuildHelper/AliasMaker.bff"
 
-//End part of VisualStudio Solution Generation
+
+//Declare the END part of VisualStudio Solution Generation (Should stay after AliasMaker)
 #if __WINDOWS__
-    #include "../../../FastbuildHelper/VisualStudioTemplates/VisualStudioGenEND.bff"
+	#include "../../../FastbuildHelper/VisualStudioTemplates/VisualStudioGenEND.bff"
 #endif
 
 

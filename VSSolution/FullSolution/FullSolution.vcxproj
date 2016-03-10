@@ -46,7 +46,18 @@
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="readme.txt" />
+    <None Include="..\..\Examples\FullSolution\CommonLib\CommonLib.bff" />
+    <None Include="..\..\Examples\FullSolution\fbuild.bff" />
+    <None Include="..\..\Examples\FullSolution\FirstLib\FirstLib.bff" />
+    <None Include="..\..\Examples\FullSolution\MainExecutable\MainExecutable.bff" />
+    <None Include="..\..\Examples\FullSolution\SecondLib\SecondLib.bff" />
+    <None Include="..\..\Examples\FullSolution\SimpleDLL\SimpleDLL.bff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\Examples\FullSolution\Dependencies.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\..\Examples\FullSolution\README.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

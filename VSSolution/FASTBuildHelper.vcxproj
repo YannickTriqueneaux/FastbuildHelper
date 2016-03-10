@@ -82,6 +82,7 @@
     <None Include="..\ProjectTemplates\UnityBuild.bff" />
     <None Include="..\VisualStudioTemplates\Commands\AddExtraDefines.bff" />
     <None Include="..\VisualStudioTemplates\Commands\AddExtraFiles.bff" />
+    <None Include="..\VisualStudioTemplates\Commands\AddForcedIncludeFiles.bff" />
     <None Include="..\VisualStudioTemplates\Commands\AddIncludePaths.bff" />
     <None Include="..\VisualStudioTemplates\Commands\AddProjectDependencies.bff" />
     <None Include="..\VisualStudioTemplates\Commands\AddTestIncludePaths.bff" />
