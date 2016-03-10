@@ -20,9 +20,12 @@
     #include "../../../FastbuildHelper/VisualStudioTemplates/VisualStudioGenBEGIN.bff"
 #endif
 
-//List od projects
+//List of projects
 #include "CommonLib/CommonLib.bff"
-#include "ASimpleDLL/ASimpleDLL.bff"
+#include "FirstLib/FirstLib.bff"
+#include "SecondLib/SecondLib.bff"
+#include "SimpleDLL/SimpleDLL.bff"
+#include "MainExecutable/MainExecutable.bff"
 
 #include "../../../FastbuildHelper/AliasMaker.bff"
 

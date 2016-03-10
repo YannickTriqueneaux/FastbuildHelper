@@ -1,0 +1,18 @@
+
+
+.ProjectName 			= "MainExecutable"
+.ProjectSourcesPath 	= "./MainExecutable"
+
+
+.ProjectNames 			+ .ProjectName
+
+.ProjectDependencies =
+{
+	"FirstLib",
+	
+	"SecondLib", // Important order !
+    "CommonLib"	 //
+}
+
+#include "../../../../FastbuildHelper/ProjectTemplates/ExecutableProject.bff"
+#include "../../../../FastbuildHelper/VisualStudioTemplates/VisualStudioProject.bff"

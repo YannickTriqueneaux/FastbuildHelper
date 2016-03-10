@@ -1,0 +1,15 @@
+
+
+.ProjectName 			= "SecondLib"
+.ProjectSourcesPath 	= "./SecondLib"
+
+
+.ProjectNames 			+ .ProjectName
+
+.ProjectDependencies =
+{
+    "CommonLib"
+}
+
+#include "../../../../FastbuildHelper/ProjectTemplates/LibProject.bff"
+#include "../../../../FastbuildHelper/VisualStudioTemplates/VisualStudioProject.bff"

@@ -1,7 +1,7 @@
 
 
-.ProjectName 			= "ASimpleDLL"
-.ProjectSourcesPath 	= "./ASimpleDLL"
+.ProjectName 			= "SimpleDLL"
+.ProjectSourcesPath 	= "./SimpleDLL"
 
 
 .ProjectNames 			+ .ProjectName

@@ -1,6 +1,6 @@
 
-#include "../MyFirstLib/FirstHello.h"
-#include "../MySecondLib/SecondHello.h"
+#include "../FirstLib/FirstHello.h"
+#include "../SecondLib/SecondHello.h"
 #include "../CommonLib/DLLHelper.h"
 
 int main(int argc, char ** args) {
