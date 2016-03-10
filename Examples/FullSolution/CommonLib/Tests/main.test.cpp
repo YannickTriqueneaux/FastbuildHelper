@@ -1,5 +1,5 @@
 
-#include "../CommonLib/HelloWriter.h"
+#include "../HelloWriter.h"
 
 int main(int argc, char ** args) {
 

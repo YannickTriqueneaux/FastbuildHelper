@@ -1,0 +1,8 @@
+
+
+.ProjectName = "LibProject"
+.ProjectSourcePath = "./"
+
+.ProjectNames + .ProjectName
+
+#include "../../ProjectTemplates/LibProject.bff"

@@ -198,7 +198,7 @@ Alias("Debug")
 //      * Release             -Build all project in Release with the defaut plaftform
 Alias("Release")
 {
-    Using(.DefaultDebugConfig)
+    Using(.DefaultReleaseConfig)
 
     .Targets = {}//init by array type
     ForEach(.pname in.ProjectNames)  //build all projects no-platform specific

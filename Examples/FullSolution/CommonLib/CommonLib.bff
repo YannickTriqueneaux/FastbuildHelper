@@ -1,0 +1,17 @@
+
+
+.ProjectName 			= "CommonLib"
+.ProjectSourcesPath 	= "./CommonLib"
+.ProjectTestSourcesPath = "./CommonLib/Tests"
+
+
+.ProjectNames 			+ .ProjectName
+.ProjectTestNames       + "Tests-$ProjectName$"
+
+
+
+#include "../../../../FastbuildHelper/ProjectTemplates/LibProject_WithTest.bff"
+
+
+
+#include "../../../../FastbuildHelper/VisualStudioTemplates/VisualStudioProject_WithTest.bff"

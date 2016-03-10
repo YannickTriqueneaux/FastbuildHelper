@@ -62,7 +62,7 @@
 
 //Project Test arguments
 .ProjectTestLogsPath        = "" // Output file for captured test output, relative to the "fbuild.bff"
-.ProjectTestArguments       = {} // (optional)Arguments to pass to test executable
+.ProjectTestArguments       = "--FASTBUILD" // Arguments to pass to test executable
 .ProjectTestWorkingDir      = "" // (optional)Working dir for test execution, relative to the "fbuild.bff"
 
 
