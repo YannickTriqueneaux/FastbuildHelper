@@ -41,7 +41,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     ObjectList( "$aliasName$-Obj" )
     {
         .CompilerInputPath          = "$ProjectSourcesPath$/"
-        .CompilerInputPattern       = "*.cc"
+        .CompilerInputPattern       = "*.cpp"
         .CompilerInputFiles         = .ProjectExtraCompileFiles
         .CompilerOutputPath		   	= .buildDest + "Obj/$ProjectName$/"
 
@@ -57,7 +57,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
                                     + .CppCompilerOptions
 
         .CompilerInputPath          = "$ProjectSourcesPath$/"
-        .CompilerInputPattern       = "*.cc"
+        .CompilerInputPattern       = "*.cpp"
         .CompilerInputFiles         = .ProjectExtraCompileFiles
 
        

@@ -36,6 +36,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 	
 	.aliasName 	= "$ProjectName$-$Platform$-$Config$"
     .aliasTestName = "Tests-$aliasName$"
+	
 
 #include "../Commands/AddIncludePaths.bff"
 #include "../Commands/AddLibraryPaths.bff"
@@ -55,9 +56,9 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 	Library( "$aliasName$-Lib" )
     {
 		.CompilerInputPath          = "$ProjectSourcesPath$/"
-        .CompilerInputPattern       = "*.cc"
+        .CompilerInputPattern       = "*.cpp"
         .CompilerInputFiles         = .ProjectExtraCompileFiles
-        .CompilerInputExcludePath   = "$ProjectSourcesPath$/Tests"
+        .CompilerInputExcludePath   = "$ProjectTestSourcesPath$/"
 		.CompilerOutputPath			= .buildDest + "Obj/$ProjectName$/"
 		.LibrarianOutput 			= .buildDest + .ProjectBuildDestination + .libNamePrefix + "$ProjectName$" + .staticLibExt
 
@@ -67,7 +68,8 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 	ObjectList( "$aliasName$-Obj" )
     {
 #include "../Commands/AddTestIncludePaths.bff"
-		.CompilerInputFiles        	= "$ProjectTestSourcesPath$/Main.test.cc"
+        .CompilerInputPath          = "$ProjectTestSourcesPath$/"
+		.CompilerInputPattern     	= "*.cpp"
 		.CompilerOutputPath		   	= .buildDest + "Obj/$ProjectName$/"
 	}
 #endif
@@ -75,9 +77,10 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 	Library( '$aliasName$-Obj' )
     {
 #include "../Commands/AddTestIncludePaths.bff"
-		.CompilerInputFiles         = "$ProjectTestSourcesPath$/Main.test.cc"
+        .CompilerInputPath          = "$ProjectTestSourcePath$/"
+		.CompilerInputPattern     	= "*.cpp"
 		.CompilerOutputPath			= .buildDest + "Obj/$ProjectName$/"
-		.LibrarianOutput 			= .buildDest + "Obj/$ProjectName$/Main.test" + .staticLibExt
+		.LibrarianOutput 			= .buildDest + "Obj/$ProjectName$/test.$ProjectName$" + .staticLibExt
 	}
 #endif
 

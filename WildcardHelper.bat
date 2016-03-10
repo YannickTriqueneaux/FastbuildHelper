@@ -1,1 +1,1 @@
-start ./Tools/FastBuildWildcardChecker/executable/FastBuildWildcardChecker.exe
+start ./ExternalTools/FastBuildWildcardChecker/executable/FastBuildWildcardChecker.exe

@@ -1,0 +1,12 @@
+
+
+.ProjectName 			= "SimpleDLL"
+.ProjectSourcesPath 	= "./SimpleDLL"
+
+
+.ProjectNames 			+ .ProjectName
+
+
+
+#include "../../../../FastbuildHelper/ProjectTemplates/DLLProject.bff"
+#include "../../../../FastbuildHelper/VisualStudioTemplates/VisualStudioProject.bff"

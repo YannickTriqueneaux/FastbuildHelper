@@ -128,5 +128,8 @@
     </None>
     <None Include="..\AliasMaker.bff" />
     <None Include="..\Initialization.bff" />
+    <None Include="..\VisualStudioTemplates\Commands\AddForcedIncludeFiles.bff">
+      <Filter>VisualStudioTemplates\Commands</Filter>
+    </None>
   </ItemGroup>
 </Project>

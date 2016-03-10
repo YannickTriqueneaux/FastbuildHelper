@@ -1,0 +1,16 @@
+
+#include "../../../FastbuildHelper/Initialization.bff"
+
+
+.BuildDestination = "./"
+
+#if __WINDOWS__
+	#include "../../../FastbuildHelper/Compilers/WindowsCompiler.bff"
+#endif
+#if __LINUX__
+	#include "../../../FastbuildHelper/Compilers/LinuxCompiler.bff"
+#endif
+
+#include "LibProject.bff"
+
+#include "../../../FastbuildHelper/AliasMaker.bff"

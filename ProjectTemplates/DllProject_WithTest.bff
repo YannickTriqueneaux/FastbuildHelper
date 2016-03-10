@@ -45,18 +45,22 @@ ForEach( .CompilerConfig in .CompilerConfigs )
 
     .buildDest = ""
 #include "../Commands/ConstructBuildDest.bff"
+
+
+    .CompilerOptions                + .DLLCompilerOptions
+                                    + .CppCompilerOptions
+
+    .LinkerOptions                  + .PlatformDefaultLibs
     
 #if __WINDOWS__
     ObjectList( "$aliasName$-Obj" )
     {
         .CompilerInputPath          = "$ProjectSourcesPath$/"
-        .CompilerInputPattern       = "*.cc"
+        .CompilerInputPattern       = "*.cpp"
         .CompilerInputFiles         = .ProjectExtraCompileFiles
-        .CompilerInputExcludePath   = "$ProjectSourcesPath$/Tests"
+        .CompilerInputExcludePath   = "$ProjectTestSourcesPath$/"
 
         .CompilerOutputPath         = .buildDest + "Obj/$ProjectName$/"
-        .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this library
-                                    + .CppCompilerOptions
     }
 #endif
 
@@ -64,15 +68,12 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     Library( "$aliasName$-Obj" )
     {
         .CompilerInputPath          = "$ProjectSourcesPath$/"
-        .CompilerInputPattern       = "*.cc"
+        .CompilerInputPattern       = "*.cpp"
         .CompilerInputFiles         = .ProjectExtraCompileFiles
-        .CompilerInputExcludePath    = "$ProjectSourcesPath$/Tests"
+        .CompilerInputExcludePath    = "$ProjectTestSourcesPath$/"
         
         .CompilerOutputPath			= .buildDest + "Obj/$ProjectName$/"
         .LibrarianOutput 			= .buildDest + "Obj/$ProjectName$" + .staticLibExt
-
-        .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this library
-                                    + .CppCompilerOptions
     }
 #endif
 
@@ -98,7 +99,8 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     {
 #include "../Commands/AddTestIncludePaths.bff"
 
-        .CompilerInputFiles         = "$ProjectTestSourcesPath$/Main.test.cc"
+        .CompilerInputPattern       = "*.cpp"
+        .CompilerInputPath          = "$ProjectTestSourcesPath$/"
         .CompilerOutputPath         = .buildDest + "Obj/$ProjectName$/"
     }
 #endif
@@ -106,11 +108,11 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     Library('$aliasName$Test-Obj')
     {
 #include "../Commands/AddTestIncludePaths.bff"
-        .CompilerOptions            + .CppCompilerOptions
-
-        .CompilerInputFiles         = "$ProjectTestSourcesPath$/Main.test.cc"
+        
+        .CompilerInputPattern       = "*.cpp"
+        .CompilerInputPath          = "$ProjectTestSourcesPath$/"
         .CompilerOutputPath         = .buildDest + "Obj/$ProjectName$/"
-        .LibrarianOutput            = .buildDest + "Obj/$ProjectName$/Main.test" + .staticLibExt
+        .LibrarianOutput 			= .buildDest + "Obj/$ProjectName$/test.$ProjectName$" + .staticLibExt
     }
 #endif
 

@@ -1,0 +1,12 @@
+
+
+.ProjectName 			= "FirstLib"
+.ProjectSourcesPath 	= "./FirstLib"
+
+
+.ProjectNames 			+ .ProjectName
+
+
+
+#include "../../../../FastbuildHelper/ProjectTemplates/LibProject.bff"
+#include "../../../../FastbuildHelper/VisualStudioTemplates/VisualStudioProject.bff"

@@ -44,7 +44,6 @@ Compiler( "Compiler-x86" )
         "$Root$\mspdbcore.dll",
         "$Root$\mspft140.dll",
         "$Root$\msvcdis140.dll",
-        "$Root$\1033\clui.dll",
         "$VSBasePath$\VC\redist\x86\Microsoft.VC140.CRT\concrt140.dll",
         "$VSBasePath$\VC\redist\x86\Microsoft.VC140.CRT\msvcp140.dll",
         "$VSBasePath$\VC\redist\x86\Microsoft.VC140.CRT\vccorlib140.dll"
@@ -65,7 +64,6 @@ Compiler( "Compiler-x64" )
         "$Root$\x86_amd64\c1.dll",
         "$Root$\x86_amd64\c1xx.dll",
         "$Root$\x86_amd64\c2.dll",
-        "$Root$\x86_amd64\1033\clui.dll"
         "$Root$\msobj140.dll"
         "$Root$\mspdb140.dll"
         "$Root$\mspdbsrv.exe"

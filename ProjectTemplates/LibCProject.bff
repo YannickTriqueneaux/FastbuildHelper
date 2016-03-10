@@ -41,6 +41,8 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     .buildDest = ""
 #include "../Commands/ConstructBuildDest.bff"
 
+    .CompilerOptions + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this
+
     Library("$aliasName$-Lib")
     {
         .CompilerInputPath          = "$ProjectSourcesPath$/"
@@ -49,7 +51,6 @@ ForEach( .CompilerConfig in .CompilerConfigs )
         .CompilerOutputPath         = .buildDest + "Obj/$ProjectName$/"
         .LibrarianOutput            = .buildDest + .ProjectBuildDestination + .libNamePrefix + "$ProjectName$" + .staticLibExt
 
-        .CompilerOptions            + .DLLCompilerOptions //required in 64bits to any DLL who want to build with a dependencies on this
     }
 
 	Alias( "$aliasName$" ) {        .Targets = { "$aliasName$-Lib" } }
