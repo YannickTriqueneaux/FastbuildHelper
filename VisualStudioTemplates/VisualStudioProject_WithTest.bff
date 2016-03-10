@@ -36,7 +36,7 @@
 VCXProject("$ProjectName$-vsproj")//Executable, Library or DLL project
 {
     Using(.ProjectCommon)
-    .ProjectOutput              = "$VSSolutionDestination$/Projects/$ProjectName$/$ProjectName$.vcxproj"    //Filename of project file.
+    .ProjectOutput              = .VSSolutionDestination + "Projects/$ProjectName$/$ProjectName$.vcxproj"    //Filename of project file.
 
 //Adding files in project-------------
     .ProjectInputPaths          = { "$ProjectSourcesPath$/" }                      //Paths to include in project
@@ -63,7 +63,7 @@ VCXProject("$ProjectName$-vsproj")//Executable, Library or DLL project
 VCXProject("$ProjectName$-vsproj-test")//Associated Test Project
 {
     Using(.ProjectCommon)
-    .ProjectOutput              = "$VSSolutionDestination$/Projects/$ProjectName$/Tests-$ProjectName$.vcxproj"
+    .ProjectOutput              = .VSSolutionDestination + "Projects/$ProjectName$/Tests-$ProjectName$.vcxproj"
 
 
 //Adding files in project-------------
@@ -85,11 +85,15 @@ VCXProject("$ProjectName$-vsproj-test")//Associated Test Project
 
 //Defines these projects into the solution  ------------------------------------
 
-.VSFolder =
-[
-    .Path                       = "$ProjectFolder$/$ProjectName$"                           //Folder path in Solution
-    .Projects                   = { "$ProjectName$-vsproj", "$ProjectName$-vsproj-test" }   //Project(s) to store in this folder
-]
+ForEach(.folder in .ProjectFolder){
+    .VSFolder =
+    [
+        .Path                       = "$folder$/$ProjectName$"                          //Folder path in Solution
+        .Projects                   = { "$ProjectName$-vsproj" }                        //Project(s) to store in this folder
+    ]
+    .VSSolutionFolders              + .VSFolder                                         //Add it to the list of folder
+}
+
 
 .VSProjectDependencies =
 [
@@ -106,7 +110,7 @@ VCXProject("$ProjectName$-vsproj-test")//Associated Test Project
 ]
 
 
-.VSSolutionFolders              + .VSFolder                                                 //Add it to the list of folder
+
 .VSSolutionProjectDependencies  + .VSProjectDependencies                                    //Add them to the list of project dependencies
                                 + .VSTestProjectDependencies
                                                                                     

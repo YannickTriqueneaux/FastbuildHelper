@@ -38,7 +38,7 @@
 .ProjectSourcesPath         = "" // Specify the project sources path, should be relative to the "fbuild.bff"
 .ProjectTestSourcesPath     = "" //(Optional) Specify the project's test sources path, should be relative to the "fbuild.bff"
 
-.ProjectFolder              = "" //(Optional) Specify the folder to place your project in VisualStudio Solution (e.g: "Common/Tools")
+.ProjectFolder              = {} //(Optional) Specify the folder to place your project in VisualStudio Solution (e.g: "Common/Tools")
 .ProjectBuildDestination    = "" //(Optional) appended to the .BuildDestination, speficy the sub folder to the project
 
 //Projects arguments

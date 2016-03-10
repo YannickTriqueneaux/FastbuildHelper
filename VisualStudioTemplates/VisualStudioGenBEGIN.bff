@@ -36,8 +36,8 @@
 
 .VSProjectX86Debug		        = [ Using( .VistualStudioDefinitions ) .Platform = "Win32" .Config = "x86-Debug"	.PreprocessorDefinitions = .X86Defines + .DebugDefines ]
 .VSProjectX86Release		    = [ Using( .VistualStudioDefinitions ) .Platform = "Win32" .Config = "x86-Release"  .PreprocessorDefinitions = .X86Defines + .ReleaseDefines ]
-.VSProjectX64Debug		        = [ Using( .VistualStudioDefinitions ) .Platform = "Win32" .Config = "x64-Debug"	.PreprocessorDefinitions = .X64Defines + .DebugDefines ]
-.VSProjectX64Release		    = [ Using( .VistualStudioDefinitions ) .Platform = "Win32" .Config = "x64-Release"  .PreprocessorDefinitions = .X64Defines + .ReleaseDefines ]
+.VSProjectX64Debug		        = [ Using( .VistualStudioDefinitions ) .Platform = "x64" .Config = "x64-Debug"	.PreprocessorDefinitions = .X64Defines + .DebugDefines ]
+.VSProjectX64Release		    = [ Using( .VistualStudioDefinitions ) .Platform = "x64" .Config = "x64-Release"  .PreprocessorDefinitions = .X64Defines + .ReleaseDefines ]
 
 //.VSProjectX86Profile		    = [ Using( .ProjectCommon )	.Config = 'x86-Profile' .PreprocessorDefinitions = .X86Defines + .ProfileDefines ]
 //.VSProjectX64Profile		    = [ Using( .ProjectCommon )	.Config = 'x64-Profile' .PreprocessorDefinitions = .X64Defines + .ProfileDefines ]
@@ -57,26 +57,24 @@
 }
 
 // Project to compile everything
-VCXProject( "Build_$VSSolutionName$-proj" )
+VCXProject( "BuildAll_$VSSolutionName$-proj" )
 {
     Using( .ProjectCommon )
-	.ProjectOutput				= "VSSolution/All-$VSSolutionName$.vcxproj"
-	.ProjectFiles				= { "./fbuild.bff" }
-	.ProjectBasePath			= './'
+	.ProjectOutput				= "$VSSolutionDestination$/All-$VSSolutionName$.vcxproj"
 }
 
 .AllProjectFolder = 
 [
-	.Path			            = "__FastBuild__"
-	.Projects		            = { "Build_$VSSolutionName$-proj" }
+	.Path			            = "__FASTBuild__"
+	.Projects		            = { "BuildAll_$VSSolutionName$-proj" }
 ]
 
 .AllProjectDependencies =
 [
-    .Projects = { "Build_$VSSolutionName$-proj" }          //Project(s) to specify dependencies for
+    .Projects = { "BuildAll_$VSSolutionName$-proj" }          //Project(s) to specify dependencies for
     .Dependencies = {}                                     //init as array type
 ]
 
 .VSSolutionFolders 		        = { .AllProjectFolder }
 .VSSolutionProjectDependencies  = { .AllProjectDependencies }
-.VSProjects = { "Build_$VSSolutionName$-proj" }
+.VSProjects = { "BuildAll_$VSSolutionName$-proj" }

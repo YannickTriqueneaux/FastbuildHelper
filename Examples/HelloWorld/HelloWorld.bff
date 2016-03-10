@@ -32,6 +32,8 @@
 
 
 //############### <project>.bff equivalent ######################
+.projectNames = {}
+.projectTestNames = {}
 .ProjectName                  = "HelloWorldProject"
 .ProjectSourcesPath           = "."
 

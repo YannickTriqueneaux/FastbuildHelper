@@ -23,7 +23,7 @@ VSSolution( "$VSSolutionName$" )
 	
 	
 	
-	.SolutionBuildProject   = "Build_$VSSolutionName$-proj"
+	.SolutionBuildProject   = "BuildAll_$VSSolutionName$-proj"
 						  
 	.SolutionConfigs	    = .ProjectConfigs
 
