@@ -61,8 +61,8 @@
 
 //Project Test arguments
 .ProjectTestLogsPath        = "" // Output file for captured test output, relative to the "fbuild.bff"
-.ProjectTestArguments       = "--FASTBUILD" // Arguments to pass to test executable
-.ProjectTestWorkingDir      = "" // (optional)Working dir for test execution, relative to the "fbuild.bff"
+.ProjectTestArguments       = "--FASTBUILD" // Arguments to pass to the test executable
+.ProjectTestWorkingDir      = "" // (optional)Working dir for the test execution, relative to the "fbuild.bff"
 
 
 
@@ -72,7 +72,7 @@
 .ProjectVSForcedIncludes    = {} //(Optional) Intellisense Options, Add some headers file which will be consider as included for the Intellisense
 
 //------------------------------------------------------------------------------------//
-//Do not use these arguments, they are used by architecture itself
+//Do not use these arguments, they are used by the Helper itself
 
 //Projects Extra arguments
 .ProjectIsBigObject         = "" // flag to specify that the object to build will contains more than 65,536 (2^16) of number of sections (see: https://msdn.microsoft.com/en-us/library/ms173499.aspx)
