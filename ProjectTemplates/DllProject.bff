@@ -45,7 +45,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
                                     + .ProjectIsBigObject
 
         .CompilerInputPath          = "$ProjectSourcesPath$/"
-        .CompilerInputPattern       = "*.cpp"
+        .CompilerInputPattern       = .ProjectSourceInputPattern
         .CompilerInputFiles         = .ProjectExtraCompileFiles
         .CompilerOutputPath		   	= .buildDest + "Obj/$ProjectName$/"
     }
@@ -58,7 +58,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
                                     + .CppCompilerOptions
 
         .CompilerInputPath          = "$ProjectSourcesPath$/"
-        .CompilerInputPattern       = "*.cpp"
+        .CompilerInputPattern       = .ProjectSourceInputPattern
         .CompilerInputFiles         = .ProjectExtraCompileFiles
 
         .CompilerOutputPath         = .buildDest + "Obj/$ProjectName$/"

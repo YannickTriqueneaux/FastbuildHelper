@@ -28,6 +28,8 @@ VCXProject("$ProjectName$-vsproj")//Executable, Library or DLL project
     //Adding files in project-------------
     .ProjectInputPaths      = { "$ProjectSourcesPath$/" }                               //Paths to include in project
     .ProjectBasePath        = "$ProjectSourcesPath$/"                                   //Base path(s) for root folder(s) in project
+    .ProjectFiles           = ""
+    .ForcedIncludes         = ";"
 
 #include "../VisualStudioTemplates/Commands/AddExtraFiles.bff"                          //List of files to include in project
     //-------------------------------------
@@ -50,8 +52,9 @@ ForEach(.folder in .ProjectVSFolder){
     [
         .Path                   = "$folder$/$ProjectName$"                          //Folder path in Solution
         .Projects               = { "$ProjectName$-vsproj" }                        //Project(s) to store in this folder
-        ^VSSolutionFolders      + .VSFolder                                         //Add it to the list of folder
+
     ]
+    ^VSSolutionFolders          + .VSFolder                                         //Add it to the list of folder
 }
 
 .VSProjectDependencies =

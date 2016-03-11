@@ -35,8 +35,13 @@
 // Projects parameters
 // If not cleared, the configuration will be applied to next projects
 .ProjectName                = "" // Specify the project name /!\ this one should be unique !
+
 .ProjectSourcesPath         = "" // Specify the project sources path, should be relative to the "fbuild.bff"
-.ProjectTestSourcesPath     = "" //(Optional) Specify the project's test sources path, should be relative to the "fbuild.bff"
+.ProjectSourceInputPattern  = "*.cc" // (Optional) Defines file extension pattern to be included into the build. 
+.ProjectSourceInputPatternC = "*.c" // (Optional) Defines file extension pattern to be included into the build for C projects.  
+
+.ProjectTestSourcesPath     	= "" //(Optional) Specify the project's test sources path, should be relative to the "fbuild.bff"
+.ProjectTestSourceInputPattern  = "*.cc" // (Optional) Defines file extension pattern to be included into the build for test projects. 
 
 .ProjectBuildDestination    = "" //(Optional) appended to the .BuildDestination, speficy the sub folder to the project
 

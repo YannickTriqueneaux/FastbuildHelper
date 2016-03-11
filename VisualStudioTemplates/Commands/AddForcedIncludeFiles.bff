@@ -1,4 +1,4 @@
 
 ForEach(.incl in .ProjectVSForcedIncludes){
-    ^ForcedIncludes = "^$(SolutionDir)$incl$"                                       //Add Forced included files for Intellisense.
+    ^ForcedIncludes + "^$(SolutionDir)$incl$;"                                       //Add Forced included files for Intellisense.
 }

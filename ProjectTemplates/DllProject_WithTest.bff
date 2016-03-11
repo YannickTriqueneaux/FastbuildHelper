@@ -56,7 +56,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     ObjectList( "$aliasName$-Obj" )
     {
         .CompilerInputPath          = "$ProjectSourcesPath$/"
-        .CompilerInputPattern       = "*.cpp"
+        .CompilerInputPattern       = .ProjectSourceInputPattern
         .CompilerInputFiles         = .ProjectExtraCompileFiles
         .CompilerInputExcludePath   = "$ProjectTestSourcesPath$/"
 
@@ -68,7 +68,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     Library( "$aliasName$-Obj" )
     {
         .CompilerInputPath          = "$ProjectSourcesPath$/"
-        .CompilerInputPattern       = "*.cpp"
+        .CompilerInputPattern       = .ProjectSourceInputPattern
         .CompilerInputFiles         = .ProjectExtraCompileFiles
         .CompilerInputExcludePath    = "$ProjectTestSourcesPath$/"
         
@@ -99,7 +99,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     {
 #include "../Commands/AddTestIncludePaths.bff"
 
-        .CompilerInputPattern       = "*.cpp"
+        .CompilerInputPattern       = .ProjectTestSourceInputPattern
         .CompilerInputPath          = "$ProjectTestSourcesPath$/"
         .CompilerOutputPath         = .buildDest + "Obj/$ProjectName$/"
     }
@@ -109,7 +109,7 @@ ForEach( .CompilerConfig in .CompilerConfigs )
     {
 #include "../Commands/AddTestIncludePaths.bff"
         
-        .CompilerInputPattern       = "*.cpp"
+        .CompilerInputPattern       = .ProjectTestSourceInputPattern
         .CompilerInputPath          = "$ProjectTestSourcesPath$/"
         .CompilerOutputPath         = .buildDest + "Obj/$ProjectName$/"
         .LibrarianOutput 			= .buildDest + "Obj/$ProjectName$/test.$ProjectName$" + .staticLibExt

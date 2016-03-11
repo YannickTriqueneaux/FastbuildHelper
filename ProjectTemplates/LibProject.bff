@@ -43,7 +43,7 @@ ForEach(.CompilerConfig in.CompilerConfigs)
     Library("$aliasName$-Lib")
     {
         .CompilerInputPath          = "$ProjectSourcesPath$/"
-        .CompilerInputPattern       = "*.cpp"
+        .CompilerInputPattern       = .ProjectSourceInputPattern
         .CompilerInputFiles         = .ProjectExtraCompileFiles
         .CompilerOutputPath         = .buildDest + "Obj/$ProjectName$/"
         .LibrarianOutput            = .buildDest + .ProjectBuildDestination + .libNamePrefix + "$ProjectName$" + .staticLibExt

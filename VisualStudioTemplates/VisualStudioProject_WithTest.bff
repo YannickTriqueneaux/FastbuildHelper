@@ -43,6 +43,8 @@ VCXProject("$ProjectName$-vsproj")//Executable, Library or DLL project
     .ProjectBasePath            = "$ProjectSourcesPath$/"                           //Base path(s) for root folder(s) in project
 
     .ProjectInputPathsExclude   = "$ProjectTestSourcesPath$/"                       //Paths to exclude from project
+    .ProjectFiles           = ""
+    .ForcedIncludes         = ";"
 
 #include "../VisualStudioTemplates/Commands/AddExtraFiles.bff"                      //List of files to include in project
 //-------------------------------------
@@ -75,6 +77,7 @@ VCXProject("$ProjectName$-vsproj-test")//Associated Test Project
 
 //Intellisense Options ---------------
     .IncludeSearchPath          + "$ProjectTestSourcesPath$/"                       //Include search paths.
+    .ForcedIncludes         = ";"
 
 #include "../VisualStudioTemplates/Commands/AddIncludePaths.bff"                     
 #include "../VisualStudioTemplates/Commands/AddTestIncludePaths.bff"                 
