@@ -140,15 +140,15 @@ Compiler( "Compiler-x64" )
 	.LibrarianOptions		        = '/WX /NOLOGO /OUT:"%2" "%1"'
 	.LinkerOptions			        = '/WX /NOLOGO /INCREMENTAL:NO /OUT:"%2" "%1"'
 	
-	.CompilerDebugOptimizations		= " /Od /Oi /Oy- /RTC1 /MTd /Z7 /GS /Gy /GR-"
+	.CompilerDebugOptimizations		= " /Od /Oi /Oy- /RTC1 /MDd /Z7 /GS /Gy /GR-"
 									+ " /fp:precise"
 									
-	.CompilerReleaseOptimizations	= " /MT /Ox /Oy /Oi /GS- /GF /GL /Gy /GR-"
+	.CompilerReleaseOptimizations	= " /MD /Ox /Oy /Oi /GS- /GF /GL /Gy /GR-"
 									+ " /fp:fast"
 									
 	.LibrarianDebugOptimizations	= ""
 	.LibrarianReleaseOptimizations  = " /LTCG"
-	.LinkerDebugOptimizations		= " /DEBUG"
+	.LinkerDebugOptimizations		= " /DEBUG" // /NODEFAULTLIB:MSVCRTD
 	.LinkerReleaseOptimizations		= " /LTCG /OPT:REF,ICF"
 	
 	.BaseIncludePaths		        = ' /I"./"'
@@ -164,7 +164,7 @@ Compiler( "Compiler-x64" )
     .DLLCompilerOptions             = ""
     .DLLLinkerOptions               = " /DLL"
 
-    .LinkerOptions                  + " /NODEFAULTLIB:libcmtd"
+    .LinkerOptions                  + " /NODEFAULTLIB:msvcrtd"
 	.CompilerOptions 		        + .BaseIncludePaths
 
     //Options for compiler for precompiled header -- Not recomanded for distributed builds  (is Machine-Specific)

@@ -4,10 +4,10 @@
 //DO NOT USE AN OPERATOR ' = '  IN THIS FILE !
 
 //Debug
-.PlaformDebugDefaultLibs    = ' libcmtd.lib'    // Main entry point
+.PlaformDebugDefaultLibs    = ' msvcrt.lib'    // Main entry point
 
 //Release
-.PlaformReleaseDefaultLibs  = ' libcmt.lib'     // Main entry point
+.PlaformReleaseDefaultLibs  = ' msvcrt.lib'     // Main entry point
 
 //Common
 .PlatformDefaultLibs 	    = ' kernel32.lib'	// Kernel functions
