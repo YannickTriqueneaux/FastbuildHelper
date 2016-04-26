@@ -204,7 +204,7 @@ Compiler( "Compiler-x64" )
     //Inherit of .BaseConfigurations content
 	Using( .BaseConfigurations )    
 
-    .Platform                   = "x86"                                 //Used in templates compilation settings - for Alias
+    .Platform                   = "Win32"                                 //Used in templates compilation settings - for Alias
 
 
 	.x86Definitions       	    = " /DWIN32"                            //x86 specific define

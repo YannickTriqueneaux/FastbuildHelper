@@ -54,7 +54,7 @@
 //they have to be cleaned after be used 
 .ProjectIncludePaths        = {} //(Optional) paths to add during compilation in order to find exta solution's files   example  "#include <boost/any.h>"
 .ProjectLibraryPaths        = {} //(Optional) library paths to add during compilation in order to find the librairies given in argument of compiler, should be relative to the "fbuild.bff"
-.ProjectLibraryPathsx86     = {} //(Optional) Only for x86 - library paths to add during compilation in order to find the librairies given in argument of compiler, should be relative to the "fbuild.bff"
+.ProjectLibraryPathsWin32   = {} //(Optional) Only for x86 - library paths to add during compilation in order to find the librairies given in argument of compiler, should be relative to the "fbuild.bff"
 .ProjectLibraryPathsx64     = {} //(Optional) Only for x64 - library paths to add during compilation in order to find the librairies given in argument of compiler, should be relative to the "fbuild.bff"
 .ProjectExternalLibraries   = {} //(Optional) librairies given in argument of compiler
 .ProjectExtraDefines        = {} //(Optional) definitions added to the compiler   (e.g: "#define FOR_WINDOWS" for the compiler)

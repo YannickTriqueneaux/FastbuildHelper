@@ -20,8 +20,8 @@
 
 .ProjectCommon = 
 [
-	.ProjectBuildCommand		= "cd ^$(SolutionDir)/ &amp; fbuild ^$(ProjectName)-^$(Configuration) -vs -dist -cache -nostoponerror"
-	.ProjectRebuildCommand		= "cd ^$(SolutionDir)/ &amp; fbuild -clean ^$(ProjectName)-^$(Configuration) -vs -dist -cache -nostoponerror"
+	.ProjectBuildCommand		= "cd ^$(SolutionDir)/ &amp; fbuild ^$(ProjectName)-^$(Platform)-^$(Configuration) -vs -dist -cache -nostoponerror"
+	.ProjectRebuildCommand		= "cd ^$(SolutionDir)/ &amp; fbuild -clean ^$(ProjectName)-^$(Platform)-^$(Configuration) -vs -dist -cache -nostoponerror"
 	.OutputDirectory			= "^$(SolutionDir)/$BuildDestination$/"
     .IntermediateDirectory      = "^$(SolutionDir)/$BuildDestination$/"
     ForEach(.elm in .EnableBuildDestByConfig)
@@ -34,10 +34,10 @@
     .PreprocessorDefinitions    = "FASTBUILD;" //default defines for intellisence
 ]
 
-.VSProjectX86Debug		        = [ Using( .VistualStudioDefinitions ) .Platform = "Win32" .Config = "x86-Debug"	.PreprocessorDefinitions = .X86Defines + .DebugDefines ]
-.VSProjectX86Release		    = [ Using( .VistualStudioDefinitions ) .Platform = "Win32" .Config = "x86-Release"  .PreprocessorDefinitions = .X86Defines + .ReleaseDefines ]
-.VSProjectX64Debug		        = [ Using( .VistualStudioDefinitions ) .Platform = "x64" .Config = "x64-Debug"	.PreprocessorDefinitions = .X64Defines + .DebugDefines ]
-.VSProjectX64Release		    = [ Using( .VistualStudioDefinitions ) .Platform = "x64" .Config = "x64-Release"  .PreprocessorDefinitions = .X64Defines + .ReleaseDefines ]
+.VSProjectX86Debug		        = [ Using( .VistualStudioDefinitions ) .Platform = "Win32" .Config = "Debug"	.PreprocessorDefinitions = .X86Defines + .DebugDefines ]
+.VSProjectX86Release		    = [ Using( .VistualStudioDefinitions ) .Platform = "Win32" .Config = "Release"  .PreprocessorDefinitions = .X86Defines + .ReleaseDefines ]
+.VSProjectX64Debug		        = [ Using( .VistualStudioDefinitions ) .Platform = "x64" .Config = "Debug"	.PreprocessorDefinitions = .X64Defines + .DebugDefines ]
+.VSProjectX64Release		    = [ Using( .VistualStudioDefinitions ) .Platform = "x64" .Config = "Release"  .PreprocessorDefinitions = .X64Defines + .ReleaseDefines ]
 
 //.VSProjectX86Profile		    = [ Using( .ProjectCommon )	.Config = 'x86-Profile' .PreprocessorDefinitions = .X86Defines + .ProfileDefines ]
 //.VSProjectX64Profile		    = [ Using( .ProjectCommon )	.Config = 'x64-Profile' .PreprocessorDefinitions = .X64Defines + .ProfileDefines ]

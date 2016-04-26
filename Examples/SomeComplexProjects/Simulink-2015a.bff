@@ -38,7 +38,7 @@
 
 
 
-.ProjectLibraryPathsx86    =
+.ProjectLibraryPathsWin32    =
 {
     "$sourceCodePath$/../Externals/Matlab/2015a/extern/lib/win32/microsoft"
 }
