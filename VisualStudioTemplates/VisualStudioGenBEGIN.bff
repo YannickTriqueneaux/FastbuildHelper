@@ -26,8 +26,8 @@
     .IntermediateDirectory      = "^$(SolutionDir)/$BuildDestination$/"
     ForEach(.elm in .EnableBuildDestByConfig)
     {
-        ^OutputDirectory        + "^$(Configuration)"
-        ^IntermediateDirectory  + "^$(Configuration)"
+        ^OutputDirectory        + "^$(Platform)-^$(Configuration)"
+        ^IntermediateDirectory  + "^$(Platform)-^$(Configuration)"
     }
 	.PlatformToolset            = "v140"
 	.IncludeSearchPath			= "^$(SolutionDir)../..;./"
