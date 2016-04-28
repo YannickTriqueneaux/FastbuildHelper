@@ -20,8 +20,8 @@
 
 .ProjectCommon = 
 [
-	.ProjectBuildCommand		= "cd ^$(SolutionDir)/ &amp; fbuild ^$(ProjectName)-^$(Platform)-^$(Configuration) -vs -dist -cache -nostoponerror"
-	.ProjectRebuildCommand		= "cd ^$(SolutionDir)/ &amp; fbuild -clean ^$(ProjectName)-^$(Platform)-^$(Configuration) -vs -dist -cache -nostoponerror"
+	.ProjectBuildCommand		= "cd ^$(SolutionDir)/ &amp; fbuild ^$(ProjectName)-^$(Platform)-^$(Configuration) -vs -dist -cache -nostoponerror -fixuperrorpaths"
+	.ProjectRebuildCommand		= "cd ^$(SolutionDir)/ &amp; fbuild -clean ^$(ProjectName)-^$(Platform)-^$(Configuration) -vs -dist -cache -nostoponerror -fixuperrorpaths"
 	.OutputDirectory			= "^$(SolutionDir)/$BuildDestination$/"
     .IntermediateDirectory      = "^$(SolutionDir)/$BuildDestination$/"
     ForEach(.elm in .EnableBuildDestByConfig)

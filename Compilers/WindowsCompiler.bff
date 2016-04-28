@@ -140,8 +140,7 @@ Compiler( "Compiler-x64" )
     .CppCompilerOptions             = ""
 		
 	.LibrarianOptions		        = '/WX /NOLOGO /OUT:"%2" "%1"'
-	.LinkerOptions			        = '/WX /NOLOGO /INCREMENTAL:NO /OUT:"%2" "%1"'
-	
+	.LinkerOptions			        = '/WX /NOLOGO /MANIFEST  /MANIFESTUAC:level=^'asInvoker^' /INCREMENTAL:NO /OUT:"%2" "%1"'
 	.CompilerDebugOptimizations		= " /Od /Oi /Oy- /RTC1 /MDd /Z7 /GS /Gy /GR-"
 									+ " /fp:precise"
 									
