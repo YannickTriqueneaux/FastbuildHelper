@@ -8,6 +8,7 @@
 //Compiler MSVC 15
 .VSBasePath			= "C:/Program Files (x86)/Microsoft Visual Studio 14.0"
 .WindowsSDKBasePath	= "C:/Program Files (x86)/Windows Kits/10"
+.WindowsSDKVersion	= "10.0.15063.0"
 //Target platform version: 8.1
 .WindowsSDK81Path   = "C:/Program Files (x86)/Windows Kits/8.1"
 
@@ -154,11 +155,13 @@ Compiler( "Compiler-x64" )
 	.BaseIncludePaths		        = ' /I"./"'
 							        + ' /I"$VSBasePath$/VC/include/"'
                                     + ' /I"$VSBasePath$/VC/atlmfc/include"'
-                                    + ' /I"$WindowsSDKBasePath$/Include/10.0.10150.0/ucrt/"'
+                                    + ' /I"$WindowsSDKBasePath$/Include/$WindowsSDKVersion$/ucrt/"'
+									+ ' /I"$WindowsSDKBasePath$/Include/$WindowsSDKVersion$/um/"'
+									+ ' /I"$WindowsSDKBasePath$/Include/$WindowsSDKVersion$/shared/"'
                                     + ' /I"$WindowsSDK81Path$/Include/um/"'
                                     + ' /I"$WindowsSDK81Path$/Include/shared/"'
 
-    .WindowsLibPaths                = "$WindowsSDKBasePath$/Lib/10.0.10150.0"
+    .WindowsLibPaths                = "$WindowsSDKBasePath$/Lib/$WindowsSDKVersion$"
     .WindowsLibPaths81              = "$WindowsSDK81Path$/Lib/winv6.3"
 
     .DLLCompilerOptions             = ""
