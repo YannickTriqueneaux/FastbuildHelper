@@ -8,7 +8,6 @@
 //Compiler MSVC 17
 .VSBasePath			= "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community"
 .VSVersion			= "14.10.25017"
-.VSVersionForRedist	= "14.10.25008"
 .WindowsSDKBasePath	= "C:/Program Files (x86)/Windows Kits/10"
 .WindowsSDKVersion	= "10.0.15063.0"
 
@@ -45,10 +44,6 @@ Compiler( "Compiler-x86" )
         "$Root$\mspdbcore.dll",
         "$Root$\mspft140.dll",
         "$Root$\msvcdis140.dll",
-		//"$VSBasePath$\VC\Redist\MSVC\$VSVersionForRedist$\x86\Microsoft.VC150.CRT\concrt.dll",
-        //"$VSBasePath$\VC\Redist\MSVC\$VSVersionForRedist$\x86\Microsoft.VC150.CRT\msvcp140.dll",
-        //"$VSBasePath$\VC\Redist\MSVC\$VSVersionForRedist$\x86\Microsoft.VC150.CRT\vccorlib140.dll"
-        //"$VSBasePath$\VC\Redist\MSVC\$VSVersionForRedist$\x86\Microsoft.VC150.CRT\vcruntime140.dll"
 		"$VSBasePath$\VC\Redist\MSVC\$VSVersion$\onecore\x86\Microsoft.VC150.CRT\msvcp140.dll",
         "$VSBasePath$\VC\Redist\MSVC\$VSVersion$\onecore\x86\Microsoft.VC150.CRT\vccorlib140.dll"
         "$VSBasePath$\VC\Redist\MSVC\$VSVersion$\onecore\x86\Microsoft.VC150.CRT\vcruntime140.dll"
@@ -73,10 +68,6 @@ Compiler( "Compiler-x64" )
         "$Root$\mspdbsrv.exe"
         "$Root$\mspdbcore.dll"
         "$Root$\mspft140.dll"
-		//"$VSBasePath$\VC\Redist\MSVC\$VSVersionForRedist$\x64\Microsoft.VC150.CRT\concrt.dll",
-        //"$VSBasePath$\VC\Redist\MSVC\$VSVersionForRedist$\x64\Microsoft.VC150.CRT\msvcp140.dll",
-        //"$VSBasePath$\VC\Redist\MSVC\$VSVersionForRedist$\x64\Microsoft.VC150.CRT\vccorlib140.dll"
-        //"$VSBasePath$\VC\Redist\MSVC\$VSVersionForRedist$\x64\Microsoft.VC150.CRT\vcruntime140.dll"
 		"$VSBasePath$\VC\Redist\MSVC\$VSVersion$\onecore\x64\Microsoft.VC150.CRT\msvcp140.dll",
         "$VSBasePath$\VC\Redist\MSVC\$VSVersion$\onecore\x64\Microsoft.VC150.CRT\vccorlib140.dll"
         "$VSBasePath$\VC\Redist\MSVC\$VSVersion$\onecore\x64\Microsoft.VC150.CRT\vcruntime140.dll"
@@ -191,9 +182,6 @@ Compiler( "Compiler-x64" )
 //	.CompilerOptions			= "/nologo /fo"%2" %1"
 //]
 
-
-
-
 //Big object compilation flag for Windows : https://msdn.microsoft.com/en-us/library/ms173499.aspx
 .bigObjectFlag = " /bigobj"
 
@@ -214,7 +202,7 @@ Compiler( "Compiler-x64" )
 	.x86Definitions       	    = " /DWIN32"                            //x86 specific define
 							    + " /arch:SSE2"                         //x86 specific argurment
 
-	.ToolsBasePath			    = "$VSBasePath$/VC/Tools/MSVC/$VSVersion$/bin/HostX86/x86"                 //path to x86 compiler tools
+	.ToolsBasePath			    = "$VSBasePath$/VC/Tools/MSVC/$VSVersion$/bin/HostX86/x86"		//path to x86 compiler tools
 
 	.Compiler				    = "Compiler-x86"                        //Compiler to use   -  FASTBuild function Compiler()
 	.Librarian				    = "$ToolsBasePath$/lib.exe"

@@ -29,7 +29,7 @@
         ^OutputDirectory        + "^$(Configuration)"
         ^IntermediateDirectory  + "^$(Configuration)"
     }
-	.PlatformToolset            = "v140"
+	.PlatformToolset            = "v141"
 	.IncludeSearchPath			= "^$(SolutionDir)../..;./"
     .PreprocessorDefinitions    = "FASTBUILD;" //default defines for intellisence
 ]
