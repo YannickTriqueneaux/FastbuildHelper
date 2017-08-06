@@ -5,19 +5,18 @@
 
 #once   //can be included just one time
 
-//Compiler MSVC 15
-.VSBasePath			= "C:/Program Files (x86)/Microsoft Visual Studio 14.0"
+//Compiler MSVC 17
+.VSBasePath			= "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community"
+.VSVersion			= "14.10.25017"
 .WindowsSDKBasePath	= "C:/Program Files (x86)/Windows Kits/10"
 .WindowsSDKVersion	= "10.0.15063.0"
-//Target platform version: 8.1
-.WindowsSDK81Path   = "C:/Program Files (x86)/Windows Kits/8.1"
 
 //Defines global FASTBuild settings.
 Settings
 {
     //Array of environment variables to use
 	.Environment	= { 
-        "PATH=$VSBasePath$/Common7/IDE/;$VSBasePath$/VC/bin/",
+        "PATH=$VSBasePath$/Common7/IDE/;$VSBasePath$/VC/Tools/MSVC/$VSVersion$/bin/HostX64/x64;$VSBasePath$/VC/Tools/MSVC/$VSVersion$/bin/HostX64/x86",
 		"TMP=C:/Windows/Temp",
         "SystemRoot=C:/Windows" 
     }
@@ -29,7 +28,7 @@ Settings
 //Specifies compiler and related files for network distribution.
 Compiler( "Compiler-x86" )
 {
-	.Root		    = "$VSBasePath$/VC/bin"
+	.Root		    = "$VSBasePath$/VC/Tools/MSVC/$VSVersion$/bin/HostX86/x86"
 
     // Primary compiler executable
 	.Executable	    = "$Root$/cl.exe"
@@ -45,35 +44,33 @@ Compiler( "Compiler-x86" )
         "$Root$\mspdbcore.dll",
         "$Root$\mspft140.dll",
         "$Root$\msvcdis140.dll",
-        "$VSBasePath$\VC\redist\x86\Microsoft.VC140.CRT\concrt140.dll",
-        "$VSBasePath$\VC\redist\x86\Microsoft.VC140.CRT\msvcp140.dll",
-        "$VSBasePath$\VC\redist\x86\Microsoft.VC140.CRT\vccorlib140.dll"
-        "$VSBasePath$\VC\redist\x86\Microsoft.VC140.CRT\vcruntime140.dll"
+		"$VSBasePath$\VC\Redist\MSVC\$VSVersion$\onecore\x86\Microsoft.VC150.CRT\msvcp140.dll",
+        "$VSBasePath$\VC\Redist\MSVC\$VSVersion$\onecore\x86\Microsoft.VC150.CRT\vccorlib140.dll"
+        "$VSBasePath$\VC\Redist\MSVC\$VSVersion$\onecore\x86\Microsoft.VC150.CRT\vcruntime140.dll"
     }
 }
 
 //Specifies compiler and related files for network distribution.
 Compiler( "Compiler-x64" )
 {
-    .Root           = "$VSBasePath$\VC\bin"
+    .Root		    = "$VSBasePath$/VC/Tools/MSVC/$VSVersion$/bin/HostX64/x64"
 
     // Primary compiler executable
-    .Executable     = "$Root$\x86_amd64\cl.exe"
+    .Executable     = "$Root$/cl.exe"
 
     //Additional files (usually dlls) required by the compiler.
     .ExtraFiles     = { 
-        "$Root$\x86_amd64\c1.dll",
-        "$Root$\x86_amd64\c1xx.dll",
-        "$Root$\x86_amd64\c2.dll",
+        "$Root$\c1.dll",
+        "$Root$\c1xx.dll",
+        "$Root$\c2.dll",
         "$Root$\msobj140.dll"
         "$Root$\mspdb140.dll"
         "$Root$\mspdbsrv.exe"
         "$Root$\mspdbcore.dll"
         "$Root$\mspft140.dll"
-        "$VSBasePath$\VC\redist\x64\Microsoft.VC140.CRT\concrt140.dll",
-        "$VSBasePath$\VC\redist\x64\Microsoft.VC140.CRT\msvcp140.dll",
-        "$VSBasePath$\VC\redist\x64\Microsoft.VC140.CRT\vccorlib140.dll"
-        "$VSBasePath$\VC\redist\x64\Microsoft.VC140.CRT\vcruntime140.dll"
+		"$VSBasePath$\VC\Redist\MSVC\$VSVersion$\onecore\x64\Microsoft.VC150.CRT\msvcp140.dll",
+        "$VSBasePath$\VC\Redist\MSVC\$VSVersion$\onecore\x64\Microsoft.VC150.CRT\vccorlib140.dll"
+        "$VSBasePath$\VC\Redist\MSVC\$VSVersion$\onecore\x64\Microsoft.VC150.CRT\vcruntime140.dll"
     }
 }
 //For others compilers: http://www.fastbuild.org/docs/functions/compiler.html
@@ -149,20 +146,17 @@ Compiler( "Compiler-x64" )
 									
 	.LibrarianDebugOptimizations	= ""
 	.LibrarianReleaseOptimizations  = " /LTCG"
-	.LinkerDebugOptimizations		= " /DEBUG"
+	.LinkerDebugOptimizations		= " /DEBUG:FASTLINK"		// Very fast link in VS 2017. Revert to "DEBUG:FULL" or just "DEBUG" in case of problems
 	.LinkerReleaseOptimizations		= " /LTCG /OPT:REF,ICF"
 	
 	.BaseIncludePaths		        = ' /I"./"'
-							        + ' /I"$VSBasePath$/VC/include/"'
-                                    + ' /I"$VSBasePath$/VC/atlmfc/include"'
+							        + ' /I"$VSBasePath$/VC/Tools/MSVC/$VSVersion$/include"'
+                                    + ' /I"$VSBasePath$/VC/Tools/MSVC/$VSVersion$/atlmfc/include"'
                                     + ' /I"$WindowsSDKBasePath$/Include/$WindowsSDKVersion$/ucrt/"'
 									+ ' /I"$WindowsSDKBasePath$/Include/$WindowsSDKVersion$/um/"'
 									+ ' /I"$WindowsSDKBasePath$/Include/$WindowsSDKVersion$/shared/"'
-                                    + ' /I"$WindowsSDK81Path$/Include/um/"'
-                                    + ' /I"$WindowsSDK81Path$/Include/shared/"'
 
     .WindowsLibPaths                = "$WindowsSDKBasePath$/Lib/$WindowsSDKVersion$"
-    .WindowsLibPaths81              = "$WindowsSDK81Path$/Lib/winv6.3"
 
     .DLLCompilerOptions             = ""
     .DLLLinkerOptions               = " /DLL"
@@ -188,9 +182,6 @@ Compiler( "Compiler-x64" )
 //	.CompilerOptions			= "/nologo /fo"%2" %1"
 //]
 
-
-
-
 //Big object compilation flag for Windows : https://msdn.microsoft.com/en-us/library/ms173499.aspx
 .bigObjectFlag = " /bigobj"
 
@@ -211,7 +202,7 @@ Compiler( "Compiler-x64" )
 	.x86Definitions       	    = " /DWIN32"                            //x86 specific define
 							    + " /arch:SSE2"                         //x86 specific argurment
 
-	.ToolsBasePath			    = "$VSBasePath$/VC/bin"                 //path to x86 compiler tools
+	.ToolsBasePath			    = "$VSBasePath$/VC/Tools/MSVC/$VSVersion$/bin/HostX86/x86"		//path to x86 compiler tools
 
 	.Compiler				    = "Compiler-x86"                        //Compiler to use   -  FASTBuild function Compiler()
 	.Librarian				    = "$ToolsBasePath$/lib.exe"
@@ -219,9 +210,9 @@ Compiler( "Compiler-x64" )
 	.CompilerOptions		    + .x86Definitions
 
 	.LinkerOptions			    + " /MACHINE:X86"                        
-    .LinkerOptions              + ' /LIBPATH:"$WindowsLibPaths81$/um/x86"'   //Windows SDK's library paths for x86
-                                + ' /LIBPATH:"$WindowsLibPaths$/ucrt/x86"'
-                                + ' /LIBPATH:"$VSBasePath$/VC/lib"'     //VisualStudio library path for x86
+    .LinkerOptions              + ' /LIBPATH:"$WindowsLibPaths$/ucrt/x86"'
+								+ ' /LIBPATH:"$WindowsLibPaths$/um/x86"'
+                                + ' /LIBPATH:"$VSBasePath$/VC/Tools/MSVC/$VSVersion$/lib/x86"'     //VisualStudio library path for x86
 
 
     //.PCHOptions			    + .x86Definitions
@@ -296,7 +287,7 @@ Compiler( "Compiler-x64" )
                                 + " /D_M_X64"                                       //x64 specific defines
 	                                                                                
 
-	.ToolsBasePath			    = "$VSBasePath$/VC/bin/amd64"                   //path to x86 compiler tools
+	.ToolsBasePath			    = "$VSBasePath$/VC/Tools/MSVC/$VSVersion$/bin/HostX64/x64"                   //path to x86 compiler tools
 	
 	.Compiler				    = "Compiler-x64"                                    //Compiler to use   -  FASTBuild function Compiler()
 	.Librarian				    = "$ToolsBasePath$/lib.exe"
@@ -307,9 +298,9 @@ Compiler( "Compiler-x64" )
 	//.PCHOptions			    + .x64Definitions
 
 	.LinkerOptions			    + " /MACHINE:X64"                                   //x64 specific argurment
-    .LinkerOptions              + ' /LIBPATH:"$WindowsLibPaths81$/um/x64"'   //Windows SDK's library paths for x86
-                                + ' /LIBPATH:"$WindowsLibPaths$/ucrt/x64"'
-                                + ' /LIBPATH:"$VSBasePath$/VC/lib/amd64"'     //VisualStudio library path for x86
+    .LinkerOptions              + ' /LIBPATH:"$WindowsLibPaths$/ucrt/x64"'
+								+ ' /LIBPATH:"$WindowsLibPaths$/um/x64"'
+                                + ' /LIBPATH:"$VSBasePath$/VC/Tools/MSVC/$VSVersion$/lib/x64"'     //VisualStudio library path for x86
 ]
 .X64DebugConfig =
 [
@@ -361,18 +352,6 @@ Compiler( "Compiler-x64" )
 ///////////////////////////////////////////////
 
 //#include "ClangCompiler.bff"   //add Clang Compilation configurations
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Compile Configurations list 
 //------------------------------------------------------------------------------
